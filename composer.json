@@ -47,7 +47,8 @@
         "check-style": "php-cs-fixer fix --using-cache=no --diff --allow-risky yes --dry-run --stop-on-violation .",
         "fix-style": "php-cs-fixer fix --using-cache=no --allow-risky yes .",
         "post-install-cmd": "cghooks add --ignore-lock",
-        "post-update-cmd": "cghooks update"
+        "post-update-cmd": "cghooks update",
+        "pre-commit": "echo Fixing php coding style; composer fix-style && composer check-style && composer test"
     },
     "scripts-descriptions": {
         "test": "Run all tests.",
@@ -60,10 +61,7 @@
                 "stop-on-failure": ["pre-commit"]
             },
             "pre-commit": [
-                "echo Fixing php coding style",
-                "composer fix-style",
-                "composer check-style",
-                "composer test"
+                "composer pre-commit"
             ]
         }
     }
