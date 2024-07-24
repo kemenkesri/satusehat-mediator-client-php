@@ -1,0 +1,36 @@
+{
+    "name": "kemenkesri/satusehat-mediator-client-php",
+    "type": "library",
+    "description": "Library to acceleare SATUSEHAT implementation via Interoperability Mediator",
+    "license": "MPL-2.0",
+    "homepage": "https://github.com/kemenkesri/satusehat-mediator-client-php",
+    "authors": [
+      {
+        "name": "CHISU Indonesia Dev",
+        "email": "vinixsatria@gmail.com",
+        "homepage": "https://github.com/kemenkesri"
+      }
+    ],
+    "keywords": [
+      "fhir",
+      "ehr",
+      "hl7",
+      "ohie-mediator"
+    ],
+    "require": {
+      "php": "^7.4 || ^8.0",
+      "ext-curl": "*",
+      "ext-json": "*",
+      "ext-mbstring": "*",
+      "guzzlehttp/guzzle": "^7.3",
+      "guzzlehttp/psr7": "^1.7 || ^2.0",
+      "kamermans/guzzle-oauth2-subscriber": "~1.1",
+      "dcarbone/php-fhir-generated": "v3.0.4.1"
+    },
+    "autoload": {
+      "psr-4": {
+        "Mediator\\SatuSehat\\Lib\\": "lib/",
+        "Mediator\\SatuSehat\\App\\": "app/"
+      }
+    }
+}

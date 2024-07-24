@@ -1,0 +1,1279 @@
+openapi: 3.0.3
+info:
+  title: Swagger Mediator  SATUSEHAT
+  description: |-
+    Spesifikasi API ini merupakan contoh untuk menggunakan **Mediator Interoperabilitas SATUSEHAT** yang secara khusus ditujukan untuk mempercepat dan memudahkan proses interoperabilitas data Rekam Medis Elektronik (RME) antara sistem informasi di Fasilitas Kesehatan (Rumah Sakit, Puskesmas, Klinik, Laboratorium, dll) dengan Platform SATUSEHAT.
+
+    Mediator Interoperabilitas SATUSEHAT menyediakan format custom yang disederhanakan dari format HL7 FHIR sebagai perantara antara sistem RME dengan SATUSEHAT beserta sistem informasi kesehatan yang ada ditingkat nasional.
+  version: 1.0.1
+externalDocs:
+  description: Baca petunjuk penggunaan mediator
+  url: https://rc.kemkes.go.id/category/integrasi-satusehat/mediator-fhir-satusehat
+servers:
+  - url: https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0
+  - url: https://api-kesehatan.jakarta.go.id/rme/dev/simple
+  - url: https://centerview-api.dinkes.jatimprov.go.id//rme/dev/simple
+tags:
+  - name: Patient
+    description: Mengambil informasi terkait pasien
+  - name: Submit Data
+    description: Kirim data RME ke Mediator
+paths:
+  /patient:
+    post:
+      tags:
+        - Patient
+      summary: Mengambil informasi terkait pasien
+      description: Mengambil informasi terkait pasien
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetPatientRequest'
+        required: true
+      responses:
+        '200':
+          description: Request berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPatientResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '413':
+          description: Payload Too Large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '501':
+          description: Not Implemented
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '504':
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+  /sync:
+    post:
+      tags:
+        - Submit Data
+      summary: Kirim data RME ke Mediator dengan format Non-FHIR
+      description: Kirim data RME ke Mediator dengan format Non-FHIR
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitRequest'
+        required: true
+      responses:
+        '200':
+          description: Request berhasil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmitResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '413':
+          description: Payload Too Large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '501':
+          description: Not Implemented
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '504':
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+components:
+  schemas:
+    PatientBasic:
+      type: object
+      properties:
+        nik:
+          type: string
+        name:
+          type: string
+        birthDate:
+          type: string
+          format: date
+    Patient:
+      allOf:
+        - type: object
+          required:
+            - rootCause
+          properties:
+            id:
+              type: string
+        - $ref: '#/components/schemas/PatientBasic'
+    MediatorResourceBasic:
+      type: object
+      properties:
+        id:
+          type: string
+        local_id:
+          type: string
+        profile:
+          type: string
+        shouldUpdaate:
+          type: boolean
+    EpisodeOfCare:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            status:
+              type: string
+            type_code:
+              type: string
+              enum:
+                - planned
+                - waitlist
+                - active
+                - onhold
+                - finished
+                - cancelled
+                - entered-in-error
+            period_start:
+              type: string
+              format: date-time
+            period_end:
+              type: string
+              format: date-time
+            identifier:
+              type: string
+            suspect_id:
+              type: string
+    Encounter:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            classification:
+              type: string
+              enum:
+                - AMB
+                - EMER
+                - IMP
+            status_akhir:
+              type: string
+              enum:
+                - pulang_paksa
+                - dirujuk
+                - meninggal
+                - sembuh
+            period_start:
+              type: string
+              format: date-time
+            perion_in_progress:
+              type: string
+              format: date-time
+            period_end:
+              type: string
+              format: date-time
+            referral_no:
+              type: string
+    Condition:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            code_condition:
+              type: string
+            code_system:
+              type: string
+            code_detail:
+              type: string
+            created:
+              type: string
+              format: date-time
+            recordDate:
+              type: string
+              format: date-time
+            category:
+              type: string
+              enum:
+                - encounter-diagnosis
+                - problem-list-item
+            diagnosis_type:
+              type: string
+              enum:
+                - AD
+                - DD
+                - CC
+                - CM
+                - pre-op
+                - post-op
+                - billing
+            rank:
+              type: integer
+            onsetDate:
+              type: string
+              format: date
+            status:
+              type: string
+              enum:
+                - active
+                - recurrence
+                - relapse
+                - inactive
+                - remission
+                - resolved
+                - unknown
+    ObservationComponent:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+    Observation:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            type_observation:
+              type: string
+            issued:
+              type: string
+              format: date-time
+            value:
+              type: string
+            value_unit:
+              type: string
+            value_detail:
+              type: string
+            effectiveDateTime:
+              type: string
+              format: date-time
+            performer:
+              type: string
+            service_request:
+              type: string
+            specimen:
+              type: string
+            diagnostic_report:
+              type: string
+            notes_detail:
+              type: string
+            interpretation_code:
+              type: string
+            interpretation_text:
+              type: string
+            sitb_tcm_code:
+              type: string
+            component:
+              type: array
+              items:
+                $ref: '#/components/schemas/ObservationComponent'
+            derivedFrom:
+              type: string
+    Procedure:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            status:
+              type: string
+              enum:
+                - preparation
+                - in-progress
+                - not-done
+                - on-hold
+                - stopped
+                - completed
+                - entered-in-error
+                - unknown
+            category:
+              type: string
+            type_code:
+              type: string
+            performed_period_start:
+              type: string
+              format: date-time
+            performed_period_end:
+              type: string
+              format: date-time
+            reason_code:
+              type: string
+    Specimen:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            identifier:
+              type: string
+            status:
+              type: string
+              enum:
+                - available
+                - unavailable
+                - unsatisfactory
+                - entered-in-error
+            reference:
+              type: string
+            type_code:
+              type: string
+            type_detail:
+              type: string
+            collected_time:
+              type: string
+            transported_time:
+              type: string
+              format: date-time
+            interpreter:
+              type: string
+            received_time:
+              type: string
+              format: date-time
+            entrier:
+              type: string
+            entry_time:
+              type: string
+              format: date-time
+            processing_time:
+              type: string
+              format: date-time
+            code_request:
+              type: string
+            condition:
+              type: string
+            specimen_no:
+              type: string
+            note_author:
+              type: string
+            note_detail:
+              type: string
+    DiagnosticReport:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            identifier:
+              type: string
+            code_report:
+              type: string
+            issued:
+              type: string
+              format: date-time
+            verifiedby:
+              type: string
+            effectiveDateTime:
+              type: string
+              format: date-time
+            service_request:
+              type: string
+            specimen:
+              type: string
+            conclusion_text:
+              type: string
+    ServiceRequest:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            referral_no:
+              type: string
+            code_request:
+              type: string
+            faskes_tujuan:
+              type: string
+            referral_status:
+              type: string
+              enum:
+                - "3457005"
+                - "306098008"
+            location_code:
+              type: string
+            requested_time:
+              type: string
+              format: date-time
+            requester_type:
+              type: string
+              enum:
+                - Organization
+                - Practitioner
+            requester:
+              type: string
+            reason_code:
+              type: string
+            reason_detail:
+              type: string
+            occurrence_time:
+              type: string
+              format: date-time
+            reason_observation:
+              type: string
+    MedicationIngredient:
+      type: object
+      properties:
+        kfa_code:
+          type: string
+        kfa_display:
+          type: string
+        numerator_value:
+          type: integer
+        numerator_unit:
+          type: string
+        denominator_value:
+          type: integer
+        denominator_unit:
+          type: string
+    Medication:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            template:
+              type: string
+            kfa_code:
+              type: string
+            form_code:
+              type: string
+              enum:
+                - BS001
+                - BS002
+                - BS003
+                - BS004
+                - BS005
+                - BS006
+                - BS007
+                - BS008
+                - BS009
+                - BS010
+                - BS011
+                - BS012
+                - BS013
+                - BS014
+                - BS015
+                - BS016
+                - BS017
+                - BS018
+                - BS019
+                - BS020
+                - BS021
+                - BS022
+                - BS023
+                - BS024
+                - BS025
+                - BS026
+                - BS027
+                - BS028
+                - BS029
+                - BS030
+                - BS031
+                - BS032
+                - BS033
+                - BS034
+                - BS035
+                - BS036
+                - BS037
+                - BS038
+                - BS039
+                - BS040
+                - BS041
+                - BS042
+                - BS043
+                - BS044
+                - BS045
+                - BS046
+                - BS047
+                - BS048
+                - BS049
+                - BS050
+                - BS051
+                - BS052
+                - BS053
+                - BS054
+                - BS055
+                - BS056
+                - BS057
+                - BS058
+                - BS059
+                - BS060
+                - BS061
+                - BS062
+                - BS063
+                - BS064
+                - BS065
+                - BS066
+                - BS067
+                - BS068
+                - BS069
+                - BS070
+                - BS071
+                - BS072
+                - BS073
+                - BS074
+                - BS075
+                - BS076
+                - BS077
+                - BS078
+                - BS079
+                - BS080
+                - BS081
+                - BS082
+                - BS083
+                - BS084
+                - BS085
+                - BS086
+                - BS087
+                - BS088
+                - BS089
+                - BS090
+                - BS091
+                - BS092
+                - BS093
+                - BS094
+                - BS095
+                - BS096
+            type:
+              type: string
+              enum:
+                - NC
+                - SD
+                - EP
+            progress:
+              type: string
+              enum:
+                - request
+                - dispense
+            status:
+              type: string
+              enum:
+                - active
+                - on-hold
+                - cancelled
+                - completed
+                - entered-in-error
+                - stopped
+                - draft
+                - unknown
+            priority:
+              type: string
+              enum:
+                - routine
+                - urgent
+                - asap
+                - stat
+            reason_code:
+              type: string
+            interval:
+              type: integer
+            interval_unit:
+              type: string
+            frequency:
+              type: integer
+            dosage:
+              type: integer
+            quantity:
+              type: integer
+            duration:
+              type: integer
+            period_start:
+              type: string
+              format: date-time
+            period_end:
+              type: string
+              format: date-time
+            drug_form:
+              type: string
+              enum:
+                - APPFUL
+                - DROP
+                - NDROP
+                - OPDROP
+                - ORDROP
+                - OTDROP
+                - PUFF
+                - SCOOP
+                - SPRY
+                - GASINHL
+                - AER
+                - BAINHL
+                - INHLSOL
+                - MDINHL
+                - NASSPRY
+                - DERMSPRY
+                - FOAM
+                - FOAMAPL
+                - RECFORM
+                - VAGFOAM
+                - RECSPRY
+                - VAGSPRY
+                - INHL
+                - BAINHLPWD
+                - INHLPWD
+                - MDINHLPWD
+                - NASINHL
+                - ORINHL
+                - PWDSPRY
+                - SPRYADAPT
+                - LIQCLN
+                - LIQSOAP
+                - SHMP
+                - OIL
+                - TOPOIL
+                - SOL
+                - IPSOL
+                - IRSOL
+                - IVSOL
+                - ORALSOL
+                - RECSOL
+                - TOPSOL
+                - CRM
+                - NASCRM
+                - OPCRM
+                - ORCRM
+                - OTCRM
+                - RECCRM
+                - TOPCRM
+                - VAGCRM
+                - LTN
+                - TOPLTN
+                - OINT
+                - NASOINT
+                - OINTAPL
+                - OPOINT
+                - OTOINT
+                - RECOINT
+                - TOPOINT
+                - VAGOINT
+                - GEL
+                - GELAPL
+                - NASGEL
+                - OPGEL
+                - OTGEL
+                - TOPGEL
+                - URETHGEL
+                - VAGGEL
+                - PASTE
+                - PUD
+                - TPASTE
+                - SUSP
+                - ITSUSP
+                - OPSUSP
+                - ORSUSP
+                - OTSUSP
+                - RECSUSP
+                - BAR
+                - BARSOAP
+                - CHEWBAR
+                - BEAD
+                - CAKE
+                - CEMENT
+                - CRYS
+                - DISK
+                - FLAKE
+                - GRAN
+                - GUM
+                - PAD
+                - MEDPAD
+                - PATCH
+                - TPATCH
+                - PELLET
+                - PILL
+                - CAP
+                - TAB
+                - POWD
+                - TOPPWD
+                - SUPP
+                - RECSUPP
+                - URETHSUPP
+                - VAGSUPP
+                - SWAB
+                - MEDSWAB
+                - WAFER
+            route:
+              type: string
+            patientInstruction:
+              type: string
+            additionalInstruction:
+              type: string
+            ingredient:
+              type: array
+              items:
+                $ref: '#/components/schemas/MedicationIngredient'
+            dispense_location_id:
+              type: string
+            iter:
+              type: integer
+            batch_no:
+              type: string
+            batch_exp:
+              type: string
+              format: date-time
+            whenPrepared:
+              type: string
+              format: date-time
+            whenHandedOver:
+              type: string
+              format: date-time
+            prescription_no:
+              type: string
+            prescription_item_no:
+              type: string
+    MedicationStatement:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            status:
+              type: string
+            kfa_code:
+              type: string
+            frequency:
+              type: integer
+            frequency_detail:
+              type: string
+            interval:
+              type: integer
+            interval_unit:
+              type: string
+            effectiveDateTime:
+              type: string
+              format: date-time
+    Immunization:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            status:
+              type: string
+              enum:
+                - completed
+                - not-done
+            vaccine_code:
+              type: string
+            occurrence_time:
+              type: string
+              format: date-time
+            recorded:
+              type: string
+              format: date-time
+            performer_type:
+              type: string
+            performer:
+              type: string
+    QuestionnaireResponse:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            questionnaire:
+              type: string
+              enum:
+                - ANC
+                - TB
+                - NAR
+            type_diagnosis:
+              type: string
+            location_anatomy:
+              type: string
+            treatment_history:
+              type: string
+            end_result_treatment:
+              type: string
+            pergi_luar_negeri:
+              type: string
+            negara_pergi_luar_negeri:
+              type: string
+            rumah_luar_negeri:
+              type: string
+            negara_rumah_luar_negeri:
+              type: string
+            kontak_unggas:
+              type: string
+            rumah_dekat_unggas:
+              type: string
+            sudah_vaksin_influenza:
+              type: string
+            sudah_vaksin_covid:
+              type: string
+            alasan_tidak_diambil_specimen:
+              type: string
+            dilakukan_xray:
+              type: string
+            x_ray_pneumonia:
+              type: string
+            penggunaan_antibiotik:
+              type: string
+            jenis_antibiotik:
+              type: string
+            penggunaan_antiviral:
+              type: string
+            jenis_antiviral:
+              type: string
+            keperluan_ventilator:
+              type: string
+            keperluan_icu:
+              type: string
+            keperluan_intubasi:
+              type: string
+            lama_tinggal:
+              type: string
+            tindak_lanjut:
+              type: string
+            tanggal_dianjurkan_tes_hiv:
+              type: string
+    DocumentStatus:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            status_code:
+              type: string
+              enum:
+                - preliminary
+                - amended
+                - final
+            status_time:
+              type: string
+            status_assigner:
+              type: string
+    Composition:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            status:
+              type: string
+              enum:
+                - preliminary
+                - final
+                - amended
+                - entered-in-error
+            type:
+              type: string
+              enum:
+                - COM000001
+                - COM000002
+                - COM000003
+            document_status:
+              type: array
+              items:
+                $ref: '#/components/schemas/DocumentStatus'
+            title:
+              type: string
+    CarePlan:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            status:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            category:
+              type: string
+            period_start:
+              type: string
+              format: date-time
+            period_end:
+              type: string
+              format: date-time
+            outcome:
+              type: string
+    Location:
+      allOf:
+        - $ref: '#/components/schemas/MediatorResourceBasic'
+        - type: object
+          properties:
+            type_location:
+              type: string
+              enum:
+                - tempat_meninggal_nonfaskes
+                - tempat_meninggal_faskes
+                - alamat_lahir
+                - alamat_mati
+                - alamat_bersalin
+            faskes_reference:
+              type: string
+            country:
+              type: string
+            province:
+              type: string
+            city:
+              type: string
+            district:
+              type: string
+            village:
+              type: string
+            rt:
+              type: string
+            rw:
+              type: string
+            line:
+              type: string
+            postal_code:
+              type: string
+    TbSuspect:
+      type: object
+      properties:
+        id:
+          type: string
+        person_id:
+          type: string
+        tgl_daftar:
+          type: string
+          format: date
+        fasyankes_id:
+          type: string
+        jenis_fasyankes_id:
+          type: string
+        fasyankes_provinsi_id:
+          type: string
+        fasyankes_kabupaten_id:
+          type: string
+        umur:
+          type: integer
+        umur_bl:
+          type: integer
+        fasyankes_rujukan_id:
+          type: string
+        jenis_fasyankes_rujukan_id:
+          type: string
+        fasyankes_rujukan_lain:
+          type: string
+        provinsi_rujukan_id:
+          type: string
+        kabupaten_rujukan_id:
+          type: string
+        asal_rujukan_id:
+          type: string
+        asal_rujukan_lain:
+          type: string
+        fasyankes_rujukan_asal_id:
+          type: string
+        terduga_tb_id:
+          type: string
+        terduga_ro_id:
+          type: string
+        tipe_pasien_id:
+          type: string
+        skoring_tbc_anak:
+          type: string
+        status_dm_id:
+          type: string
+        status_hiv_id:
+          type: string
+        imunisasi_bcg_id:
+          type: string
+        no_reg_fasyankes:
+          type: string
+        reg_kab_id:
+          type: string
+        no_reg_kab:
+          type: string
+        location_anatomy:
+          type: string
+        confirm_id:
+          type: string
+        lab_id:
+          type: string
+        specimen_id:
+          type: string
+        no_sediaan:
+          type: string
+        no_urut:
+          type: string
+    TbConfirm:
+      type: object
+      properties:
+        paduan_oat:
+          type: string
+        bentuk_oat:
+          type: string
+        paduan_pengobatan:
+          type: string
+    GetPatientRequest:
+      type: object
+      properties:
+        profile:
+          type: array
+          items:
+            type: string
+        patient:
+          $ref: '#/components/schemas/PatientBasic'
+    GetPatientResponse:
+      type: object
+      properties:
+        patient:
+          $ref: '#/components/schemas/Patient'
+        episode_of_care:
+          type: array
+          items:
+            $ref: '#/components/schemas/EpisodeOfCare'
+        tb_suspect:
+          type: array
+          items:
+            $ref: '#/components/schemas/TbSuspect'
+    SubmitRequest:
+      type: object
+      properties:
+        profile:
+          type: array
+          items:
+            type: string
+        organization_id:
+          type: string
+        location_id:
+          type: string
+        practitioner_nik:
+          type: string
+        patient:
+          $ref: '#/components/schemas/PatientBasic'
+        tb_suspect:
+          $ref: '#/components/schemas/TbSuspect'
+        tb_confirm:
+          $ref: '#/components/schemas/TbConfirm'
+        encounter:
+          $ref: '#/components/schemas/Encounter'
+        condition:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+        observation:
+          type: array
+          items:
+            $ref: '#/components/schemas/Observation'
+        procedure:
+          type: array
+          items:
+            $ref: '#/components/schemas/Procedure'
+        specimen:
+          type: array
+          items:
+            $ref: '#/components/schemas/Specimen'
+        diagnostic_report:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiagnosticReport'
+        service_request:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceRequest'
+        episode_of_care:
+          $ref: '#/components/schemas/EpisodeOfCare'
+        medication:
+          type: array
+          items:
+            $ref: '#/components/schemas/Medication'
+        medication_statement:
+          type: array
+          items:
+            $ref: '#/components/schemas/MedicationStatement'
+        immunization:
+          type: array
+          items:
+            $ref: '#/components/schemas/Immunization'
+        questionnaire_response:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionnaireResponse'
+        composition:
+          type: array
+          items:
+            $ref: '#/components/schemas/Composition'
+    SatuSehatResponse:
+      type: object
+      properties:
+        etag:
+          type: string
+        lastModified:
+          type: string
+        location:
+          type: string
+        status:
+          type: string
+        resourceType:
+          type: string
+        resourceID:
+          type: string
+    SubmitResponse:
+      type: object
+      properties:
+        statusehat:
+          type: array
+          items:
+            $ref: '#/components/schemas/SatuSehatResponse'
+        episodeOfCare:
+          $ref: '#/components/schemas/EpisodeOfCare'
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+        errorNumber:
+          type: integer
+          format: int32
+        errorName:
+          type: string
+        message:
+          type: string
+        errors:
+          type: object
+        stack:
+          type: object
+  requestBodies:
+    SubmitRequest:
+      description: Pet object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SubmitRequest'
+  securitySchemes:
+    satusehat_auth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1
+          tokenUrl: https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1
+          scopes: {}
+    satusehat_bearer:
+      type: http
+      scheme: bearer
+    
