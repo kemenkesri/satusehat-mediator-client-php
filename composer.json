@@ -33,9 +33,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Mediator\\SatuSehat\\Lib\\": "lib/",
-            "Mediator\\SatuSehat\\App\\": "app/"
+            "Mediator\\SatuSehat\\Lib\\Client\\": "lib/",
+            "Mediator\\SatuSehat\\Lib\\App\\": "app/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": { "Mediator\\SatuSehat\\Lib\\Client\\" : "test/" }
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
