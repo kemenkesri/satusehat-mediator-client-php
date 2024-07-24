@@ -36,6 +36,7 @@ use GuzzleHttp\RequestOptions;
 use Mediator\SatuSehat\Lib\Client\ApiException;
 use Mediator\SatuSehat\Lib\Client\Configuration;
 use Mediator\SatuSehat\Lib\Client\HeaderSelector;
+use Mediator\SatuSehat\Lib\Client\OAuthClient;
 use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
 
 /**
@@ -64,17 +65,17 @@ class SubmitDataApi
     protected $headerSelector;
 
     /**
-     * @param ClientInterface $client
+     * @param OAuthClient     $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
      */
     public function __construct(
-        ClientInterface $client = null,
+        OAuthClient $client,
         Configuration $config = null,
         HeaderSelector $selector = null
     ) {
-        $this->client = $client ?: new Client();
-        $this->config = $config ?: new Configuration();
+        $this->client = $client;
+        $this->config = $config ?: Configuration::getDefaultConfiguration();
         $this->headerSelector = $selector ?: new HeaderSelector();
     }
 
@@ -449,7 +450,7 @@ class SubmitDataApi
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getBaseUrl() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
