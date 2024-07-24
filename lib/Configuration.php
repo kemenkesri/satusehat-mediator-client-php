@@ -47,12 +47,14 @@ class Configuration
             'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
             'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
             null,
+            null,
             null
         ),
         'production' => new ConfigurationConstant(
             'https://api-satusehat.kemkes.go.id/oauth2/v1/accesstoken',
             'https://api-satusehat.kemkes.go.id/oauth2/v1/refreshtoken',
             'https://mediator-satusehat.kemkes.go.id/api/satusehat/rme/v1.0',
+            null,
             null,
             null
         )
@@ -127,6 +129,13 @@ class Configuration
      * @var string
      */
     protected $clientSecret = '';
+
+    /**
+     * The OAuth2 Bearer Token
+     *
+     * @var string
+     */
+    protected $bearerToken = '';
 
     /**
      * User agent of the HTTP request, set to "PHP-Swagger" by default
@@ -407,6 +416,32 @@ class Configuration
     }
 
     /**
+     * Sets the Bearer Token
+     *
+     * @param string $bearerToken Bearer Token
+     *
+     * @return $this
+     */
+    public function setBearerToken($bearerToken)
+    {
+        $this->bearerToken = $bearerToken;
+        return $this;
+    }
+
+    /**
+     * Gets the Bearer Token
+     *
+     * @return string Bearer Token
+     */
+    public function getBearerToken()
+    {
+        return $this->bearerToken;
+    }
+
+    public function getAuthType() {
+        return $this->clientId && $this->clientSecret ? 'credential' : ($this->bearerToken ? 'bearer' : null);
+    }
+    /**
      * Sets the user agent of the api client
      *
      * @param string $userAgent the user agent of the api client
@@ -596,13 +631,16 @@ class ConfigurationConstant
     public $clientId;
     /** @var string */
     public $clientSecret;
+    /** @var string */
+    public $bearerToken;
 
-    public function __construct($authUrl, $tokenUrl, $baseUrl, $clientId, $clientSecret)
+    public function __construct($authUrl, $tokenUrl, $baseUrl, $clientId, $clientSecret, $bearerToken)
     {
         $this->authUrl = $authUrl;
         $this->tokenUrl = $tokenUrl;
         $this->baseUrl = $baseUrl;
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
+        $this->bearerToken = $bearerToken;
     }
 }

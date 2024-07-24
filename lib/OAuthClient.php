@@ -16,19 +16,31 @@ class OAuthClient extends Client
             'base_uri' => $config->getAuthUrl(),
         ]);
 
-        $grantType = new ClientCredentials($authClient, [
-            'client_id'     => $config->getClientId(),
-            'client_secret' => $config->getClientSecret()
-        ]);
+        $authType = $config->getAuthType();
+        if ($authType == 'credential') {
+            $grantType = new ClientCredentials($authClient, [
+                'client_id'     => $config->getClientId(),
+                'client_secret' => $config->getClientSecret()
+            ]);
 
-        $oauth = new OAuth2Middleware($grantType);
-        $stack = HandlerStack::create();
-        $stack->push($oauth);
+            $oauth = new OAuth2Middleware($grantType);
+            $stack = HandlerStack::create();
+            $stack->push($oauth);
 
-        parent::__construct([
-            'base_uri'  => $config->getBaseUrl(),
-            'handler'   => $stack,
-            'auth'      => 'oauth',
-        ]);
+            $conf = [
+                'base_uri'  => $config->getBaseUrl(),
+                'handler'   => $stack,
+                'auth'      => 'oauth',
+            ];
+        }elseif ($authType == 'bearar') {
+            $conf = [
+                'base_uri'  => $config->getBaseUrl(),
+                'headers'   => [
+                    'Authorization' => 'Bearer ' . $config->getBearerToken()
+                ]
+            ];
+        }
+
+        parent::__construct($conf);
     }
 }
