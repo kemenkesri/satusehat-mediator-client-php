@@ -637,11 +637,17 @@ class ConfigurationConstant
 
     public function __construct($authUrl, $tokenUrl, $baseUrl, $clientId, $clientSecret, $bearerToken)
     {
-        $this->authUrl = $authUrl;
-        $this->tokenUrl = $tokenUrl;
-        $this->baseUrl = $baseUrl;
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
-        $this->bearerToken = $bearerToken;
+        if ($authUrl)
+            $this->authUrl = $authUrl;
+        if ($tokenUrl)
+            $this->tokenUrl = $tokenUrl;
+        if ($baseUrl)
+            $this->baseUrl = $baseUrl;
+        if ($clientId)
+            $this->clientId = $clientId;
+        if ($clientSecret)
+            $this->clientSecret = $clientSecret;
+        if ($bearerToken)
+            $this->bearerToken = $bearerToken;
     }
 }
