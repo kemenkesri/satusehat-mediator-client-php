@@ -25,7 +25,8 @@
  * Please update the test case below to test the endpoint.
  */
 
-namespace Mediator\SatuSehat\Lib\Client;use PHPUnit\Framework\TestCase;
+namespace Mediator\SatuSehat\Lib\Client;
+use PHPUnit\Framework\TestCase;
 
 /**
  * SubmitDataApiTest Class Doc Comment
