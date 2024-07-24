@@ -3,17 +3,14 @@
 namespace Mediator\SatuSehat\Lib\Client;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
 use kamermans\OAuth2\GrantType\ClientCredentials;
 use kamermans\OAuth2\OAuth2Middleware;
 
 class OAuthClient extends Client
 {
-    /** @var ClientInterface $client */
-    // private $client;
-
-    public function __construct(Configuration $config) {
+    public function __construct(Configuration $config)
+    {
         $authClient = new Client([
             // URL for access_token request
             'base_uri' => $config->getAuthUrl(),

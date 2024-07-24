@@ -37,9 +37,9 @@ use \Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Condition extends MediatorResourceBasic 
+class Condition extends MediatorResourceBasic
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -200,22 +200,22 @@ class Condition extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    const CATEGORY_ENCOUNTER_DIAGNOSIS = 'encounter-diagnosis';
-    const CATEGORY_PROBLEM_LIST_ITEM = 'problem-list-item';
-    const DIAGNOSIS_TYPE_AD = 'AD';
-    const DIAGNOSIS_TYPE_DD = 'DD';
-    const DIAGNOSIS_TYPE_CC = 'CC';
-    const DIAGNOSIS_TYPE_CM = 'CM';
-    const DIAGNOSIS_TYPE_PRE_OP = 'pre-op';
-    const DIAGNOSIS_TYPE_POST_OP = 'post-op';
-    const DIAGNOSIS_TYPE_BILLING = 'billing';
-    const STATUS_ACTIVE = 'active';
-    const STATUS_RECURRENCE = 'recurrence';
-    const STATUS_RELAPSE = 'relapse';
-    const STATUS_INACTIVE = 'inactive';
-    const STATUS_REMISSION = 'remission';
-    const STATUS_RESOLVED = 'resolved';
-    const STATUS_UNKNOWN = 'unknown';
+    public const CATEGORY_ENCOUNTER_DIAGNOSIS = 'encounter-diagnosis';
+    public const CATEGORY_PROBLEM_LIST_ITEM = 'problem-list-item';
+    public const DIAGNOSIS_TYPE_AD = 'AD';
+    public const DIAGNOSIS_TYPE_DD = 'DD';
+    public const DIAGNOSIS_TYPE_CC = 'CC';
+    public const DIAGNOSIS_TYPE_CM = 'CM';
+    public const DIAGNOSIS_TYPE_PRE_OP = 'pre-op';
+    public const DIAGNOSIS_TYPE_POST_OP = 'post-op';
+    public const DIAGNOSIS_TYPE_BILLING = 'billing';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_RECURRENCE = 'recurrence';
+    public const STATUS_RELAPSE = 'relapse';
+    public const STATUS_INACTIVE = 'inactive';
+    public const STATUS_REMISSION = 'remission';
+    public const STATUS_RESOLVED = 'resolved';
+    public const STATUS_UNKNOWN = 'unknown';
 
     /**
      * Gets allowable values of the enum
@@ -254,13 +254,13 @@ class Condition extends MediatorResourceBasic
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_ACTIVE
-            self::STATUS_RECURRENCE
-            self::STATUS_RELAPSE
-            self::STATUS_INACTIVE
-            self::STATUS_REMISSION
-            self::STATUS_RESOLVED
-            self::STATUS_UNKNOWN
+            self::STATUS_ACTIVE,
+            self::STATUS_RECURRENCE,
+            self::STATUS_RELAPSE,
+            self::STATUS_INACTIVE,
+            self::STATUS_REMISSION,
+            self::STATUS_RESOLVED,
+            self::STATUS_UNKNOWN,
         ];
     }
 
