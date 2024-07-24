@@ -49,14 +49,28 @@ composer install
 
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
+### Get Patient Info
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Optional: if we want to use sub-national mediator (ISL DKI or East Java CenterView)
+\Mediator\SatuSehat\Lib\Client\Configuration::setDefaultConfiguration('development', 
+    new \Mediator\SatuSehat\Lib\Client\ConfigurationConstant(
+        'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
+        'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
+        'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
+        $clientId,
+        $clientSecret
+));
+
+// Setup using default environment
+\Mediator\SatuSehat\Lib\Client\Configuration::getDefaultConfiguration('development');
+
 $apiInstance = new Mediator\SatuSehat\Lib\Client\Api\PatientApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new OAuthClient()
 );
 $body = new \Mediator\SatuSehat\Lib\Client\Model\GetPatientRequest(); // \Mediator\SatuSehat\Lib\Client\Model\GetPatientRequest | 
 
@@ -65,6 +79,40 @@ try {
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PatientApi->patientPost: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Submit RME data
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Optional: if we want to use sub-national mediator (ISL DKI or East Java CenterView)
+\Mediator\SatuSehat\Lib\Client\Configuration::setDefaultConfiguration('development', 
+    new \Mediator\SatuSehat\Lib\Client\ConfigurationConstant(
+        'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
+        'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
+        'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
+        $clientId,
+        $clientSecret
+));
+
+// Setup using default environment
+\Mediator\SatuSehat\Lib\Client\Configuration::getDefaultConfiguration('development');
+
+$apiInstance = new Mediator\SatuSehat\Lib\Client\Api\SubmitDataApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new OAuthClient()
+);
+$body = new \Mediator\SatuSehat\Lib\Client\Model\SubmitRequest(); // \Mediator\SatuSehat\Lib\Client\Model\SubmitRequest | 
+
+try {
+    $result = $apiInstance->syncPost($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SubmitDataApi->syncPost: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```

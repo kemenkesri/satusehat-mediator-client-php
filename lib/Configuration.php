@@ -521,10 +521,10 @@ class Configuration
      *
      * @return Configuration
      */
-    public static function getDefaultConfiguration()
+    public static function getDefaultConfiguration($name = 'development')
     {
         if (self::$defaultConfiguration === null) {
-            self::$defaultConfiguration = new Configuration();
+            self::$defaultConfiguration = new Configuration($name);
         }
 
         return self::$defaultConfiguration;

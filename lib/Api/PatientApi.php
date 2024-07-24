@@ -36,6 +36,7 @@ use GuzzleHttp\RequestOptions;
 use Mediator\SatuSehat\Lib\Client\ApiException;
 use Mediator\SatuSehat\Lib\Client\Configuration;
 use Mediator\SatuSehat\Lib\Client\HeaderSelector;
+use Mediator\SatuSehat\Lib\Client\OAuthClient;
 use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
 
 /**
@@ -49,7 +50,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
 class PatientApi
 {
     /**
-     * @var ClientInterface
+     * @var OAuthClient
      */
     protected $client;
 
@@ -69,12 +70,12 @@ class PatientApi
      * @param HeaderSelector  $selector
      */
     public function __construct(
-        ClientInterface $client = null,
+        OAuthClient $client,
         Configuration $config = null,
         HeaderSelector $selector = null
     ) {
-        $this->client = $client ?: new Client();
-        $this->config = $config ?: new Configuration();
+        $this->client = $client;
+        $this->config = $config ?: Configuration::getDefaultConfiguration();
         $this->headerSelector = $selector ?: new HeaderSelector();
     }
 
