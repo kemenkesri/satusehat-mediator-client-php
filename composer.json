@@ -57,9 +57,14 @@
     "extra": {
         "hooks": {
             "config": {
-                "stop-on-failure": ["pre-commit"]
+                "stop-on-failure": ["pre-commit", "pre-push"]
             },
             "pre-commit": [
+                "echo Fixing php coding style",
+                "composer fix-style",
+                "composer check-style"
+            ],
+            "pre-push": [
                 "composer check-style",
                 "composer test"
             ]
