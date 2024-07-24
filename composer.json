@@ -61,7 +61,10 @@
                 "stop-on-failure": ["pre-commit"]
             },
             "pre-commit": [
-                "composer pre-commit"
+                "echo Fixing php coding style",
+                "composer fix-style",
+                "composer check-style",
+                "composer test"
             ]
         }
     }
