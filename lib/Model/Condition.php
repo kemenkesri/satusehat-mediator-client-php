@@ -37,7 +37,7 @@ use \Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Condition extends MediatorResourceBasic 
+class Condition extends MediatorResourceBasic
 {
     public const DISCRIMINATOR = null;
 
@@ -254,13 +254,13 @@ class Condition extends MediatorResourceBasic
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_ACTIVE
-            self::STATUS_RECURRENCE
-            self::STATUS_RELAPSE
-            self::STATUS_INACTIVE
-            self::STATUS_REMISSION
-            self::STATUS_RESOLVED
-            self::STATUS_UNKNOWN
+            self::STATUS_ACTIVE,
+            self::STATUS_RECURRENCE,
+            self::STATUS_RELAPSE,
+            self::STATUS_INACTIVE,
+            self::STATUS_REMISSION,
+            self::STATUS_RESOLVED,
+            self::STATUS_UNKNOWN,
         ];
     }
 

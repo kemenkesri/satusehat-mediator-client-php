@@ -17,7 +17,7 @@ return $config->setRules([
         'phpdoc_order' => true,
         'array_syntax' => [ 'syntax' => 'short' ],
         'strict_comparison' => true,
-        'strict_param' => true,
+        'strict_param' => false,
         'no_trailing_whitespace' => false,
         'no_trailing_whitespace_in_comment' => false,
         'braces' => false,
