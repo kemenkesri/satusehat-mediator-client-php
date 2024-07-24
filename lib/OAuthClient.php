@@ -2,10 +2,12 @@
 
 namespace Mediator\SatuSehat\Lib\Client;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use kamermans\OAuth2\GrantType\ClientCredentials;
 use kamermans\OAuth2\OAuth2Middleware;
+use Mediator\SatuSehat\Lib\Client\Model\ApiError;
 
 class OAuthClient extends Client
 {
@@ -17,7 +19,7 @@ class OAuthClient extends Client
         ]);
 
         $authType = $config->getAuthType();
-        if ($authType == 'credential') {
+        if ($authType === 'credential') {
             $grantType = new ClientCredentials($authClient, [
                 'client_id'     => $config->getClientId(),
                 'client_secret' => $config->getClientSecret()
@@ -32,13 +34,15 @@ class OAuthClient extends Client
                 'handler'   => $stack,
                 'auth'      => 'oauth',
             ];
-        }elseif ($authType == 'bearar') {
+        } elseif ($authType === 'bearar') {
             $conf = [
                 'base_uri'  => $config->getBaseUrl(),
                 'headers'   => [
                     'Authorization' => 'Bearer ' . $config->getBearerToken()
                 ]
             ];
+        } else {
+            throw new Exception('The client_id and secret_id must be defined or use bearerToken', 100);
         }
 
         parent::__construct($conf);

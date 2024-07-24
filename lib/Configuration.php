@@ -438,7 +438,8 @@ class Configuration
         return $this->bearerToken;
     }
 
-    public function getAuthType() {
+    public function getAuthType()
+    {
         return $this->clientId && $this->clientSecret ? 'credential' : ($this->bearerToken ? 'bearer' : null);
     }
     /**
