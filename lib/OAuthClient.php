@@ -7,7 +7,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use kamermans\OAuth2\GrantType\ClientCredentials;
 use kamermans\OAuth2\OAuth2Middleware;
-use Mediator\SatuSehat\Lib\Client\Model\ApiError;
 
 class OAuthClient extends Client
 {

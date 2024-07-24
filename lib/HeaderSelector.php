@@ -27,7 +27,6 @@
 
 namespace Mediator\SatuSehat\Lib\Client;
 
-use Exception;
 
 /**
  * ApiException Class Doc Comment

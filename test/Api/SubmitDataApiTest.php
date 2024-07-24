@@ -25,12 +25,7 @@
  * Please update the test case below to test the endpoint.
  */
 
-namespace Mediator\SatuSehat\Lib\Client;
-
-use Mediator\SatuSehat\Lib\Client\Configuration;
-use Mediator\SatuSehat\Lib\Client\ApiException;
-use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
-use PHPUnit\Framework\TestCase;
+namespace Mediator\SatuSehat\Lib\Client;use PHPUnit\Framework\TestCase;
 
 /**
  * SubmitDataApiTest Class Doc Comment
