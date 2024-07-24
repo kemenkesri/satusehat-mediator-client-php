@@ -26,7 +26,9 @@
  */
 
 namespace Mediator\SatuSehat\Lib\Client;
-namespace Mediator\SatuSehat\Lib\Client;
+
+use kamermans\OAuth2\OAuth2Middleware;
+
 
 /**
  * ApiException Class Doc Comment
