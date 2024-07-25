@@ -34,8 +34,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Mediator\\SatuSehat\\Lib\\Client\\": "lib/",
-            "Mediator\\SatuSehat\\Lib\\App\\": "app/"
+            "Mediator\\SatuSehat\\Lib\\Client\\": "lib/"
         }
     },
     "autoload-dev": {
