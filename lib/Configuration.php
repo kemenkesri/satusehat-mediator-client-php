@@ -660,7 +660,8 @@ class ConfigurationConstant
         }
     }
 
-    public static function create($constant) : ConfigurationConstant {
+    public static function create($constant): ConfigurationConstant
+    {
         return new ConfigurationConstant($constant['authUrl'], $constant['tokenUrl'], $constant['baseUrl'], $constant['clientId'], $constant['clientSecret'], $constant['bearerToken']);
     }
 }
