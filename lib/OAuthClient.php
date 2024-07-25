@@ -15,6 +15,7 @@ class OAuthClient extends Client
         $authClient = new Client([
             // URL for access_token request
             'base_uri' => $config->getAuthUrl(),
+            'debug' => true,
         ]);
 
         $authType = $config->getAuthType();
@@ -32,10 +33,12 @@ class OAuthClient extends Client
                 'base_uri'  => $config->getBaseUrl(),
                 'handler'   => $stack,
                 'auth'      => 'oauth',
+                'debug'     => true,
             ];
-        } elseif ($authType === 'bearar') {
+        } elseif ($authType === 'bearer') {
             $conf = [
                 'base_uri'  => $config->getBaseUrl(),
+                'debug'     => true,
                 'headers'   => [
                     'Authorization' => 'Bearer ' . $config->getBearerToken()
                 ]
