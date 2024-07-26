@@ -41,22 +41,7 @@ class Configuration
     private static $defaultConfiguration;
 
     /** @var ConfigurationConstant[] */
-    private static $constants = [
-        'development' => new ConfigurationConstant(
-            'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
-            'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
-            'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
-            null,
-            null
-        ),
-        'production' => new ConfigurationConstant(
-            'https://api-satusehat.kemkes.go.id/oauth2/v1/accesstoken',
-            'https://api-satusehat.kemkes.go.id/oauth2/v1/refreshtoken',
-            'https://mediator-satusehat.kemkes.go.id/api/satusehat/rme/v1.0',
-            null,
-            null
-        )
-    ];
+    private static null|array $constants = null;
 
     /**
      * Associate array to store API key(s)
@@ -161,6 +146,25 @@ class Configuration
      */
     public function __construct($name = 'development')
     {
+        if (empty(self::$constants)) {
+            self::$constants = [
+                'development' => new ConfigurationConstant(
+                    authUrl: 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
+                    tokenUrl: 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
+                    baseUrl: 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
+                    clientId: null,
+                    clientSecret: null,
+                ),
+                'production' => new ConfigurationConstant(
+                    authUrl: 'https://api-satusehat.kemkes.go.id/oauth2/v1/accesstoken',
+                    tokenUrl: 'https://api-satusehat.kemkes.go.id/oauth2/v1/refreshtoken',
+                    baseUrl: 'https://mediator-satusehat.kemkes.go.id/api/satusehat/rme/v1.0',
+                    clientId: null,
+                    clientSecret: null,
+                )
+            ];
+        }
+
         $this->tempFolderPath = sys_get_temp_dir();
         $constant = self::$constants[$name];
         $this->baseUrl = $constant->baseUrl;
@@ -174,7 +178,7 @@ class Configuration
      * Sets API key
      *
      * @param string $apiKeyIdentifier API key identifier (authentication scheme)
-     * @param string $key              API key or token
+     * @param string $key API key or token
      *
      * @return $this
      */
@@ -200,7 +204,7 @@ class Configuration
      * Sets the prefix for API key (e.g. Bearer)
      *
      * @param string $apiKeyIdentifier API key identifier (authentication scheme)
-     * @param string $prefix           API key prefix, e.g. Bearer
+     * @param string $prefix API key prefix, e.g. Bearer
      *
      * @return $this
      */
@@ -509,9 +513,9 @@ class Configuration
      * @param string $name
      * @param ConfigurationConstant $constant
      *
-     * @return Configuration
+     * @return void
      */
-    public static function setConfigurationConstant($name, $constant)
+    public static function setConfigurationConstant(string $name, ConfigurationConstant $constant): void
     {
         self::$constants[$name] = $constant;
     }
@@ -519,9 +523,10 @@ class Configuration
     /**
      * Gets the default configuration instance
      *
+     * @param string $name
      * @return Configuration
      */
-    public static function getDefaultConfiguration($name = 'development')
+    public static function getDefaultConfiguration($name = 'development'): Configuration
     {
         if (self::$defaultConfiguration === null) {
             self::$defaultConfiguration = new Configuration($name);
@@ -549,7 +554,7 @@ class Configuration
      */
     public static function toDebugReport()
     {
-        $report  = 'PHP SDK (Mediator\SatuSehat\Lib\Client) Debug Report:' . PHP_EOL;
+        $report = 'PHP SDK (Mediator\SatuSehat\Lib\Client) Debug Report:' . PHP_EOL;
         $report .= '    OS: ' . php_uname() . PHP_EOL;
         $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
         $report .= '    OpenAPI Spec Version: 1.0.1' . PHP_EOL;
@@ -561,7 +566,7 @@ class Configuration
     /**
      * Get API key (with prefix if set)
      *
-     * @param  string $apiKeyIdentifier name of apikey
+     * @param string $apiKeyIdentifier name of apikey
      *
      * @return string API key with the prefix
      */
@@ -587,18 +592,23 @@ class Configuration
 class ConfigurationConstant
 {
     /** @var string */
-    public $authUrl;
+    public string $authUrl;
     /** @var string */
-    public $tokenUrl;
+    public string $tokenUrl;
     /** @var string */
-    public $baseUrl;
-    /** @var string */
-    public $clientId;
-    /** @var string */
-    public $clientSecret;
+    public string $baseUrl;
+    /** @var string|null */
+    public null|string $clientId;
+    /** @var string|null */
+    public null|string $clientSecret;
 
-    public function __construct($authUrl, $tokenUrl, $baseUrl, $clientId, $clientSecret)
-    {
+    public function __construct(
+        string      $authUrl,
+        string      $tokenUrl,
+        string      $baseUrl,
+        null|string $clientId = null,
+        null|string $clientSecret = null
+    ) {
         $this->authUrl = $authUrl;
         $this->tokenUrl = $tokenUrl;
         $this->baseUrl = $baseUrl;
