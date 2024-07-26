@@ -27,17 +27,25 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Api;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
+use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Utils;
+use InvalidArgumentException;
 use Mediator\SatuSehat\Lib\Client\ApiException;
 use Mediator\SatuSehat\Lib\Client\Configuration;
 use Mediator\SatuSehat\Lib\Client\HeaderSelector;
+use Mediator\SatuSehat\Lib\Client\Model\ModelInterface;
+use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
 use Mediator\SatuSehat\Lib\Client\OAuthClient;
 use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
+use RuntimeException;
+use stdClass;
 
 /**
  * SubmitDataApi Class Doc Comment
@@ -65,13 +73,13 @@ class SubmitDataApi
     protected $headerSelector;
 
     /**
-     * @param OAuthClient     $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
+     * @param OAuthClient $client
+     * @param Configuration|null $config
+     * @param HeaderSelector|null $selector
      */
     public function __construct(
-        OAuthClient $client,
-        Configuration $config = null,
+        OAuthClient    $client,
+        Configuration  $config = null,
         HeaderSelector $selector = null
     ) {
         $this->client = $client;
@@ -92,13 +100,13 @@ class SubmitDataApi
      *
      * Kirim data RME ke Mediator dengan format Non-FHIR
      *
-     * @param  \Mediator\SatuSehat\Lib\Client\Model\SubmitRequest $body body (required)
+     * @param SubmitRequest $body body (required)
      *
-     * @throws \Mediator\SatuSehat\Lib\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Mediator\SatuSehat\Lib\Client\Model\SubmitResponse
+     * @throws ApiException on non-2xx response
+     * @throws GuzzleException
+     * @return ModelInterface|array
      */
-    public function syncPost($body)
+    public function syncPost(SubmitRequest $body): SubmitRequest
     {
         list($response) = $this->syncPostWithHttpInfo($body);
         return $response;
@@ -109,29 +117,19 @@ class SubmitDataApi
      *
      * Kirim data RME ke Mediator dengan format Non-FHIR
      *
-     * @param  \Mediator\SatuSehat\Lib\Client\Model\SubmitRequest $body (required)
+     * @param SubmitRequest $body (required)
      *
-     * @throws \Mediator\SatuSehat\Lib\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
+     * @throws ApiException on non-2xx response
+     * @throws GuzzleException
      * @return array of \Mediator\SatuSehat\Lib\Client\Model\SubmitResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function syncPostWithHttpInfo($body)
+    public function syncPostWithHttpInfo(SubmitRequest $body): array
     {
         $returnType = '\Mediator\SatuSehat\Lib\Client\Model\SubmitResponse';
         $request = $this->syncPostRequest($body);
-
         try {
             $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
+            $response = $this->client->send($request, $options);
 
             $statusCode = $response->getStatusCode();
 
@@ -153,7 +151,7 @@ class SubmitDataApi
                 $content = $responseBody; //stream goes to serializer
             } else {
                 $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
+                if (!in_array($returnType, ['string', 'integer', 'bool'])) {
                     $content = json_decode($content);
                 }
             }
@@ -163,8 +161,15 @@ class SubmitDataApi
                 $response->getStatusCode(),
                 $response->getHeaders()
             ];
-
         } catch (ApiException $e) {
+            if ($e instanceof RequestException) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
             switch ($e->getCode()) {
                 case 200:
                     $data = ObjectSerializer::deserialize(
@@ -174,111 +179,20 @@ class SubmitDataApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 405:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 409:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 413:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 415:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 429:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 501:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 503:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 504:
+                case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Mediator\SatuSehat\Lib\Client\Model\ApiError',
@@ -296,12 +210,12 @@ class SubmitDataApi
      *
      * Kirim data RME ke Mediator dengan format Non-FHIR
      *
-     * @param  \Mediator\SatuSehat\Lib\Client\Model\SubmitRequest $body (required)
+     * @param SubmitRequest $body (required)
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
-    public function syncPostAsync($body)
+    public function syncPostAsync(SubmitRequest $body): PromiseInterface
     {
         return $this->syncPostAsyncWithHttpInfo($body)
             ->then(
@@ -316,12 +230,12 @@ class SubmitDataApi
      *
      * Kirim data RME ke Mediator dengan format Non-FHIR
      *
-     * @param  \Mediator\SatuSehat\Lib\Client\Model\SubmitRequest $body (required)
+     * @param SubmitRequest $body (required)
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
-    public function syncPostAsyncWithHttpInfo($body)
+    public function syncPostAsyncWithHttpInfo(SubmitRequest $body): PromiseInterface
     {
         $returnType = '\Mediator\SatuSehat\Lib\Client\Model\SubmitResponse';
         $request = $this->syncPostRequest($body);
@@ -366,16 +280,16 @@ class SubmitDataApi
     /**
      * Create request for operation 'syncPost'
      *
-     * @param  \Mediator\SatuSehat\Lib\Client\Model\SubmitRequest $body (required)
+     * @param SubmitRequest $body (required)
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
-    protected function syncPostRequest($body)
+    protected function syncPostRequest(SubmitRequest $body): Request
     {
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $body when calling syncPost'
             );
         }
@@ -386,7 +300,6 @@ class SubmitDataApi
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
-
 
 
         // body params
@@ -406,13 +319,21 @@ class SubmitDataApi
             );
         }
 
+        $config = $this->getConfig();
+        $accessToken = $config->getAccessToken();
+        if (empty($accessToken)) {
+            throw new InvalidArgumentException('Missing the required access token when calling syncPost');
+        }
+        $headers['Authorization'] = 'Bearer ' . $accessToken;
+
+
         // for model (json/xml)
         if (isset($_tempBody)) {
             // $_tempBody is the method argument, if present
             $httpBody = $_tempBody;
             // \stdClass has no __toString(), so we should encode it manually
-            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            if ($httpBody instanceof stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = Utils::jsonEncode($httpBody);
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -431,7 +352,7 @@ class SubmitDataApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+                $httpBody = Query::build($formParams);
             }
         }
 
@@ -447,7 +368,7 @@ class SubmitDataApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getBaseUrl() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -459,16 +380,16 @@ class SubmitDataApi
     /**
      * Create http client option
      *
-     * @throws \RuntimeException on file opening failure
+     * @throws RuntimeException on file opening failure
      * @return array of http client options
      */
-    protected function createHttpClientOption()
+    protected function createHttpClientOption(): array
     {
         $options = [];
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
