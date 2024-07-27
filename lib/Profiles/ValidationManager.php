@@ -15,7 +15,7 @@ class ValidationManager
 
     private function __construct()
     {
-        
+
     }
 
     // TODO: load plugins by profile
@@ -23,20 +23,23 @@ class ValidationManager
     /**
      * @param string[] $profiles
      */
-    public function setProfile($profiles) {
+    public function setProfile($profiles)
+    {
         $this->profiles = $profiles;
     }
 
     /**
      * @param SubmitRequest $data
      */
-    function validate($data) {
+    public function validate($data)
+    {
         foreach ($this->plugins as $k => $plugin) {
             $plugin->validate($data);
         }
     }
 
-    public static function instance() {
+    public static function instance()
+    {
         if (!self::$manager) {
             self::$manager = new ValidationManager();
         }

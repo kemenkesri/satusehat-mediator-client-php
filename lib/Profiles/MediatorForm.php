@@ -23,7 +23,8 @@ abstract class MediatorForm
     /**
      * @param SubmitRequest $data
      */
-    function setData($data) {
+    public function setData($data)
+    {
         $this->data = $data;
     }
 
@@ -97,7 +98,8 @@ abstract class MediatorForm
         return $this;
     }
 
-    function send() {
+    public function send()
+    {
         /** @var ValidationManager */
         $validtor = ValidationManager::instance();
         $validtor->setProfile($this->data->getProfile());
