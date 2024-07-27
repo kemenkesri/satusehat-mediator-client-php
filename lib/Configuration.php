@@ -41,7 +41,24 @@ class Configuration
     private static $defaultConfiguration;
 
     /** @var ConfigurationConstant[] */
-    private static null|array $constants = null;
+    private static $CONSTANTS = [
+        'development' => [
+            'authUrl'       => 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
+            'tokenUrl'      => 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
+            'baseUrl'       => 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
+            'clientId'      => null,
+            'clientSecret'  => null,
+            'bearerToken'   => null
+        ],
+        'production' => [
+            'authUrl'       => 'https://api-satusehat.kemkes.go.id/oauth2/v1/accesstoken',
+            'tokenUrl'      => 'https://api-satusehat.kemkes.go.id/oauth2/v1/refreshtoken',
+            'baseUrl'       => 'https://mediator-satusehat.kemkes.go.id/api/satusehat/rme/v1.0',
+            'clientId'      => null,
+            'clientSecret'  => null,
+            'bearerToken'   => null
+        ]
+    ];
 
     /**
      * Associate array to store API key(s)
@@ -114,6 +131,13 @@ class Configuration
     protected $clientSecret = '';
 
     /**
+     * The OAuth2 Bearer Token
+     *
+     * @var string
+     */
+    protected $bearerToken = '';
+
+    /**
      * User agent of the HTTP request, set to "PHP-Swagger" by default
      *
      * @var string
@@ -146,32 +170,14 @@ class Configuration
      */
     public function __construct($name = 'development')
     {
-        if (empty(self::$constants)) {
-            self::$constants = [
-                'development' => new ConfigurationConstant(
-                    authUrl: 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
-                    tokenUrl: 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
-                    baseUrl: 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
-                    clientId: null,
-                    clientSecret: null,
-                ),
-                'production' => new ConfigurationConstant(
-                    authUrl: 'https://api-satusehat.kemkes.go.id/oauth2/v1/accesstoken',
-                    tokenUrl: 'https://api-satusehat.kemkes.go.id/oauth2/v1/refreshtoken',
-                    baseUrl: 'https://mediator-satusehat.kemkes.go.id/api/satusehat/rme/v1.0',
-                    clientId: null,
-                    clientSecret: null,
-                )
-            ];
-        }
-
         $this->tempFolderPath = sys_get_temp_dir();
-        $constant = self::$constants[$name];
-        $this->baseUrl = $constant->baseUrl;
-        $this->authUrl = $constant->authUrl;
-        $this->tokenUrl = $constant->tokenUrl;
-        $this->clientId = $constant->clientId;
-        $this->clientSecret = $constant->clientSecret;
+        $constant = self::$CONSTANTS[$name];
+        $this->baseUrl = isset($constant['baseUrl']) ? $constant['baseUrl'] : null;
+        $this->authUrl = isset($constant['authUrl']) ? $constant['authUrl'] : null;
+        $this->tokenUrl = isset($constant['tokenUrl']) ? $constant['tokenUrl'] : null;
+        $this->clientId = isset($constant['clientId']) ? $constant['clientId'] : null;
+        $this->clientSecret = isset($constant['clientSecret']) ? $constant['clientSecret'] : null;
+        $this->bearerToken = isset($constant['bearerToken']) ? $constant['bearerToken'] : null;
     }
 
     /**
@@ -411,6 +417,35 @@ class Configuration
     }
 
     /**
+     * Sets the Bearer Token
+     *
+     * @param string $bearerToken Bearer Token
+     *
+     * @return $this
+     */
+    public function setBearerToken($bearerToken)
+    {
+        $this->bearerToken = $bearerToken;
+        return $this;
+    }
+
+    /**
+     * Gets the Bearer Token
+     *
+     * @return string Bearer Token
+     */
+    public function getBearerToken()
+    {
+        return $this->bearerToken;
+    }
+
+    public function getAuthType()
+    {
+
+        // print_r($this->bearerToken);exit;
+        return $this->clientId && $this->clientSecret ? 'credential' : ($this->bearerToken ? 'bearer' : null);
+    }
+    /**
      * Sets the user agent of the api client
      *
      * @param string $userAgent the user agent of the api client
@@ -517,7 +552,7 @@ class Configuration
      */
     public static function setConfigurationConstant(string $name, ConfigurationConstant $constant): void
     {
-        self::$constants[$name] = $constant;
+        self::$CONSTANTS[$name] = $constant;
     }
 
     /**
@@ -592,27 +627,42 @@ class Configuration
 class ConfigurationConstant
 {
     /** @var string */
-    public string $authUrl;
+    public $authUrl;
     /** @var string */
-    public string $tokenUrl;
+    public $tokenUrl;
     /** @var string */
-    public string $baseUrl;
-    /** @var string|null */
-    public null|string $clientId;
-    /** @var string|null */
-    public null|string $clientSecret;
+    public $baseUrl;
+    /** @var string */
+    public $clientId;
+    /** @var string */
+    public $clientSecret;
+    /** @var string */
+    public $bearerToken;
 
-    public function __construct(
-        string      $authUrl,
-        string      $tokenUrl,
-        string      $baseUrl,
-        null|string $clientId = null,
-        null|string $clientSecret = null
-    ) {
-        $this->authUrl = $authUrl;
-        $this->tokenUrl = $tokenUrl;
-        $this->baseUrl = $baseUrl;
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
+    private function __construct($authUrl, $tokenUrl, $baseUrl, $clientId, $clientSecret, $bearerToken)
+    {
+        if ($authUrl) {
+            $this->authUrl = $authUrl;
+        }
+        if ($tokenUrl) {
+            $this->tokenUrl = $tokenUrl;
+        }
+        if ($baseUrl) {
+            $this->baseUrl = $baseUrl;
+        }
+        if ($clientId) {
+            $this->clientId = $clientId;
+        }
+        if ($clientSecret) {
+            $this->clientSecret = $clientSecret;
+        }
+        if ($bearerToken) {
+            $this->bearerToken = $bearerToken;
+        }
+    }
+
+    public static function create($constant): ConfigurationConstant
+    {
+        return new ConfigurationConstant($constant['authUrl'], $constant['tokenUrl'], $constant['baseUrl'], $constant['clientId'], $constant['clientSecret'], $constant['bearerToken']);
     }
 }

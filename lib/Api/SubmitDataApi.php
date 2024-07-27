@@ -42,6 +42,7 @@ use Mediator\SatuSehat\Lib\Client\Configuration;
 use Mediator\SatuSehat\Lib\Client\HeaderSelector;
 use Mediator\SatuSehat\Lib\Client\Model\ModelInterface;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
+use Mediator\SatuSehat\Lib\Client\Model\SubmitResponse;
 use Mediator\SatuSehat\Lib\Client\OAuthClient;
 use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
 use RuntimeException;
@@ -106,7 +107,7 @@ class SubmitDataApi
      * @throws GuzzleException
      * @return ModelInterface|array
      */
-    public function syncPost(SubmitRequest $body): SubmitRequest
+    public function syncPost(SubmitRequest $body): SubmitResponse
     {
         list($response) = $this->syncPostWithHttpInfo($body);
         return $response;
@@ -155,6 +156,8 @@ class SubmitDataApi
                     $content = json_decode($content);
                 }
             }
+
+            dd(ObjectSerializer::deserialize($content, $returnType, []), $content);
 
             return [
                 ObjectSerializer::deserialize($content, $returnType, []),

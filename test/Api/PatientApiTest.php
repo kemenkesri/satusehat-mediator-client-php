@@ -26,10 +26,6 @@
  */
 
 namespace Mediator\SatuSehat\Lib\Client;
-
-use Mediator\SatuSehat\Lib\Client\Configuration;
-use Mediator\SatuSehat\Lib\Client\ApiException;
-use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
 
 /**
