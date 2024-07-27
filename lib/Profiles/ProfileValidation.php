@@ -11,5 +11,5 @@ abstract class ProfileValidation
      * 
      * @throws ValidationException
      */
-    abstract function validate($data);
+    abstract public function validate($data);
 }

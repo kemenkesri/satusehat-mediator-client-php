@@ -16,7 +16,7 @@ final class TipeTeruga extends ProfileValidation
         if (!isset($suspect)) {
             throw ValidationException::instance('TB_SUSPECT_REQUIRED');
         }
-        
+
         //TODO: harus 1 atau 2 terduga_tb_id
         //TODO: terduga_tb_id = 2, terduga_ro_id harus diisi
         //TODO: harus 1 atau 2 terduga_tb_id

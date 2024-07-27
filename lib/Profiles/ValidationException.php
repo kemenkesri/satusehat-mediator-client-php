@@ -19,7 +19,8 @@ class ValidationException extends Exception
         parent::__construct($message, $code);
     }
 
-    public static function instance(string $type) : ValidationException {
+    public static function instance(string $type): ValidationException
+    {
         if (isset(self::ERROR_MAP[$type])) {
             $error = self::ERROR_MAP[$type];
             return new ValidationException($error['message'], $error['code']);
