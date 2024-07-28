@@ -2,7 +2,6 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Profiles;
 
-use Mediator\SatuSehat\Lib\Client\ApiException;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
 
 class ValidationManager
