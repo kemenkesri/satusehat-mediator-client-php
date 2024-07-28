@@ -4,7 +4,6 @@ namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms;
 
 class PermohonanLab extends Terduga
 {
-
     /**
      * Sets service_request
      *
@@ -43,10 +42,11 @@ class PermohonanLab extends Terduga
     public function addSpecimen($specimen)
     {
         $specimens = $this->data->getSpecimen();
-        if (!$specimens)
+        if (!$specimens) {
             $specimens = [$specimen];
-        else
+        } else {
             $specimens[] = $specimen;
+        }
         $this->data->setSpecimen($specimens);
         return $this;
     }

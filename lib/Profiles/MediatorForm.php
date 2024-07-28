@@ -30,7 +30,7 @@ abstract class MediatorForm
     /**
      * @return SubmitRequest
      */
-    function getData()
+    public function getData()
     {
         return $this->data;
     }
@@ -38,7 +38,8 @@ abstract class MediatorForm
     /**
      * @return string
      */
-    function getBody() {
+    public function getBody()
+    {
         return $this->data->__toString();
     }
 

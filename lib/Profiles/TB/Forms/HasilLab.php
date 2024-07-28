@@ -4,7 +4,6 @@ namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms;
 
 class HasilLab extends PermohonanLab
 {
-
     /**
      * Sets diagnosticReport
      *
@@ -29,10 +28,11 @@ class HasilLab extends PermohonanLab
     public function addDiagnosticReport($diagnosticReport)
     {
         $diagnosticReports = $this->data->getDiagnosticReport();
-        if (!$diagnosticReports)
+        if (!$diagnosticReports) {
             $diagnosticReports = [$diagnosticReport];
-        else
+        } else {
             $diagnosticReports[] = $diagnosticReport;
+        }
         $this->data->setDiagnosticReport($diagnosticReports);
 
         return $this;
@@ -62,10 +62,11 @@ class HasilLab extends PermohonanLab
     public function addObservation($observation)
     {
         $observations = $this->data->getObservation();
-        if (!$observations)
+        if (!$observations) {
             $observations = [$observation];
-        else
+        } else {
             $observations[] = $observation;
+        }
         $this->data->setObservation($observations);
 
         return $this;
