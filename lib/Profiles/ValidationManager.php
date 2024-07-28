@@ -8,17 +8,20 @@ class ValidationManager
 {
     // Singleton for ValidationManager
     private static $manager; // = new ValidationManager();
+
+    /** @var ProfileValidation[] */
     private $plugins = [];
 
     /** @var string[] $profiles */
     private $profiles;
 
+    /** @var array */
+    private $config;
+
     private function __construct()
     {
-
+        $this->config = require(__DIR__ . '/../Config/Validation.php');
     }
-
-    // TODO: load plugins by profile
 
     /**
      * @param string[] $profiles
@@ -26,14 +29,25 @@ class ValidationManager
     public function setProfile($profiles)
     {
         $this->profiles = $profiles;
+
+        // load class berdasarkan profile
+        foreach ($this->profiles as $profile) {
+            if (isset($this->config[$profile]) && is_array($this->config[$profile])) {
+                foreach ($this->config[$profile] as $class) {
+                    $plugin = new $class();
+                    $this->plugins[] = $plugin;
+                }
+            }
+        }
     }
 
     /**
      * @param SubmitRequest $data
+     * @throws ValidationException
      */
     public function validate($data)
     {
-        foreach ($this->plugins as $k => $plugin) {
+        foreach ($this->plugins as $plugin) {
             $plugin->validate($data);
         }
     }

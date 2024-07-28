@@ -14,3 +14,4 @@
 # PHPUnit cache
 .phpunit.result.cache
 cghooks.lock
+test.php
