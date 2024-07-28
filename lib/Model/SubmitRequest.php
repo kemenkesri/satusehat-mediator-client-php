@@ -30,7 +30,6 @@ namespace Mediator\SatuSehat\Lib\Client\Model;
 
 use ArrayAccess;
 use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
-use ReturnTypeWillChange;
 
 /**
  * SubmitRequest Class Doc Comment
@@ -61,7 +60,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
         'organization_id' => 'string',
         'location_id' => 'string',
         'practitioner_nik' => 'string',
-        'patient' => '\Mediator\SatuSehat\Lib\Client\Model\PatientBasic',
+        'patient' => '\Mediator\SatuSehat\Lib\Client\Model\Patient',
         'tb_suspect' => '\Mediator\SatuSehat\Lib\Client\Model\TbSuspect',
         'tb_confirm' => '\Mediator\SatuSehat\Lib\Client\Model\TbConfirm',
         'encounter' => '\Mediator\SatuSehat\Lib\Client\Model\Encounter',
@@ -310,7 +309,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      *
      * @return bool True if all properties are valid
      */
-    public function valid(): bool
+    public function valid()
     {
         return count($this->listInvalidProperties()) === 0;
     }
@@ -321,7 +320,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      *
      * @return string[]
      */
-    public function getProfile(): array
+    public function getProfile()
     {
         return $this->container['profile'];
     }
@@ -329,11 +328,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets profile
      *
-     * @param array $profile profile
+     * @param string[] $profile profile
      *
      * @return $this
      */
-    public function setProfile(array $profile): self
+    public function setProfile($profile)
     {
         $this->container['profile'] = $profile;
 
@@ -357,7 +356,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      *
      * @return $this
      */
-    public function setOrganizationId(string $organization_id): self
+    public function setOrganizationId($organization_id)
     {
         $this->container['organization_id'] = $organization_id;
 
@@ -381,7 +380,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      *
      * @return $this
      */
-    public function setLocationId(string $location_id): self
+    public function setLocationId($location_id)
     {
         $this->container['location_id'] = $location_id;
 
@@ -405,7 +404,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      *
      * @return $this
      */
-    public function setPractitionerNik(string $practitioner_nik): self
+    public function setPractitionerNik($practitioner_nik)
     {
         $this->container['practitioner_nik'] = $practitioner_nik;
 
@@ -415,7 +414,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets patient
      *
-     * @return PatientBasic
+     * @return \Mediator\SatuSehat\Lib\Client\Model\Patient
      */
     public function getPatient()
     {
@@ -425,11 +424,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets patient
      *
-     * @param PatientBasic $patient patient
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Patient $patient patient
      *
      * @return $this
      */
-    public function setPatient(array $patient): self
+    public function setPatient($patient)
     {
         $this->container['patient'] = $patient;
 
@@ -439,7 +438,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets tb_suspect
      *
-     * @return SubmitRequest
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbSuspect
      */
     public function getTbSuspect()
     {
@@ -449,11 +448,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets tb_suspect
      *
-     * @param TbSuspect $tb_suspect tb_suspect
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbSuspect $tb_suspect tb_suspect
      *
      * @return $this
      */
-    public function setTbSuspect(array $tb_suspect): self
+    public function setTbSuspect($tb_suspect)
     {
         $this->container['tb_suspect'] = $tb_suspect;
 
@@ -463,7 +462,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets tb_confirm
      *
-     * @return TbConfirm
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbConfirm
      */
     public function getTbConfirm()
     {
@@ -473,11 +472,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets tb_confirm
      *
-     * @param TbConfirm $tb_confirm tb_confirm
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbConfirm $tb_confirm tb_confirm
      *
      * @return $this
      */
-    public function setTbConfirm(array $tb_confirm): self
+    public function setTbConfirm($tb_confirm)
     {
         $this->container['tb_confirm'] = $tb_confirm;
 
@@ -487,7 +486,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets encounter
      *
-     * @return Encounter
+     * @return \Mediator\SatuSehat\Lib\Client\Model\Encounter
      */
     public function getEncounter()
     {
@@ -497,11 +496,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets encounter
      *
-     * @param Encounter $encounter encounter
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Encounter $encounter encounter
      *
      * @return $this
      */
-    public function setEncounter(array $encounter): self
+    public function setEncounter($encounter)
     {
         $this->container['encounter'] = $encounter;
 
@@ -511,9 +510,9 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets condition
      *
-     * @return Condition
+     * @return \Mediator\SatuSehat\Lib\Client\Model\Condition[]
      */
-    public function getCondition(): array
+    public function getCondition()
     {
         return $this->container['condition'];
     }
@@ -521,11 +520,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets condition
      *
-     * @param Condition $condition condition
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Condition[] $condition condition
      *
      * @return $this
      */
-    public function setCondition(array $condition): self
+    public function setCondition($condition)
     {
         $this->container['condition'] = $condition;
 
@@ -535,7 +534,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets observation
      *
-     * @return Observation
+     * @return \Mediator\SatuSehat\Lib\Client\Model\Observation[]
      */
     public function getObservation()
     {
@@ -545,11 +544,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets observation
      *
-     * @param Observation $observation observation
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Observation[] $observation observation
      *
      * @return $this
      */
-    public function setObservation(array $observation): self
+    public function setObservation($observation)
     {
         $this->container['observation'] = $observation;
 
@@ -559,7 +558,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets procedure
      *
-     * @return Procedure
+     * @return \Mediator\SatuSehat\Lib\Client\Model\Procedure[]
      */
     public function getProcedure()
     {
@@ -569,11 +568,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets procedure
      *
-     * @param Procedure $procedure procedure
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Procedure[] $procedure procedure
      *
      * @return $this
      */
-    public function setProcedure(array $procedure): self
+    public function setProcedure($procedure)
     {
         $this->container['procedure'] = $procedure;
 
@@ -583,7 +582,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets specimen
      *
-     * @return Specimen
+     * @return \Mediator\SatuSehat\Lib\Client\Model\Specimen[]
      */
     public function getSpecimen()
     {
@@ -593,11 +592,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets specimen
      *
-     * @param Specimen $specimen specimen
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Specimen[] $specimen specimen
      *
      * @return $this
      */
-    public function setSpecimen(array $specimen): self
+    public function setSpecimen($specimen)
     {
         $this->container['specimen'] = $specimen;
 
@@ -607,7 +606,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets diagnostic_report
      *
-     * @return DiagnosticReport
+     * @return \Mediator\SatuSehat\Lib\Client\Model\DiagnosticReport[]
      */
     public function getDiagnosticReport()
     {
@@ -617,11 +616,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets diagnostic_report
      *
-     * @param DiagnosticReport $diagnostic_report diagnostic_report
+     * @param \Mediator\SatuSehat\Lib\Client\Model\DiagnosticReport[] $diagnostic_report diagnostic_report
      *
      * @return $this
      */
-    public function setDiagnosticReport(array $diagnostic_report): self
+    public function setDiagnosticReport($diagnostic_report)
     {
         $this->container['diagnostic_report'] = $diagnostic_report;
 
@@ -631,7 +630,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets service_request
      *
-     * @return ServiceRequest
+     * @return \Mediator\SatuSehat\Lib\Client\Model\ServiceRequest[]
      */
     public function getServiceRequest()
     {
@@ -641,11 +640,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets service_request
      *
-     * @param ServiceRequest $service_request service_request
+     * @param \Mediator\SatuSehat\Lib\Client\Model\ServiceRequest[] $service_request service_request
      *
      * @return $this
      */
-    public function setServiceRequest(array $service_request): self
+    public function setServiceRequest($service_request)
     {
         $this->container['service_request'] = $service_request;
 
@@ -655,7 +654,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets episode_of_care
      *
-     * @return EpisodeOfCare
+     * @return \Mediator\SatuSehat\Lib\Client\Model\EpisodeOfCare
      */
     public function getEpisodeOfCare()
     {
@@ -665,11 +664,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets episode_of_care
      *
-     * @param EpisodeOfCare $episode_of_care episode_of_care
+     * @param \Mediator\SatuSehat\Lib\Client\Model\EpisodeOfCare $episode_of_care episode_of_care
      *
      * @return $this
      */
-    public function setEpisodeOfCare(array $episode_of_care): self
+    public function setEpisodeOfCare($episode_of_care)
     {
         $this->container['episode_of_care'] = $episode_of_care;
 
@@ -679,7 +678,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets medication
      *
-     * @return Medication[]
+     * @return \Mediator\SatuSehat\Lib\Client\Model\Medication[]
      */
     public function getMedication()
     {
@@ -689,11 +688,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets medication
      *
-     * @param Medication $medication medication
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Medication[] $medication medication
      *
-     * @return Medication
+     * @return $this
      */
-    public function setMedication(array $medication): self
+    public function setMedication($medication)
     {
         $this->container['medication'] = $medication;
 
@@ -703,7 +702,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets medication_statement
      *
-     * @return MedicationStatement
+     * @return \Mediator\SatuSehat\Lib\Client\Model\MedicationStatement[]
      */
     public function getMedicationStatement()
     {
@@ -713,11 +712,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets medication_statement
      *
-     * @param MedicationStatement $medication_statement medication_statement
+     * @param \Mediator\SatuSehat\Lib\Client\Model\MedicationStatement[] $medication_statement medication_statement
      *
      * @return $this
      */
-    public function setMedicationStatement(array $medication_statement): self
+    public function setMedicationStatement($medication_statement)
     {
         $this->container['medication_statement'] = $medication_statement;
 
@@ -727,7 +726,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets immunization
      *
-     * @return Immunization
+     * @return \Mediator\SatuSehat\Lib\Client\Model\Immunization[]
      */
     public function getImmunization()
     {
@@ -737,11 +736,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets immunization
      *
-     * @param Immunization $immunization immunization
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Immunization[] $immunization immunization
      *
      * @return $this
      */
-    public function setImmunization(array $immunization): self
+    public function setImmunization($immunization)
     {
         $this->container['immunization'] = $immunization;
 
@@ -751,7 +750,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets questionnaire_response
      *
-     * @return QuestionnaireResponse
+     * @return \Mediator\SatuSehat\Lib\Client\Model\QuestionnaireResponse[]
      */
     public function getQuestionnaireResponse()
     {
@@ -761,11 +760,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets questionnaire_response
      *
-     * @param QuestionnaireResponse $questionnaire_response questionnaire_response
+     * @param \Mediator\SatuSehat\Lib\Client\Model\QuestionnaireResponse[] $questionnaire_response questionnaire_response
      *
      * @return $this
      */
-    public function setQuestionnaireResponse(array $questionnaire_response): self
+    public function setQuestionnaireResponse($questionnaire_response)
     {
         $this->container['questionnaire_response'] = $questionnaire_response;
 
@@ -775,7 +774,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets composition
      *
-     * @return Composition
+     * @return \Mediator\SatuSehat\Lib\Client\Model\Composition[]
      */
     public function getComposition()
     {
@@ -785,11 +784,11 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets composition
      *
-     * @param Composition $composition composition
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Composition[] $composition composition
      *
      * @return $this
      */
-    public function setComposition(array $composition): self
+    public function setComposition($composition)
     {
         $this->container['composition'] = $composition;
 
@@ -802,7 +801,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      *
      * @return boolean
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -815,7 +814,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      *
      * @return mixed
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->container[$offset]) ? $this->container[$offset] : null;
@@ -829,7 +828,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -846,7 +845,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      *
      * @return void
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);

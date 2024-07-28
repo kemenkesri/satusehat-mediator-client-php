@@ -21,14 +21,14 @@ class ClientCredentials implements GrantTypeInterface
      *
      * @var ClientInterface
      */
-    private $client;
+    private ClientInterface $client;
 
     /**
      * Configuration settings.
      *
      * @var Collection
      */
-    private $config;
+    private Collection $config;
 
     /**
      * @param ClientInterface $client

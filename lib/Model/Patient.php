@@ -28,7 +28,6 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Model;
 
-use ArrayAccess;
 use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
 
 /**
@@ -39,7 +38,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Patient implements ModelInterface, ArrayAccess
+class Patient extends PatientBasic
 {
     public const DISCRIMINATOR = null;
 
@@ -57,9 +56,7 @@ class Patient implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'id' => 'string',
-        'nik' => 'string',
-        'name' => 'string',
-        'birth_date' => '\DateTime'
+        'address' => 'Mediator\SatuSehat\Lib\Client\Model\AddressPatient[]'
     ];
 
     /**
@@ -69,9 +66,7 @@ class Patient implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'id' => null,
-        'nik' => null,
-        'name' => null,
-        'birth_date' => 'date'
+        'address' => null
     ];
 
     /**
@@ -81,7 +76,7 @@ class Patient implements ModelInterface, ArrayAccess
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes;
+        return self::$swaggerTypes + parent::swaggerTypes();
     }
 
     /**
@@ -91,7 +86,7 @@ class Patient implements ModelInterface, ArrayAccess
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats;
+        return self::$swaggerFormats + parent::swaggerFormats();
     }
 
     /**
@@ -102,9 +97,7 @@ class Patient implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'nik' => 'nik',
-        'name' => 'name',
-        'birth_date' => 'birthDate'
+        'address' => 'address'
     ];
 
     /**
@@ -114,9 +107,7 @@ class Patient implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'id' => 'setId',
-        'nik' => 'setNik',
-        'name' => 'setName',
-        'birth_date' => 'setBirthDate'
+        'address' => 'setAddress'
     ];
 
     /**
@@ -126,9 +117,7 @@ class Patient implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'id' => 'getId',
-        'nik' => 'getNik',
-        'name' => 'getName',
-        'birth_date' => 'getBirthDate'
+        'address' => 'getAddress'
     ];
 
     /**
@@ -139,7 +128,7 @@ class Patient implements ModelInterface, ArrayAccess
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -149,7 +138,7 @@ class Patient implements ModelInterface, ArrayAccess
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -159,7 +148,7 @@ class Patient implements ModelInterface, ArrayAccess
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -174,12 +163,6 @@ class Patient implements ModelInterface, ArrayAccess
 
 
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -189,10 +172,10 @@ class Patient implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        parent::__construct($data);
+
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['nik'] = isset($data['nik']) ? $data['nik'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['birth_date'] = isset($data['birth_date']) ? $data['birth_date'] : null;
+        $this->container['address'] = isset($data['address']) ? $data['address'] : null;
     }
 
     /**
@@ -202,7 +185,7 @@ class Patient implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }
@@ -244,73 +227,25 @@ class Patient implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets nik
+     * Gets address
      *
-     * @return string
+     * @return Mediator\SatuSehat\Lib\Client\Model\AddressPatient[]
      */
-    public function getNik()
+    public function getAddress()
     {
-        return $this->container['nik'];
+        return $this->container['address'];
     }
 
     /**
-     * Sets nik
+     * Sets address
      *
-     * @param string $nik nik
+     * @param Mediator\SatuSehat\Lib\Client\Model\AddressPatient[] $address address
      *
      * @return $this
      */
-    public function setNik($nik)
+    public function setAddress($address)
     {
-        $this->container['nik'] = $nik;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name name
-     *
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets birth_date
-     *
-     * @return \DateTime
-     */
-    public function getBirthDate()
-    {
-        return $this->container['birth_date'];
-    }
-
-    /**
-     * Sets birth_date
-     *
-     * @param \DateTime $birth_date birth_date
-     *
-     * @return $this
-     */
-    public function setBirthDate($birth_date)
-    {
-        $this->container['birth_date'] = $birth_date;
+        $this->container['address'] = $address;
 
         return $this;
     }

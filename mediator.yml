@@ -229,6 +229,8 @@ components:
   schemas:
     PatientBasic:
       type: object
+      required: 
+        - nik
       properties:
         nik:
           type: string
@@ -237,15 +239,51 @@ components:
         birthDate:
           type: string
           format: date
+    AddressPatient:
+      type: object
+      required:
+        - use
+        - country
+        - province
+        - city
+      properties:
+        use:
+          type: string
+          enum:
+            - temp
+            - home
+        country:
+          type: string
+          default: 'id'
+        province:
+          type: string
+        city:
+          type: string
+        district:
+          type: string
+        village:
+          type: string
+        rt:
+          type: string
+        rw:
+          type: string
+        postal_code:
+          type: string
+        line:
+          type: array
+          items:
+            type: string
     Patient:
       allOf:
+        - $ref: '#/components/schemas/PatientBasic'
         - type: object
-          required:
-            - rootCause
           properties:
             id:
               type: string
-        - $ref: '#/components/schemas/PatientBasic'
+            address:
+              type: array
+              items:
+                $ref: '#/components/schemas/AddressPatient'
     MediatorResourceBasic:
       type: object
       properties:
@@ -1164,7 +1202,7 @@ components:
         practitioner_nik:
           type: string
         patient:
-          $ref: '#/components/schemas/PatientBasic'
+          $ref: '#/components/schemas/Patient'
         tb_suspect:
           $ref: '#/components/schemas/TbSuspect'
         tb_confirm:
@@ -1276,4 +1314,3 @@ components:
     satusehat_bearer:
       type: http
       scheme: bearer
-    
