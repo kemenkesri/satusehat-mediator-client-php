@@ -157,8 +157,6 @@ class SubmitDataApi
                 }
             }
 
-            dd(ObjectSerializer::deserialize($content, $returnType, []), $content);
-
             return [
                 ObjectSerializer::deserialize($content, $returnType, []),
                 $response->getStatusCode(),
@@ -321,14 +319,6 @@ class SubmitDataApi
                 ['application/json']
             );
         }
-
-        $config = $this->getConfig();
-        $accessToken = $config->getAccessToken();
-        if (empty($accessToken)) {
-            throw new InvalidArgumentException('Missing the required access token when calling syncPost');
-        }
-        $headers['Authorization'] = 'Bearer ' . $accessToken;
-
 
         // for model (json/xml)
         if (isset($_tempBody)) {
