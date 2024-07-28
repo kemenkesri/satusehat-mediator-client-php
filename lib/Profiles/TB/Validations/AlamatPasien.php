@@ -25,7 +25,7 @@ final class AlamatPasien extends ProfileValidation
         if (!$suspect->getId()) {
             /** @var Patient */
             $patient = $data->getPatient();
-            if (!$patient || !$patient->getAddress() || count($patient->getAddress()) == 0) {
+            if (!$patient || !$patient->getAddress() || count($patient->getAddress()) === 0) {
                 throw ValidationException::instance('TB_ADDRESS_REQUIRED');
             }
 
