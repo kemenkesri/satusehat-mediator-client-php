@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediator\SatuSehat\Lib\Client\Profiles\TB;
+namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms;
 use Mediator\SatuSehat\Lib\Client\Profiles\MediatorForm;
 
 class Terduga extends MediatorForm

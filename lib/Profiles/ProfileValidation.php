@@ -1,6 +1,6 @@
 <?php
 
-namespace Mediator\SatuSehat\Lib\Client;
+namespace Mediator\SatuSehat\Lib\Client\Profiles;
 
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
 

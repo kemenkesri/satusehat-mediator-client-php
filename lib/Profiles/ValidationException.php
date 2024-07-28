@@ -1,12 +1,12 @@
 <?php
 
-namespace Mediator\SatuSehat\Lib\Client;
+namespace Mediator\SatuSehat\Lib\Client\Profiles;
 
 use Exception;
 
 class ValidationException extends Exception
 {
-    private const ERROR_MAP = require(__DIR__ . '/../Config/ErrorCodes.php');
+    private static $ERROR_MAP;
 
     /**
      * Constructor
@@ -21,8 +21,12 @@ class ValidationException extends Exception
 
     public static function instance(string $type): ValidationException
     {
-        if (isset(self::ERROR_MAP[$type])) {
-            $error = self::ERROR_MAP[$type];
+        if (!isset(self::$ERROR_MAP)) {
+            self::$ERROR_MAP = require(__DIR__ . '/../Config/ErrorCodes.php');
+        }
+
+        if (isset(self::$ERROR_MAP[$type])) {
+            $error = self::$ERROR_MAP[$type];
             return new ValidationException($error['message'], $error['code']);
         }
 

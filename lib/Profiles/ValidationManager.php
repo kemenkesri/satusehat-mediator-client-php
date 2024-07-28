@@ -33,7 +33,7 @@ class ValidationManager
         // load class berdasarkan profile
         foreach ($this->profiles as $profile) {
             if (isset($this->config[$profile]) && is_array($this->config[$profile])) {
-                foreach ($$this->config[$profile] as $class) {
+                foreach ($this->config[$profile] as $class) {
                     $plugin = new $class();
                     $this->plugins[] = $plugin;
                 }
