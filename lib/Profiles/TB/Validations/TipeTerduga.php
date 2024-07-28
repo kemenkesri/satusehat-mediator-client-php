@@ -8,6 +8,21 @@ use Mediator\SatuSehat\Lib\Client\Profiles\ValidationException;
 
 final class TipeTerduga extends ProfileValidation
 {
+    private static $SITB_RO_TYPE_REFERENCE = [
+        '1' => '4',
+        '2' => '4',
+        '3' => '7',
+        '4' => '3',
+        '5' => '3',
+        '6' => '2',
+        '7' => '5',
+        '8' => '1',
+        '9' => '9',
+        '10' => '6',
+        '11' => '2',
+        '12' => '5',
+    ];
+
     public function validate($data)
     {
         /** @var TbSuspect $suspect */
@@ -16,8 +31,34 @@ final class TipeTerduga extends ProfileValidation
             throw ValidationException::instance('TB_SUSPECT_REQUIRED');
         }
 
-        //TODO: harus 1 atau 2 terduga_tb_id
-        //TODO: terduga_tb_id = 2, terduga_ro_id harus diisi
-        //TODO: harus 1 atau 2 terduga_tb_id
+        if (!$suspect->getId()) {
+            if (!$suspect->getTerdugaTbId()) {
+                throw ValidationException::instance('TB_SUSPECT_TYPE');
+            }
+        }
+
+        if ($suspect->getTerdugaTbId()) {
+            //TODO: harus 1 atau 2 terduga_tb_id
+            if (!in_array($suspect->getTerdugaTbId(), ['1', '2'])) {
+                throw ValidationException::instance('TB_SUSPECT_TYPE');
+            }
+
+            //TODO: terduga_tb_id = 2, ro harus diisi
+            if ($suspect->getTerdugaTbId() === '2') {
+                if (!$suspect->getTerdugaRoId() || !in_array($suspect->getTerdugaRoId(), ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'])) {
+                    throw ValidationException::instance('TB_SUSPECT_RO_TYPE');
+                }
+            }            
+        }
+
+        //TODO: tipe_pasien_id harus diisi
+        if ($suspect->getTerdugaRoId() 
+            && (!isset(self::$SITB_RO_TYPE_REFERENCE[$suspect->getTerdugaRoId()])
+            || !$suspect->getTipePasienId()
+            || self::$SITB_RO_TYPE_REFERENCE[$suspect->getTerdugaRoId()] !== $suspect->getTipePasienId())) {
+            throw ValidationException::instance('TB_SUSPECT_PATIENT_RO_TYPE');
+        } elseif (!$suspect->getTipePasienId() || !in_array($suspect->getTipePasienId(), ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])) {
+            throw ValidationException::instance('TB_SUSPECT_PATIENT_TYPE');
+        }
     }
 }
