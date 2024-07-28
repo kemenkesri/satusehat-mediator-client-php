@@ -56,9 +56,9 @@ class SubmitResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'statusehat' => '\Swagger\Client\Model\SatuSehatResponse[]',
-        'episode_of_care' => '\Swagger\Client\Model\EpisodeOfCare',
-        'tb_suspect' => '\Swagger\Client\Model\TbSuspect'
+        'satusehat' => 'Mediator\SatuSehat\Lib\Client\Model\SatuSehatResponse[]',
+        'episode_of_care' => 'Mediator\SatuSehat\Lib\Client\Model\EpisodeOfCare',
+        'suspect_tb' => 'Mediator\SatuSehat\Lib\Client\Model\TbSuspect'
     ];
 
     /**
@@ -67,9 +67,9 @@ class SubmitResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'statusehat' => null,
+        'satusehat' => null,
         'episode_of_care' => null,
-        'tb_suspect' => null
+        'suspect_tb' => null
     ];
 
     /**
@@ -99,9 +99,9 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'statusehat' => 'statusehat',
+        'satusehat' => 'satusehat',
         'episode_of_care' => 'episodeOfCare',
-        'tb_suspect' => 'tb_suspect'
+        'suspect_tb' => 'suspect_tb'
     ];
 
     /**
@@ -110,9 +110,9 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'statusehat' => 'setStatusehat',
+        'satusehat' => 'setSatusehat',
         'episode_of_care' => 'setEpisodeOfCare',
-        'tb_suspect' => 'setTbSuspect'
+        'suspect_tb' => 'setTbSuspect'
     ];
 
     /**
@@ -121,9 +121,9 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'statusehat' => 'getStatusehat',
+        'satusehat' => 'getSatusehat',
         'episode_of_care' => 'getEpisodeOfCare',
-        'tb_suspect' => 'getTbSuspect'
+        'suspect_tb' => 'getTbSuspect'
     ];
 
     /**
@@ -184,9 +184,9 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['statusehat'] = isset($data['statusehat']) ? $data['statusehat'] : null;
+        $this->container['satusehat'] = isset($data['satusehat']) ? $data['satusehat'] : null;
         $this->container['episode_of_care'] = isset($data['episode_of_care']) ? $data['episode_of_care'] : null;
-        $this->container['tb_suspect'] = isset($data['tb_suspect']) ? $data['tb_suspect'] : null;
+        $this->container['suspect_tb'] = isset($data['suspect_tb']) ? $data['suspect_tb'] : null;
     }
 
     /**
@@ -214,25 +214,25 @@ class SubmitResponse implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets statusehat
+     * Gets satusehat
      *
-     * @return \Swagger\Client\Model\SatuSehatResponse[]
+     * @return Mediator\SatuSehat\Lib\Client\Model\SatuSehatResponse[]
      */
-    public function getStatusehat()
+    public function getSatusehat()
     {
-        return $this->container['statusehat'];
+        return $this->container['satusehat'];
     }
 
     /**
-     * Sets statusehat
+     * Sets satusehat
      *
-     * @param \Swagger\Client\Model\SatuSehatResponse[] $statusehat statusehat
+     * @param Mediator\SatuSehat\Lib\Client\Model\SatuSehatResponse[] $satusehat satusehat
      *
      * @return $this
      */
-    public function setStatusehat($statusehat)
+    public function setSatusehat($satusehat)
     {
-        $this->container['statusehat'] = $statusehat;
+        $this->container['satusehat'] = $satusehat;
 
         return $this;
     }
@@ -240,7 +240,7 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     /**
      * Gets episode_of_care
      *
-     * @return \Swagger\Client\Model\EpisodeOfCare
+     * @return Mediator\SatuSehat\Lib\Client\Model\EpisodeOfCare
      */
     public function getEpisodeOfCare()
     {
@@ -250,7 +250,7 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     /**
      * Sets episode_of_care
      *
-     * @param \Swagger\Client\Model\EpisodeOfCare $episode_of_care episode_of_care
+     * @param Mediator\SatuSehat\Lib\Client\Model\EpisodeOfCare $episode_of_care episode_of_care
      *
      * @return $this
      */
@@ -262,25 +262,25 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets tb_suspect
+     * Gets suspect_tb
      *
-     * @return \Swagger\Client\Model\TbSuspect
+     * @return Mediator\SatuSehat\Lib\Client\Model\TbSuspect
      */
     public function getTbSuspect()
     {
-        return $this->container['tb_suspect'];
+        return $this->container['suspect_tb'];
     }
 
     /**
-     * Sets tb_suspect
+     * Sets suspect_tb
      *
-     * @param \Swagger\Client\Model\TbSuspect $tb_suspect tb_suspect
+     * @param Mediator\SatuSehat\Lib\Client\Model\TbSuspect $suspect_tb suspect_tb
      *
      * @return $this
      */
-    public function setTbSuspect($tb_suspect)
+    public function setTbSuspect($suspect_tb)
     {
-        $this->container['tb_suspect'] = $tb_suspect;
+        $this->container['suspect_tb'] = $suspect_tb;
 
         return $this;
     }

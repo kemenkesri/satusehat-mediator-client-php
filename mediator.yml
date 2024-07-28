@@ -1279,13 +1279,13 @@ components:
     SubmitResponse:
       type: object
       properties:
-        statusehat:
+        satusehat:
           type: array
           items:
             $ref: '#/components/schemas/SatuSehatResponse'
         episodeOfCare:
           $ref: '#/components/schemas/EpisodeOfCare'
-        tb_suspect:
+        suspect_tb:
           $ref: '#/components/schemas/TbSuspect'
     ApiError:
       type: object

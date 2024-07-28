@@ -136,7 +136,10 @@ abstract class MediatorForm
      */
     public function validate(): void
     {
+        // validate required methods in Form Class
         $this->validatedMethod();
+
+        // run Logical validation by use case profile (business process)
         $validator = ValidationManager::instance();
         $validator->setProfile($this->data->getProfile());
         $validator->validate($this->data);
