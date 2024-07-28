@@ -2,7 +2,6 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Validations;
 
-use Mediator\SatuSehat\Lib\Client\Model\AddressPatient;
 use Mediator\SatuSehat\Lib\Client\Model\Patient;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
 use Mediator\SatuSehat\Lib\Client\Model\TbSuspect;
