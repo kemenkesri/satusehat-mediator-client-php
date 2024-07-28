@@ -56,8 +56,9 @@ class SubmitResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'statusehat' => '\Mediator\SatuSehat\Lib\Client\Model\SatuSehatResponse[]',
-        'episode_of_care' => '\Mediator\SatuSehat\Lib\Client\Model\EpisodeOfCare'
+        'statusehat' => '\Swagger\Client\Model\SatuSehatResponse[]',
+        'episode_of_care' => '\Swagger\Client\Model\EpisodeOfCare',
+        'tb_suspect' => '\Swagger\Client\Model\TbSuspect'
     ];
 
     /**
@@ -67,7 +68,8 @@ class SubmitResponse implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'statusehat' => null,
-        'episode_of_care' => null
+        'episode_of_care' => null,
+        'tb_suspect' => null
     ];
 
     /**
@@ -98,7 +100,8 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'statusehat' => 'statusehat',
-        'episode_of_care' => 'episodeOfCare'
+        'episode_of_care' => 'episodeOfCare',
+        'tb_suspect' => 'tb_suspect'
     ];
 
     /**
@@ -108,7 +111,8 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'statusehat' => 'setStatusehat',
-        'episode_of_care' => 'setEpisodeOfCare'
+        'episode_of_care' => 'setEpisodeOfCare',
+        'tb_suspect' => 'setTbSuspect'
     ];
 
     /**
@@ -118,7 +122,8 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'statusehat' => 'getStatusehat',
-        'episode_of_care' => 'getEpisodeOfCare'
+        'episode_of_care' => 'getEpisodeOfCare',
+        'tb_suspect' => 'getTbSuspect'
     ];
 
     /**
@@ -181,6 +186,7 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     {
         $this->container['statusehat'] = isset($data['statusehat']) ? $data['statusehat'] : null;
         $this->container['episode_of_care'] = isset($data['episode_of_care']) ? $data['episode_of_care'] : null;
+        $this->container['tb_suspect'] = isset($data['tb_suspect']) ? $data['tb_suspect'] : null;
     }
 
     /**
@@ -210,7 +216,7 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     /**
      * Gets statusehat
      *
-     * @return \Mediator\SatuSehat\Lib\Client\Model\SatuSehatResponse[]
+     * @return \Swagger\Client\Model\SatuSehatResponse[]
      */
     public function getStatusehat()
     {
@@ -220,7 +226,7 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     /**
      * Sets statusehat
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\SatuSehatResponse[] $statusehat statusehat
+     * @param \Swagger\Client\Model\SatuSehatResponse[] $statusehat statusehat
      *
      * @return $this
      */
@@ -234,7 +240,7 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     /**
      * Gets episode_of_care
      *
-     * @return \Mediator\SatuSehat\Lib\Client\Model\EpisodeOfCare
+     * @return \Swagger\Client\Model\EpisodeOfCare
      */
     public function getEpisodeOfCare()
     {
@@ -244,13 +250,37 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     /**
      * Sets episode_of_care
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\EpisodeOfCare $episode_of_care episode_of_care
+     * @param \Swagger\Client\Model\EpisodeOfCare $episode_of_care episode_of_care
      *
      * @return $this
      */
     public function setEpisodeOfCare($episode_of_care)
     {
         $this->container['episode_of_care'] = $episode_of_care;
+
+        return $this;
+    }
+
+    /**
+     * Gets tb_suspect
+     *
+     * @return \Swagger\Client\Model\TbSuspect
+     */
+    public function getTbSuspect()
+    {
+        return $this->container['tb_suspect'];
+    }
+
+    /**
+     * Sets tb_suspect
+     *
+     * @param \Swagger\Client\Model\TbSuspect $tb_suspect tb_suspect
+     *
+     * @return $this
+     */
+    public function setTbSuspect($tb_suspect)
+    {
+        $this->container['tb_suspect'] = $tb_suspect;
 
         return $this;
     }
