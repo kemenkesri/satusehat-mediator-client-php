@@ -43,20 +43,20 @@ class Configuration
     /** @var ConfigurationConstant[] */
     private static $CONSTANTS = [
         'development' => [
-            'authUrl'       => 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
-            'tokenUrl'      => 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
-            'baseUrl'       => 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
-            'clientId'      => null,
-            'clientSecret'  => null,
-            'bearerToken'   => null
+            'authUrl' => 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
+            'tokenUrl' => 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
+            'baseUrl' => 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
+            'clientId' => null,
+            'clientSecret' => null,
+            'bearerToken' => null
         ],
         'production' => [
-            'authUrl'       => 'https://api-satusehat.kemkes.go.id/oauth2/v1/accesstoken',
-            'tokenUrl'      => 'https://api-satusehat.kemkes.go.id/oauth2/v1/refreshtoken',
-            'baseUrl'       => 'https://mediator-satusehat.kemkes.go.id/api/satusehat/rme/v1.0',
-            'clientId'      => null,
-            'clientSecret'  => null,
-            'bearerToken'   => null
+            'authUrl' => 'https://api-satusehat.kemkes.go.id/oauth2/v1/accesstoken',
+            'tokenUrl' => 'https://api-satusehat.kemkes.go.id/oauth2/v1/refreshtoken',
+            'baseUrl' => 'https://mediator-satusehat.kemkes.go.id/api/satusehat/rme/v1.0',
+            'clientId' => null,
+            'clientSecret' => null,
+            'bearerToken' => null
         ]
     ];
 
@@ -172,12 +172,12 @@ class Configuration
     {
         $this->tempFolderPath = sys_get_temp_dir();
         $constant = self::$CONSTANTS[$name];
-        $this->baseUrl = isset($constant['baseUrl']) ? $constant['baseUrl'] : null;
-        $this->authUrl = isset($constant['authUrl']) ? $constant['authUrl'] : null;
-        $this->tokenUrl = isset($constant['tokenUrl']) ? $constant['tokenUrl'] : null;
-        $this->clientId = isset($constant['clientId']) ? $constant['clientId'] : null;
-        $this->clientSecret = isset($constant['clientSecret']) ? $constant['clientSecret'] : null;
-        $this->bearerToken = isset($constant['bearerToken']) ? $constant['bearerToken'] : null;
+        $this->baseUrl = !empty($constant->baseUrl) ? $constant->baseUrl : null;
+        $this->authUrl = !empty($constant->authUrl) ? $constant->authUrl : null;
+        $this->tokenUrl = !empty($constant->tokenUrl) ? $constant->tokenUrl : null;
+        $this->clientId = !empty($constant->clientId) ? $constant->clientId : null;
+        $this->clientSecret = !empty($constant->clientSecret) ? $constant->clientSecret : null;
+        $this->bearerToken = !empty($constant->bearerToken) ? $constant->bearerToken : null;
     }
 
     /**
@@ -445,6 +445,7 @@ class Configuration
         // print_r($this->bearerToken);exit;
         return $this->clientId && $this->clientSecret ? 'credential' : ($this->bearerToken ? 'bearer' : null);
     }
+
     /**
      * Sets the user agent of the api client
      *
@@ -627,19 +628,19 @@ class Configuration
 class ConfigurationConstant
 {
     /** @var string */
-    public $authUrl;
+    public string $authUrl;
     /** @var string */
-    public $tokenUrl;
+    public string $tokenUrl;
     /** @var string */
-    public $baseUrl;
-    /** @var string */
-    public $clientId;
-    /** @var string */
-    public $clientSecret;
-    /** @var string */
-    public $bearerToken;
+    public string $baseUrl;
+    /** @var string|null */
+    public ?string $clientId;
+    /** @var string|null */
+    public ?string $clientSecret;
+    /** @var string|null */
+    public ?string $bearerToken;
 
-    private function __construct($authUrl, $tokenUrl, $baseUrl, $clientId, $clientSecret, $bearerToken)
+    public function __construct(string $authUrl, string $tokenUrl, string $baseUrl, ?string $clientId = null, ?string $clientSecret = null, ?string $bearerToken = null)
     {
         if ($authUrl) {
             $this->authUrl = $authUrl;
