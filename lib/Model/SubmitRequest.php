@@ -300,6 +300,22 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['profile'] === null) {
+            $invalidProperties[] = "'profile' can't be null";
+        }
+        if ($this->container['organization_id'] === null) {
+            $invalidProperties[] = "'organization_id' can't be null";
+        }
+        if ($this->container['location_id'] === null) {
+            $invalidProperties[] = "'location_id' can't be null";
+        }
+        if ($this->container['practitioner_nik'] === null) {
+            $invalidProperties[] = "'practitioner_nik' can't be null";
+        }
+        if ($this->container['patient'] === null) {
+            $invalidProperties[] = "'patient' can't be null";
+        }
+
         return $invalidProperties;
     }
 

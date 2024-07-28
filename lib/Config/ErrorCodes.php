@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'FIELDS_REQUIRED' => [
+        'code'    => 4000,
+        'message' => 'Fields is required'
+    ],
     'TB_SUSPECT_REQUIRED' => [
         'code'    => 4001,
         'message' => 'Field \'tb_suspect\' required'
