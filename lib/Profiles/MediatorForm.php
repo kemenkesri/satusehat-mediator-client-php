@@ -4,7 +4,6 @@ namespace Mediator\SatuSehat\Lib\Client\Profiles;
 
 use Mediator\SatuSehat\Lib\Client\Api\SubmitDataApi;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
-use Mediator\SatuSehat\Lib\Client\submitApi;
 
 abstract class MediatorForm
 {
@@ -26,6 +25,22 @@ abstract class MediatorForm
     public function setData($data)
     {
         $this->data = $data;
+    }
+
+    /**
+     * @return SubmitRequest
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBody()
+    {
+        return $this->data->__toString();
     }
 
     /**
@@ -98,13 +113,16 @@ abstract class MediatorForm
         return $this;
     }
 
-    public function send()
+    public function validate()
     {
         /** @var ValidationManager */
         $validtor = ValidationManager::instance();
         $validtor->setProfile($this->data->getProfile());
         $validtor->validate($this->data);
+    }
 
+    public function send()
+    {
         // send using submitApi
         return $this->submitApi->syncPost($this->data);
     }
