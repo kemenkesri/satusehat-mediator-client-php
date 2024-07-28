@@ -5,42 +5,64 @@ namespace Mediator\SatuSehat\Lib\Client\Profiles;
 use GuzzleHttp\Exception\GuzzleException;
 use Mediator\SatuSehat\Lib\Client\Api\SubmitDataApi;
 use Mediator\SatuSehat\Lib\Client\ApiException;
-use Mediator\SatuSehat\Lib\Client\Configuration;
 use Mediator\SatuSehat\Lib\Client\Model\ModelInterface;
+use Mediator\SatuSehat\Lib\Client\Model\Patient;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitResponse;
-use Mediator\SatuSehat\Lib\Client\OAuthClient;
 
 abstract class MediatorForm
 {
-    protected array $defaultRules = [
+    /** @var SubmitDataApi */
+    protected $submitApi;
+
+    /** @var SubmitRequest */
+    protected $data;
+
+    private array $defaultRules = [
         'Profile' ,
         'OrganizationId' ,
         'LocationId' ,
         'PractitionerNik' ,
+        'Patient',
     ];
 
-
-    /** @var SubmitRequest */
-    protected SubmitRequest $data;
-
-    public function __construct()
+    /**
+     * @param $submitApi
+     */
+    public function __construct($submitApi)
     {
+        $this->submitApi = $submitApi;
         $this->data = new SubmitRequest();
     }
 
     /**
-     * @param SubmitRequest $data
+     * @param array|SubmitRequest $data
      */
-    public function setData(SubmitRequest $data)
+    public function setData($data)
     {
-        $this->data = $data;
+        $this->data = $data instanceof SubmitRequest ? $data : new SubmitRequest($data);
+    }
+
+    /**
+     * @return SubmitRequest
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBody()
+    {
+        return $this->data->__toString();
     }
 
     /**
      * Sets profile
      *
-     * @param array $profile
+     * @param string[] $profile profile
      *
      * @return $this
      */
@@ -54,7 +76,7 @@ abstract class MediatorForm
     /**
      * Sets organization_id
      *
-     * @param string $organization_id
+     * @param string $organization_id organization_id
      *
      * @return $this
      */
@@ -94,6 +116,33 @@ abstract class MediatorForm
     }
 
     /**
+     * Sets patient
+     *
+     * @param Patient|array $patient patient
+     *
+     * @return $this
+     */
+    public function setPatient($patient): MediatorForm
+    {
+        $this->data->setPatient($patient instanceof Patient ? $patient : new Patient($patient));
+
+        return $this;
+    }
+
+    /**
+     * @return void
+     * @throws ValidationException
+     * @throws \Exception
+     */
+    public function validate(): void
+    {
+        $this->validatedMethod();
+        $validator = ValidationManager::instance();
+        $validator->setProfile($this->data->getProfile());
+        $validator->validate($this->data);
+    }
+
+    /**
      * @return array
      */
     protected function validationRules(): array
@@ -102,35 +151,11 @@ abstract class MediatorForm
     }
 
     /**
-     * @throws GuzzleException
-     * @throws ApiException
+     * @return void
      * @throws \Exception
-     * @return array|ModelInterface|SubmitResponse
      */
-    public function send()
+    public function validatedMethod()
     {
-        //        $validator = ValidationManager::instance();
-        //        $validator->setProfile($this->data->getProfile());
-        //        $validator->validate($this->data);
-        $this->validate();
-
-        $apiInstance = new SubmitDataApi(
-            // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-            // This is optional, `GuzzleHttp\Client` will be used as default.
-            new OAuthClient(Configuration::getDefaultConfiguration())
-        );
-
-        // send using submitApi
-        return $apiInstance->syncPost($this->data);
-    }
-
-    /**
-     * @throws \Exception
-     * @return array
-     */
-    protected function validate(): array
-    {
-        $data = [];
         foreach ($this->validationRules() as $key => $validationRule) {
             $setter = "set{$validationRule}";
             if (!method_exists($this, $setter)) {
@@ -141,10 +166,25 @@ abstract class MediatorForm
                 throw new \Exception('Method for ' . $getter . ' does not exists', 500);
             }
 
-            $data[$key] = $this->data->{$getter}();
+            // TODO; validate using manager
         }
-        return $data;
     }
 
+
+    /**
+     * @return array|ModelInterface|SubmitResponse
+     * @throws GuzzleException
+     * @throws ApiException
+     */
+    public function send()
+    {
+        // send using submitApi
+        return $this->submitApi->syncPost($this->data);
+    }
+
+    /**
+     * @return array
+     */
     abstract protected function mustValidated(): array;
+
 }

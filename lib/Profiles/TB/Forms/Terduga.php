@@ -2,6 +2,7 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms;
 
+use Mediator\SatuSehat\Lib\Client\Model\TbSuspect;
 use Mediator\SatuSehat\Lib\Client\Profiles\MediatorForm;
 
 class Terduga extends MediatorForm
@@ -9,25 +10,10 @@ class Terduga extends MediatorForm
     protected function mustValidated(): array
     {
         return [
-            'Patient',
             'TbSuspect',
             'Encounter',
             'Condition',
         ];
-    }
-
-    /**
-     * Sets patient
-     *
-     * @param array $patient patient
-     *
-     * @return $this
-     */
-    public function setPatient(array $patient): Terduga
-    {
-        $this->data->setPatient($patient);
-
-        return $this;
     }
 
     /**
@@ -39,7 +25,7 @@ class Terduga extends MediatorForm
      */
     public function setTbSuspect(array $tb_suspect): Terduga
     {
-        $this->data->setTbSuspect($tb_suspect);
+        $this->data->setTbSuspect(!($tb_suspect instanceof TbSuspect) ? new TbSuspect($tb_suspect) : $tb_suspect);
 
         return $this;
     }
