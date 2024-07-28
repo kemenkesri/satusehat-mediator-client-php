@@ -255,12 +255,25 @@ class AddressPatient implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['use'] === null) {
+            $invalidProperties[] = "'use' can't be null";
+        }
         $allowedValues = $this->getUseAllowableValues();
         if (!is_null($this->container['use']) && !in_array($this->container['use'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
                 "invalid value for 'use', must be one of '%s'",
                 implode("', '", $allowedValues)
             );
+        }
+
+        if ($this->container['country'] === null) {
+            $invalidProperties[] = "'country' can't be null";
+        }
+        if ($this->container['province'] === null) {
+            $invalidProperties[] = "'province' can't be null";
+        }
+        if ($this->container['city'] === null) {
+            $invalidProperties[] = "'city' can't be null";
         }
 
         return $invalidProperties;

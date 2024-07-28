@@ -24,5 +24,9 @@ return [
     'TB_ADDRESS_REQUIRED' => [
         'code'    => 4005,
         'message' => 'Field \'patient.address\' required'
+    ],
+    'TB_ADDRESS_INVALID' => [
+        'code'    => 4005,
+        'message' => 'Field \'patient.address\' invalid'
     ]
 ];
