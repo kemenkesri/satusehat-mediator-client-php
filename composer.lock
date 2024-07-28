@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52b98ce507f602eee07dc38775577774",
+    "content-hash": "a0695fb8216c105fd3bb05007bd4309a",
     "packages": [
         {
             "name": "dcarbone/php-fhir-generated",

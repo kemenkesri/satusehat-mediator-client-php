@@ -24,7 +24,7 @@
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^7.3",
         "guzzlehttp/psr7": "^1.7 || ^2.0",
-        "kamermans/guzzle-oauth2-subscriber": "~1.1",
+        "kamermans/guzzle-oauth2-subscriber": "^1.1",
         "dcarbone/php-fhir-generated": "v3.0.4.1"
     },
     "require-dev": {
@@ -36,7 +36,10 @@
     "autoload": {
         "psr-4": {
             "Mediator\\SatuSehat\\Lib\\Client\\": "lib/"
-        }
+        },
+        "files": [
+            "helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": { "Mediator\\SatuSehat\\Lib\\Client\\" : "test/" }
