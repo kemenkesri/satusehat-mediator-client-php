@@ -2,6 +2,7 @@
 
 namespace Mediator\SatuSehat\Lib\Client;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Mediator\SatuSehat\Lib\Client\Abstracts\BaseAction;
 use Mediator\SatuSehat\Lib\Client\Api\SubmitDataApi;
 use Mediator\SatuSehat\Lib\Client\Model\ModelInterface;
@@ -27,29 +28,18 @@ class SubmitTB extends BaseAction
         $this->apiInstance = new SubmitDataApi(
             // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
             // This is optional, `GuzzleHttp\Client` will be used as default.
-            new OAuthClient(environment: $this->environment)
+            new OAuthClient(Configuration::getDefaultConfiguration($this->environment))
         );
         return $this;
     }
 
     /**
+     * @throws ApiException
+     * @throws GuzzleException
      * @return mixed
      */
     public function handle(): mixed
     {
-        try {
-            $result = $this->apiInstance->syncPost($this->model);
-            $callbackResource = new CallbackResource(
-                data: $result
-            );
-        } catch (\Throwable $e) {
-            $callbackResource = new CallbackResource(
-                status: 'failed',
-                code: $e->getCode(),
-                message: $e->getMessage(),
-            );
-        }
-
-        return $callbackResource;
+        return $this->apiInstance->syncPost($this->model);
     }
 }
