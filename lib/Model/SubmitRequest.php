@@ -60,7 +60,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
         'organization_id' => 'string',
         'location_id' => 'string',
         'practitioner_nik' => 'string',
-        'patient' => '\Mediator\SatuSehat\Lib\Client\Model\PatientBasic',
+        'patient' => '\Mediator\SatuSehat\Lib\Client\Model\Patient',
         'tb_suspect' => '\Mediator\SatuSehat\Lib\Client\Model\TbSuspect',
         'tb_confirm' => '\Mediator\SatuSehat\Lib\Client\Model\TbConfirm',
         'encounter' => '\Mediator\SatuSehat\Lib\Client\Model\Encounter',
@@ -414,7 +414,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Gets patient
      *
-     * @return \Mediator\SatuSehat\Lib\Client\Model\PatientBasic
+     * @return \Mediator\SatuSehat\Lib\Client\Model\Patient
      */
     public function getPatient()
     {
@@ -424,7 +424,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     /**
      * Sets patient
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\PatientBasic $patient patient
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Patient $patient patient
      *
      * @return $this
      */

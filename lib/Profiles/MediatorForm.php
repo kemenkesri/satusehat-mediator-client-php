@@ -3,6 +3,7 @@
 namespace Mediator\SatuSehat\Lib\Client\Profiles;
 
 use Mediator\SatuSehat\Lib\Client\Api\SubmitDataApi;
+use Mediator\SatuSehat\Lib\Client\Model\Patient;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
 
 abstract class MediatorForm
@@ -24,7 +25,7 @@ abstract class MediatorForm
      */
     public function setData($data)
     {
-        $this->data = $data;
+        $this->data = $data instanceof SubmitRequest ? $data : new SubmitRequest($data);
     }
 
     /**
@@ -102,13 +103,13 @@ abstract class MediatorForm
     /**
      * Sets patient
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\PatientBasic $patient patient
+     * @param PatientBasic|array $patient patient
      *
      * @return $this
      */
     public function setPatient($patient)
     {
-        $this->data->setPatient($patient);
+        $this->data->setPatient($patient instanceof Patient ? $patient : new Patient($patient));
 
         return $this;
     }
