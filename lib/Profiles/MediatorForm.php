@@ -5,6 +5,7 @@ namespace Mediator\SatuSehat\Lib\Client\Profiles;
 use GuzzleHttp\Exception\GuzzleException;
 use Mediator\SatuSehat\Lib\Client\Api\SubmitDataApi;
 use Mediator\SatuSehat\Lib\Client\ApiException;
+use Mediator\SatuSehat\Lib\Client\Model\AddressPatient;
 use Mediator\SatuSehat\Lib\Client\Model\ModelInterface;
 use Mediator\SatuSehat\Lib\Client\Model\Patient;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
@@ -130,6 +131,35 @@ abstract class MediatorForm
     }
 
     /**
+     * Sets patient address
+     *
+     * @param AddressPatient|array $patient patient
+     *
+     * @return $this
+     */
+    public function setPatientAddress($patientAddress): MediatorForm
+    {
+        if (!$this->data->getPatient()) {
+            return $this;
+        }
+
+        if (!($patientAddress instanceof AddressPatient)) {
+            $patientAddress = new AddressPatient($patientAddress);
+        }
+
+        $addresses = $this->data->getPatient()->getAddress();
+        if (empty($addresses)) {
+            $addresses = [$patientAddress];
+        } else {
+            $addresses[] = $patientAddress;
+        }
+
+        $this->data->getPatient()->setAddress($addresses);
+
+        return $this;
+    }
+
+    /**
      * @throws ValidationException
      * @throws \Exception
      * @return void
@@ -142,7 +172,7 @@ abstract class MediatorForm
         // run Logical validation by use case profile (business process)
         $validator = ValidationManager::instance();
         $validator->setProfile($this->data->getProfile());
-        $validator->validate($this->data);
+        $validator->validate($this->data, get_called_class());
     }
 
     /**
