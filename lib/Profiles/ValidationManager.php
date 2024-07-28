@@ -2,6 +2,7 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Profiles;
 
+use Mediator\SatuSehat\Lib\Client\ApiException;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
 
 class ValidationManager
@@ -47,6 +48,10 @@ class ValidationManager
      */
     public function validate($data)
     {
+        if (!$data->valid()) {
+            throw ValidationException::instance('FIELDS_REQUIRED', $data->listInvalidProperties());
+        }
+
         foreach ($this->plugins as $plugin) {
             $plugin->validate($data);
         }

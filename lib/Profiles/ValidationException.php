@@ -14,8 +14,11 @@ class ValidationException extends Exception
      * @param string        $message         Error message
      * @param int           $code            HTTP status code
      */
-    public function __construct($message = "", $code = 0)
+    public function __construct($message = "", $code = 0, $errors = [])
     {
+        foreach ($errors as $err) {
+            $message .= "\n" . $err;
+        }
         parent::__construct($message, $code);
     }
 
@@ -27,13 +30,9 @@ class ValidationException extends Exception
 
         if (isset(self::$ERROR_MAP[$type])) {
             $error = self::$ERROR_MAP[$type];
-            $message = $error['message'];
-            foreach ($errors as $err) {
-                $message .= "\n" . $err;
-            }
-            return new ValidationException($message, $error['code']);
+            return new ValidationException($error['message'], $error['code'], $errors);
         }
 
-        return new ValidationException('UNKNOWN', 4999);
+        return new ValidationException('UNKNOWN', 4999, $errors);
     }
 }
