@@ -16,7 +16,7 @@ Configuration::setConfigurationConstant(
         baseUrl: 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
         clientId: $clientId,
         clientSecret: $clientSecret,
-    //        bearerToken: 'RVWrblJr9uS1PHE5JGxLNIeLWpEK'
+        //        bearerToken: 'RVWrblJr9uS1PHE5JGxLNIeLWpEK'
     )
 );
 

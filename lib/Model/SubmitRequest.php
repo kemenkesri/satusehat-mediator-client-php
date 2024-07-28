@@ -513,7 +513,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      *
      * @return Condition
      */
-    public function getCondition():array
+    public function getCondition(): array
     {
         return $this->container['condition'];
     }

@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Uri;
 use kamermans\OAuth2\OAuth2Middleware;
+use kamermans\OAuth2\Persistence\FileTokenPersistence;
 use Mediator\SatuSehat\Lib\Client\Vendor\ClientCredentials;
 
 class OAuthClient extends Client
@@ -33,6 +34,7 @@ class OAuthClient extends Client
             ]);
 
             $oauth = new OAuth2Middleware($grantType);
+            $oauth->setTokenPersistence(new FileTokenPersistence('/tmp/oauth-token'));
 
             $stack = HandlerStack::create();
             $stack->push($oauth);

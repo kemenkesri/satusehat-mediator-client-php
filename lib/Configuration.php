@@ -178,7 +178,7 @@ class Configuration
      */
     public function __construct(?string $name = null)
     {
-        if (empty($name)){
+        if (empty($name)) {
             $name = self::$environment;
         }
         $this->tempFolderPath = sys_get_temp_dir();
@@ -462,8 +462,8 @@ class Configuration
      *
      * @param string $userAgent the user agent of the api client
      *
-     * @return $this
      * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setUserAgent(string $userAgent): Configuration
     {
@@ -572,7 +572,7 @@ class Configuration
      */
     public static function getDefaultConfiguration(?string $name = null): Configuration
     {
-        if (empty($name)){
+        if (empty($name)) {
             $name = self::$environment;
         }
         if (self::$defaultConfiguration === null) {

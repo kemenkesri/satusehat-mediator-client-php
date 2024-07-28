@@ -102,21 +102,21 @@ abstract class MediatorForm
     }
 
     /**
-     * @return array|ModelInterface|SubmitResponse
      * @throws GuzzleException
      * @throws ApiException
      * @throws \Exception
+     * @return array|ModelInterface|SubmitResponse
      */
     public function send()
     {
-//        $validator = ValidationManager::instance();
-//        $validator->setProfile($this->data->getProfile());
-//        $validator->validate($this->data);
+        //        $validator = ValidationManager::instance();
+        //        $validator->setProfile($this->data->getProfile());
+        //        $validator->validate($this->data);
         $this->validate();
 
         $apiInstance = new SubmitDataApi(
-        // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-        // This is optional, `GuzzleHttp\Client` will be used as default.
+            // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+            // This is optional, `GuzzleHttp\Client` will be used as default.
             new OAuthClient(Configuration::getDefaultConfiguration())
         );
 
@@ -125,8 +125,8 @@ abstract class MediatorForm
     }
 
     /**
-     * @return array
      * @throws \Exception
+     * @return array
      */
     protected function validate(): array
     {
