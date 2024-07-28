@@ -41,7 +41,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class SubmitResponse implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
