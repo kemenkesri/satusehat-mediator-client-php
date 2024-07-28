@@ -40,12 +40,12 @@ class OAuthClient extends Client
                 'base_uri'  => $config->getBaseUrl(),
                 'handler'   => $stack,
                 'auth'      => 'oauth',
-                'debug'     => false,
+                'debug'     => $config->getDebug(),
             ];
         } elseif ($authType === 'bearer') {
             $conf = [
                 'base_uri'  => $config->getBaseUrl(),
-                'debug'     => false,
+                'debug'     => $config->getDebug(),
                 'headers'   => [
                     'Authorization' => 'Bearer ' . $config->getBearerToken()
                 ]
