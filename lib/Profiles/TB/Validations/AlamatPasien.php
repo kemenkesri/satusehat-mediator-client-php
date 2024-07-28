@@ -11,9 +11,10 @@ use Mediator\SatuSehat\Lib\Client\Profiles\ValidationException;
 
 final class AlamatPasien extends ProfileValidation
 {
-    /** 
+    /**
      * @param SubmitRequest $data
-     **/
+     * @throws ValidationException
+     */
     public function validate($data)
     {
         /** @var TbSuspect $suspect */

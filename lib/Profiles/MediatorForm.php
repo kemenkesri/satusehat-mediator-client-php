@@ -130,9 +130,9 @@ abstract class MediatorForm
     }
 
     /**
-     * @return void
      * @throws ValidationException
      * @throws \Exception
+     * @return void
      */
     public function validate(): void
     {
@@ -151,8 +151,8 @@ abstract class MediatorForm
     }
 
     /**
-     * @return void
      * @throws \Exception
+     * @return void
      */
     public function validatedMethod()
     {
@@ -165,16 +165,14 @@ abstract class MediatorForm
             if (!method_exists($this->data, $getter)) {
                 throw new \Exception('Method for ' . $getter . ' does not exists', 500);
             }
-
-            // TODO; validate using manager
         }
     }
 
 
     /**
-     * @return array|ModelInterface|SubmitResponse
      * @throws GuzzleException
      * @throws ApiException
+     * @return array|ModelInterface|SubmitResponse
      */
     public function send()
     {
