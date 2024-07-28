@@ -1190,6 +1190,12 @@ components:
             $ref: '#/components/schemas/TbSuspect'
     SubmitRequest:
       type: object
+      required:
+        - profile
+        - organization_id
+        - local_id
+        - practitioner_nik
+        - patient
       properties:
         profile:
           type: array
@@ -1279,6 +1285,8 @@ components:
             $ref: '#/components/schemas/SatuSehatResponse'
         episodeOfCare:
           $ref: '#/components/schemas/EpisodeOfCare'
+        tb_suspect:
+          $ref: '#/components/schemas/TbSuspect'
     ApiError:
       type: object
       properties:
