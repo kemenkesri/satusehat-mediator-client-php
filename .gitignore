@@ -1,4 +1,5 @@
 /vendor
+.idea
 .env
 .env.production
 
@@ -12,3 +13,5 @@
 
 # PHPUnit cache
 .phpunit.result.cache
+cghooks.lock
+test.php

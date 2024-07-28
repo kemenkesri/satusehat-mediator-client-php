@@ -43,6 +43,7 @@ class ValidationManager
 
     /**
      * @param SubmitRequest $data
+     * @throws ValidationException
      */
     public function validate($data)
     {

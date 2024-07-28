@@ -2,9 +2,13 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Profiles;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Mediator\SatuSehat\Lib\Client\Api\SubmitDataApi;
+use Mediator\SatuSehat\Lib\Client\ApiException;
+use Mediator\SatuSehat\Lib\Client\Model\ModelInterface;
 use Mediator\SatuSehat\Lib\Client\Model\Patient;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
+use Mediator\SatuSehat\Lib\Client\Model\SubmitResponse;
 
 abstract class MediatorForm
 {
@@ -14,6 +18,17 @@ abstract class MediatorForm
     /** @var SubmitRequest */
     protected $data;
 
+    private array $defaultRules = [
+        'Profile' ,
+        'OrganizationId' ,
+        'LocationId' ,
+        'PractitionerNik' ,
+        'Patient',
+    ];
+
+    /**
+     * @param $submitApi
+     */
     public function __construct($submitApi)
     {
         $this->submitApi = $submitApi;
@@ -21,7 +36,7 @@ abstract class MediatorForm
     }
 
     /**
-     * @param SubmitRequest $data
+     * @param array|SubmitRequest $data
      */
     public function setData($data)
     {
@@ -51,7 +66,7 @@ abstract class MediatorForm
      *
      * @return $this
      */
-    public function setProfile($profile)
+    public function setProfile(array $profile): MediatorForm
     {
         $this->data->setProfile($profile);
 
@@ -65,7 +80,7 @@ abstract class MediatorForm
      *
      * @return $this
      */
-    public function setOrganizationId($organization_id)
+    public function setOrganizationId(string $organization_id): MediatorForm
     {
         $this->data->setOrganizationId($organization_id);
 
@@ -79,7 +94,7 @@ abstract class MediatorForm
      *
      * @return $this
      */
-    public function setLocationId($location_id)
+    public function setLocationId(string $location_id): MediatorForm
     {
         $this->data->setLocationId($location_id);
 
@@ -93,7 +108,7 @@ abstract class MediatorForm
      *
      * @return $this
      */
-    public function setPractitionerNik($practitioner_nik)
+    public function setPractitionerNik(string $practitioner_nik): MediatorForm
     {
         $this->data->setPractitionerNik($practitioner_nik);
 
@@ -103,28 +118,71 @@ abstract class MediatorForm
     /**
      * Sets patient
      *
-     * @param PatientBasic|array $patient patient
+     * @param Patient|array $patient patient
      *
      * @return $this
      */
-    public function setPatient($patient)
+    public function setPatient($patient): MediatorForm
     {
         $this->data->setPatient($patient instanceof Patient ? $patient : new Patient($patient));
 
         return $this;
     }
 
-    public function validate()
+    /**
+     * @throws ValidationException
+     * @throws \Exception
+     * @return void
+     */
+    public function validate(): void
     {
-        /** @var ValidationManager */
-        $validtor = ValidationManager::instance();
-        $validtor->setProfile($this->data->getProfile());
-        $validtor->validate($this->data);
+        $this->validatedMethod();
+        $validator = ValidationManager::instance();
+        $validator->setProfile($this->data->getProfile());
+        $validator->validate($this->data);
     }
 
+    /**
+     * @return array
+     */
+    protected function validationRules(): array
+    {
+        return array_merge($this->defaultRules, $this->mustValidated());
+    }
+
+    /**
+     * @throws \Exception
+     * @return void
+     */
+    public function validatedMethod()
+    {
+        foreach ($this->validationRules() as $key => $validationRule) {
+            $setter = "set{$validationRule}";
+            if (!method_exists($this, $setter)) {
+                throw new \Exception('Method for ' . $setter . '  does not exists', 500);
+            }
+            $getter = "get{$validationRule}";
+            if (!method_exists($this->data, $getter)) {
+                throw new \Exception('Method for ' . $getter . ' does not exists', 500);
+            }
+        }
+    }
+
+
+    /**
+     * @throws GuzzleException
+     * @throws ApiException
+     * @return array|ModelInterface|SubmitResponse
+     */
     public function send()
     {
         // send using submitApi
         return $this->submitApi->syncPost($this->data);
     }
+
+    /**
+     * @return array
+     */
+    abstract protected function mustValidated(): array;
+
 }

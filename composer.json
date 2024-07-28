@@ -24,19 +24,22 @@
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^7.3",
         "guzzlehttp/psr7": "^1.7 || ^2.0",
-        "kamermans/guzzle-oauth2-subscriber": "~1.1",
+        "kamermans/guzzle-oauth2-subscriber": "^1.1",
         "dcarbone/php-fhir-generated": "v3.0.4.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0 || ^9.0",
         "friendsofphp/php-cs-fixer": "^3.5",
-        "brainmaestro/composer-git-hooks":"^3.0"
+        "brainmaestro/composer-git-hooks":"^3.0",
+        "laravel/tinker": "^2.9"
     },
     "autoload": {
         "psr-4": {
-            "Mediator\\SatuSehat\\Lib\\Client\\": "lib/",
-            "Mediator\\SatuSehat\\Lib\\App\\": "app/"
-        }
+            "Mediator\\SatuSehat\\Lib\\Client\\": "lib/"
+        },
+        "files": [
+            "helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": { "Mediator\\SatuSehat\\Lib\\Client\\" : "test/" }

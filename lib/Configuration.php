@@ -38,157 +38,168 @@ namespace Mediator\SatuSehat\Lib\Client;
  */
 class Configuration
 {
-    private static $defaultConfiguration;
+    private static ?Configuration $defaultConfiguration = null;
 
     /** @var ConfigurationConstant[] */
-    private static $CONSTANTS = [
+    private static array $CONSTANTS = [
         'development' => [
-            'authUrl'       => 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
-            'tokenUrl'      => 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
-            'baseUrl'       => 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
-            'clientId'      => null,
-            'clientSecret'  => null,
-            'bearerToken'   => null
+            'authUrl' => 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
+            'tokenUrl' => 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
+            'baseUrl' => 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
+            'clientId' => null,
+            'clientSecret' => null,
+            'bearerToken' => null
         ],
         'production' => [
-            'authUrl'       => 'https://api-satusehat.kemkes.go.id/oauth2/v1/accesstoken',
-            'tokenUrl'      => 'https://api-satusehat.kemkes.go.id/oauth2/v1/refreshtoken',
-            'baseUrl'       => 'https://mediator-satusehat.kemkes.go.id/api/satusehat/rme/v1.0',
-            'clientId'      => null,
-            'clientSecret'  => null,
-            'bearerToken'   => null
+            'authUrl' => 'https://api-satusehat.kemkes.go.id/oauth2/v1/accesstoken',
+            'tokenUrl' => 'https://api-satusehat.kemkes.go.id/oauth2/v1/refreshtoken',
+            'baseUrl' => 'https://mediator-satusehat.kemkes.go.id/api/satusehat/rme/v1.0',
+            'clientId' => null,
+            'clientSecret' => null,
+            'bearerToken' => null
         ]
     ];
 
     /**
      * Associate array to store API key(s)
      *
-     * @var string[]
+     * @var string $apiKeys
      */
-    protected $apiKeys = [];
+    protected ?string $apiKeys = null;
 
     /**
      * Associate array to store API prefix (e.g. Bearer)
      *
-     * @var string[]
+     * @var string|null
      */
-    protected $apiKeyPrefixes = [];
+    protected ?string $apiKeyPrefixes = null;
 
     /**
      * Access token for OAuth
      *
-     * @var string
+     * @var string|null
      */
-    protected $accessToken = '';
+    protected ?string $accessToken = null;
+
 
     /**
      * Username for HTTP basic authentication
      *
-     * @var string
+     * @var string|null
      */
-    protected $username = '';
+    protected ?string $username = null;
 
     /**
      * Password for HTTP basic authentication
      *
-     * @var string
+     * @var string|null
      */
-    protected $password = '';
+    protected ?string $password = null;
 
     /**
      * The Base URL
      *
-     * @var string
+     * @var string|null
      */
-    protected $baseUrl = '';
+    protected ?string $baseUrl = null;
 
     /**
      * The OAuth2 Authentication URL
      *
-     * @var string
+     * @var string|null
      */
-    protected $authUrl = '';
+    protected ?string $authUrl = null;
 
     /**
      * The OAuth2 Refresh Token URL
      *
-     * @var string
+     * @var string|null
      */
-    protected $tokenUrl = '';
+    protected ?string $tokenUrl = null;
 
     /**
      * The OAuth2 Credential ClientID
      *
-     * @var string
+     * @var string|null
      */
-    protected $clientId = '';
+    protected ?string $clientId = null;
 
     /**
      * The OAuth2 Credential ClientSecret
      *
-     * @var string
+     * @var string|null
      */
-    protected $clientSecret = '';
+    protected ?string $clientSecret = null;
 
     /**
      * The OAuth2 Bearer Token
      *
-     * @var string
+     * @var string|null
      */
-    protected $bearerToken = '';
+    protected ?string $bearerToken = null;
 
     /**
      * User agent of the HTTP request, set to "PHP-Swagger" by default
      *
      * @var string
      */
-    protected $userAgent = 'Mediator-SatuSehat-Client/1.0.0/php';
+    protected string $userAgent = 'Mediator-SatuSehat-Client/1.0.0/php';
 
     /**
      * Debug switch (default set to false)
      *
      * @var bool
      */
-    protected $debug = false;
+    protected bool $debug = false;
 
     /**
      * Debug file location (log to STDOUT by default)
      *
      * @var string
      */
-    protected $debugFile = 'php://output';
+    protected string $debugFile = 'php://output';
 
     /**
      * Debug file location (log to STDOUT by default)
      *
-     * @var string
+     * @var ?string
      */
-    protected $tempFolderPath;
+    protected static string $environment = 'development';
+
+    /**
+     * Debug file location (log to STDOUT by default)
+     *
+     * @var string|null
+     */
+    protected ?string $tempFolderPath = null;
 
     /**
      * Constructor
      */
-    public function __construct($name = 'development')
+    public function __construct(?string $name = null)
     {
+        if (empty($name)) {
+            $name = self::$environment;
+        }
         $this->tempFolderPath = sys_get_temp_dir();
         $constant = self::$CONSTANTS[$name];
-        $this->baseUrl = isset($constant['baseUrl']) ? $constant['baseUrl'] : null;
-        $this->authUrl = isset($constant['authUrl']) ? $constant['authUrl'] : null;
-        $this->tokenUrl = isset($constant['tokenUrl']) ? $constant['tokenUrl'] : null;
-        $this->clientId = isset($constant['clientId']) ? $constant['clientId'] : null;
-        $this->clientSecret = isset($constant['clientSecret']) ? $constant['clientSecret'] : null;
-        $this->bearerToken = isset($constant['bearerToken']) ? $constant['bearerToken'] : null;
+        $this->baseUrl = !empty($constant->baseUrl) ? $constant->baseUrl : null;
+        $this->authUrl = !empty($constant->authUrl) ? $constant->authUrl : null;
+        $this->tokenUrl = !empty($constant->tokenUrl) ? $constant->tokenUrl : null;
+        $this->clientId = !empty($constant->clientId) ? $constant->clientId : null;
+        $this->clientSecret = !empty($constant->clientSecret) ? $constant->clientSecret : null;
+        $this->bearerToken = !empty($constant->bearerToken) ? $constant->bearerToken : null;
     }
 
     /**
      * Sets API key
      *
      * @param string $apiKeyIdentifier API key identifier (authentication scheme)
-     * @param string $key              API key or token
+     * @param string $key API key or token
      *
      * @return $this
      */
-    public function setApiKey($apiKeyIdentifier, $key)
+    public function setApiKey(string $apiKeyIdentifier, string $key): Configuration
     {
         $this->apiKeys[$apiKeyIdentifier] = $key;
         return $this;
@@ -201,20 +212,20 @@ class Configuration
      *
      * @return string API key or token
      */
-    public function getApiKey($apiKeyIdentifier)
+    public function getApiKey(string $apiKeyIdentifier): ?string
     {
-        return isset($this->apiKeys[$apiKeyIdentifier]) ? $this->apiKeys[$apiKeyIdentifier] : null;
+        return !empty($this->apiKeys[$apiKeyIdentifier]) ? $this->apiKeys[$apiKeyIdentifier] : null;
     }
 
     /**
      * Sets the prefix for API key (e.g. Bearer)
      *
      * @param string $apiKeyIdentifier API key identifier (authentication scheme)
-     * @param string $prefix           API key prefix, e.g. Bearer
+     * @param string $prefix API key prefix, e.g. Bearer
      *
      * @return $this
      */
-    public function setApiKeyPrefix($apiKeyIdentifier, $prefix)
+    public function setApiKeyPrefix(string $apiKeyIdentifier, string $prefix): Configuration
     {
         $this->apiKeyPrefixes[$apiKeyIdentifier] = $prefix;
         return $this;
@@ -227,9 +238,9 @@ class Configuration
      *
      * @return string
      */
-    public function getApiKeyPrefix($apiKeyIdentifier)
+    public function getApiKeyPrefix(string $apiKeyIdentifier): ?string
     {
-        return isset($this->apiKeyPrefixes[$apiKeyIdentifier]) ? $this->apiKeyPrefixes[$apiKeyIdentifier] : null;
+        return !empty($this->apiKeyPrefixes[$apiKeyIdentifier]) ? $this->apiKeyPrefixes[$apiKeyIdentifier] : null;
     }
 
     /**
@@ -239,7 +250,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setAccessToken($accessToken)
+    public function setAccessToken(string $accessToken): Configuration
     {
         $this->accessToken = $accessToken;
         return $this;
@@ -250,7 +261,7 @@ class Configuration
      *
      * @return string Access token for OAuth
      */
-    public function getAccessToken()
+    public function getAccessToken(): ?string
     {
         return $this->accessToken;
     }
@@ -262,7 +273,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setUsername($username)
+    public function setUsername(string $username): Configuration
     {
         $this->username = $username;
         return $this;
@@ -273,7 +284,7 @@ class Configuration
      *
      * @return string Username for HTTP basic authentication
      */
-    public function getUsername()
+    public function getUsername(): ?string
     {
         return $this->username;
     }
@@ -285,7 +296,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setPassword($password)
+    public function setPassword(string $password): Configuration
     {
         $this->password = $password;
         return $this;
@@ -296,7 +307,7 @@ class Configuration
      *
      * @return string Password for HTTP basic authentication
      */
-    public function getPassword()
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -308,7 +319,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setBaseUrl($baseUrl)
+    public function setBaseUrl(string $baseUrl): Configuration
     {
         $this->baseUrl = $baseUrl;
         return $this;
@@ -319,7 +330,7 @@ class Configuration
      *
      * @return string Base URL
      */
-    public function getBaseUrl()
+    public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
@@ -331,7 +342,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setAuthUrl($authUrl)
+    public function setAuthUrl(string $authUrl): Configuration
     {
         $this->authUrl = $authUrl;
         return $this;
@@ -342,7 +353,7 @@ class Configuration
      *
      * @return string Authentication URL
      */
-    public function getAuthUrl()
+    public function getAuthUrl(): ?string
     {
         return $this->authUrl;
     }
@@ -354,7 +365,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setTokenUrl($tokenUrl)
+    public function setTokenUrl(string $tokenUrl): Configuration
     {
         $this->tokenUrl = $tokenUrl;
         return $this;
@@ -365,7 +376,7 @@ class Configuration
      *
      * @return string token URL
      */
-    public function getTokenUrl()
+    public function getTokenUrl(): ?string
     {
         return $this->tokenUrl;
     }
@@ -377,7 +388,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setClientId($clientId)
+    public function setClientId(string $clientId): Configuration
     {
         $this->clientId = $clientId;
         return $this;
@@ -388,7 +399,7 @@ class Configuration
      *
      * @return string Credential Client ID
      */
-    public function getClientId()
+    public function getClientId(): ?string
     {
         return $this->clientId;
     }
@@ -400,7 +411,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setClientSecret($clientSecret)
+    public function setClientSecret(string $clientSecret): Configuration
     {
         $this->clientSecret = $clientSecret;
         return $this;
@@ -411,7 +422,7 @@ class Configuration
      *
      * @return string Credential Client Secret
      */
-    public function getClientSecret()
+    public function getClientSecret(): ?string
     {
         return $this->clientSecret;
     }
@@ -423,7 +434,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setBearerToken($bearerToken)
+    public function setBearerToken(string $bearerToken): Configuration
     {
         $this->bearerToken = $bearerToken;
         return $this;
@@ -434,17 +445,18 @@ class Configuration
      *
      * @return string Bearer Token
      */
-    public function getBearerToken()
+    public function getBearerToken(): ?string
     {
         return $this->bearerToken;
     }
 
-    public function getAuthType()
+    public function getAuthType(): ?string
     {
 
         // print_r($this->bearerToken);exit;
         return $this->clientId && $this->clientSecret ? 'credential' : ($this->bearerToken ? 'bearer' : null);
     }
+
     /**
      * Sets the user agent of the api client
      *
@@ -453,12 +465,8 @@ class Configuration
      * @throws \InvalidArgumentException
      * @return $this
      */
-    public function setUserAgent($userAgent)
+    public function setUserAgent(string $userAgent): Configuration
     {
-        if (!is_string($userAgent)) {
-            throw new \InvalidArgumentException('User-agent must be a string.');
-        }
-
         $this->userAgent = $userAgent;
         return $this;
     }
@@ -468,7 +476,7 @@ class Configuration
      *
      * @return string user agent
      */
-    public function getUserAgent()
+    public function getUserAgent(): string
     {
         return $this->userAgent;
     }
@@ -480,7 +488,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setDebug($debug)
+    public function setDebug(bool $debug): Configuration
     {
         $this->debug = $debug;
         return $this;
@@ -491,7 +499,7 @@ class Configuration
      *
      * @return bool
      */
-    public function getDebug()
+    public function getDebug(): bool
     {
         return $this->debug;
     }
@@ -503,7 +511,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setDebugFile($debugFile)
+    public function setDebugFile(string $debugFile): Configuration
     {
         $this->debugFile = $debugFile;
         return $this;
@@ -514,7 +522,7 @@ class Configuration
      *
      * @return string
      */
-    public function getDebugFile()
+    public function getDebugFile(): string
     {
         return $this->debugFile;
     }
@@ -526,7 +534,7 @@ class Configuration
      *
      * @return $this
      */
-    public function setTempFolderPath($tempFolderPath)
+    public function setTempFolderPath(string $tempFolderPath): Configuration
     {
         $this->tempFolderPath = $tempFolderPath;
         return $this;
@@ -537,7 +545,7 @@ class Configuration
      *
      * @return string Temp folder path
      */
-    public function getTempFolderPath()
+    public function getTempFolderPath(): ?string
     {
         return $this->tempFolderPath;
     }
@@ -548,20 +556,25 @@ class Configuration
      * @param string $name
      * @param ConfigurationConstant $constant
      *
-     * @return Configuration
+     * @return void
      */
-    public static function setConfigurationConstant($name, $constant)
+    public static function setConfigurationConstant(string $name, ConfigurationConstant $constant): void
     {
+        self::$environment = $name;
         self::$CONSTANTS[$name] = $constant;
     }
 
     /**
      * Gets the default configuration instance
      *
+     * @param string|null $name
      * @return Configuration
      */
-    public static function getDefaultConfiguration($name = 'development')
+    public static function getDefaultConfiguration(?string $name = null): Configuration
     {
+        if (empty($name)) {
+            $name = self::$environment;
+        }
         if (self::$defaultConfiguration === null) {
             self::$defaultConfiguration = new Configuration($name);
         }
@@ -586,9 +599,9 @@ class Configuration
      *
      * @return string The report for debugging
      */
-    public static function toDebugReport()
+    public static function toDebugReport(): string
     {
-        $report  = 'PHP SDK (Mediator\SatuSehat\Lib\Client) Debug Report:' . PHP_EOL;
+        $report = 'PHP SDK (Mediator\SatuSehat\Lib\Client) Debug Report:' . PHP_EOL;
         $report .= '    OS: ' . php_uname() . PHP_EOL;
         $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
         $report .= '    OpenAPI Spec Version: 1.0.1' . PHP_EOL;
@@ -600,11 +613,11 @@ class Configuration
     /**
      * Get API key (with prefix if set)
      *
-     * @param  string $apiKeyIdentifier name of apikey
+     * @param string $apiKeyIdentifier name of apikey
      *
      * @return string API key with the prefix
      */
-    public function getApiKeyWithPrefix($apiKeyIdentifier)
+    public function getApiKeyWithPrefix($apiKeyIdentifier): ?string
     {
         $prefix = $this->getApiKeyPrefix($apiKeyIdentifier);
         $apiKey = $this->getApiKey($apiKeyIdentifier);
@@ -626,19 +639,19 @@ class Configuration
 class ConfigurationConstant
 {
     /** @var string */
-    public $authUrl;
+    public string $authUrl;
     /** @var string */
-    public $tokenUrl;
+    public string $tokenUrl;
     /** @var string */
-    public $baseUrl;
-    /** @var string */
-    public $clientId;
-    /** @var string */
-    public $clientSecret;
-    /** @var string */
-    public $bearerToken;
+    public string $baseUrl;
+    /** @var string|null */
+    public ?string $clientId;
+    /** @var string|null */
+    public ?string $clientSecret;
+    /** @var string|null */
+    public ?string $bearerToken;
 
-    private function __construct($authUrl, $tokenUrl, $baseUrl, $clientId, $clientSecret, $bearerToken)
+    public function __construct(string $authUrl, string $tokenUrl, string $baseUrl, ?string $clientId = null, ?string $clientSecret = null, ?string $bearerToken = null)
     {
         if ($authUrl) {
             $this->authUrl = $authUrl;

@@ -5,40 +5,49 @@ namespace Mediator\SatuSehat\Lib\Client;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
-use kamermans\OAuth2\GrantType\ClientCredentials;
+use GuzzleHttp\Psr7\Uri;
 use kamermans\OAuth2\OAuth2Middleware;
+use kamermans\OAuth2\Persistence\FileTokenPersistence;
+use Mediator\SatuSehat\Lib\Client\Vendor\ClientCredentials;
 
 class OAuthClient extends Client
 {
     public function __construct(Configuration $config)
     {
-        $authClient = new Client([
-            // URL for access_token request
-            'base_uri' => $config->getAuthUrl(),
-            'debug' => true,
-        ]);
-
         $authType = $config->getAuthType();
+
         if ($authType === 'credential') {
+            // Modify the base URI with the grant type query parameter
+            $baseUri = new Uri($config->getAuthUrl());
+            $baseUri = $baseUri->withQuery(http_build_query(['grant_type' => 'client_credentials']));
+
+            $authClient = new Client([
+                // URL for access_token request
+                'base_uri' => $baseUri,
+                'debug' => false,
+            ]);
+
             $grantType = new ClientCredentials($authClient, [
                 'client_id'     => $config->getClientId(),
-                'client_secret' => $config->getClientSecret()
+                'client_secret' => $config->getClientSecret(),
+                'auth_url'      => (string) $baseUri,
             ]);
 
             $oauth = new OAuth2Middleware($grantType);
+            $oauth->setTokenPersistence(new FileTokenPersistence('/tmp/oauth-token'));
+
             $stack = HandlerStack::create();
             $stack->push($oauth);
-
             $conf = [
                 'base_uri'  => $config->getBaseUrl(),
                 'handler'   => $stack,
                 'auth'      => 'oauth',
-                'debug'     => true,
+                'debug'     => $config->getDebug(),
             ];
         } elseif ($authType === 'bearer') {
             $conf = [
                 'base_uri'  => $config->getBaseUrl(),
-                'debug'     => true,
+                'debug'     => $config->getDebug(),
                 'headers'   => [
                     'Authorization' => 'Bearer ' . $config->getBearerToken()
                 ]
