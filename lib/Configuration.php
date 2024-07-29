@@ -48,7 +48,8 @@ class Configuration
             'baseUrl' => 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
             'clientId' => null,
             'clientSecret' => null,
-            'bearerToken' => null
+            'bearerToken' => null,
+            'timezone' => '+07:00',
         ],
         'production' => [
             'authUrl' => 'https://api-satusehat.kemkes.go.id/oauth2/v1/accesstoken',
@@ -56,7 +57,8 @@ class Configuration
             'baseUrl' => 'https://mediator-satusehat.kemkes.go.id/api/satusehat/rme/v1.0',
             'clientId' => null,
             'clientSecret' => null,
-            'bearerToken' => null
+            'bearerToken' => null,
+            'timezone' => '+07:00',
         ]
     ];
 
@@ -139,6 +141,13 @@ class Configuration
     protected ?string $bearerToken = null;
 
     /**
+     * The Timezone
+     *
+     * @var string|null
+     */
+    protected ?string $timezone = null;
+
+    /**
      * User agent of the HTTP request, set to "PHP-Swagger" by default
      *
      * @var string
@@ -189,6 +198,7 @@ class Configuration
         $this->clientId = !empty($constant->clientId) ? $constant->clientId : null;
         $this->clientSecret = !empty($constant->clientSecret) ? $constant->clientSecret : null;
         $this->bearerToken = !empty($constant->bearerToken) ? $constant->bearerToken : null;
+        $this->timezone = !empty($constant->timezone) ? $constant->timezone : null;
     }
 
     /**
@@ -450,6 +460,29 @@ class Configuration
         return $this->bearerToken;
     }
 
+    /**
+     * Sets the Timezone
+     *
+     * @param string $timezone Timezone
+     *
+     * @return $this
+     */
+    public function setTimezone(string $timezone): Configuration
+    {
+        $this->timezone = $timezone;
+        return $this;
+    }
+
+    /**
+     * Gets the Timezone
+     *
+     * @return string Timezone
+     */
+    public function getTimezone(): ?string
+    {
+        return $this->timezone;
+    }
+
     public function getAuthType(): ?string
     {
 
@@ -650,8 +683,10 @@ class ConfigurationConstant
     public ?string $clientSecret;
     /** @var string|null */
     public ?string $bearerToken;
+    /** @var string|null */
+    public ?string $timezone;
 
-    public function __construct(string $authUrl, string $tokenUrl, string $baseUrl, ?string $clientId = null, ?string $clientSecret = null, ?string $bearerToken = null)
+    public function __construct(string $authUrl, string $tokenUrl, string $baseUrl, ?string $clientId = null, ?string $clientSecret = null, ?string $bearerToken = null, $timezone = null)
     {
         if ($authUrl) {
             $this->authUrl = $authUrl;
@@ -671,10 +706,13 @@ class ConfigurationConstant
         if ($bearerToken) {
             $this->bearerToken = $bearerToken;
         }
+        if ($timezone) {
+            $this->timezone = $timezone;
+        }
     }
 
     public static function create($constant): ConfigurationConstant
     {
-        return new ConfigurationConstant($constant['authUrl'], $constant['tokenUrl'], $constant['baseUrl'], $constant['clientId'], $constant['clientSecret'], $constant['bearerToken']);
+        return new ConfigurationConstant($constant['authUrl'], $constant['tokenUrl'], $constant['baseUrl'], $constant['clientId'], $constant['clientSecret'], $constant['bearerToken'], $constant['timezone']);
     }
 }

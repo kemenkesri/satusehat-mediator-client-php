@@ -22,7 +22,7 @@ class ValidationException extends Exception
         parent::__construct($message, $code);
     }
 
-    public static function instance(string $type, $errors = []): ValidationException
+    public static function create(string $type, $errors = [], $vars = []): ValidationException
     {
         if (!isset(self::$ERROR_MAP)) {
             self::$ERROR_MAP = require(__DIR__ . '/../Config/ErrorCodes.php');
@@ -30,7 +30,13 @@ class ValidationException extends Exception
 
         if (isset(self::$ERROR_MAP[$type])) {
             $error = self::$ERROR_MAP[$type];
-            return new ValidationException($error['message'], $error['code'], $errors);
+            $message = $error['message'];
+            foreach ($vars as $k => $v) {
+                if ($v) {
+                    $message = str_replace('$' . $k, $v, $message);
+                }
+            }
+            return new ValidationException($message, $error['code'], $errors);
         }
 
         return new ValidationException('UNKNOWN', 4999, $errors);
