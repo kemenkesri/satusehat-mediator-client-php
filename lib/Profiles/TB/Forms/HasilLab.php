@@ -141,38 +141,38 @@ class HasilLab extends MediatorForm
         return $this;
     }
 
-//    /**
-//     * Sets Observation
-//     *
-//     * @param Observation[] $observations Observation
-//     *
-//     * @return $this
-//     */
-//    public function setObservations(array $observations)
-//    {
-//        $this->data->setObservation($observations);
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Add Observation
-//     *
-//     * @param array $observation Obervation
-//     *
-//     * @return $this
-//     */
-//    public function addObservation(array $observation)
-//    {
-//        $observations = $this->data->getObservation();
-//        if (!$observations) {
-//            $observations = [$observation];
-//        } else {
-//            $observations[] = $observation;
-//        }
-//        $this->data->setObservation($observations);
-//
-//        return $this;
-//    }
+    //    /**
+    //     * Sets Observation
+    //     *
+    //     * @param Observation[] $observations Observation
+    //     *
+    //     * @return $this
+    //     */
+    //    public function setObservations(array $observations)
+    //    {
+    //        $this->data->setObservation($observations);
+    //
+    //        return $this;
+    //    }
+    //
+    //    /**
+    //     * Add Observation
+    //     *
+    //     * @param array $observation Obervation
+    //     *
+    //     * @return $this
+    //     */
+    //    public function addObservation(array $observation)
+    //    {
+    //        $observations = $this->data->getObservation();
+    //        if (!$observations) {
+    //            $observations = [$observation];
+    //        } else {
+    //            $observations[] = $observation;
+    //        }
+    //        $this->data->setObservation($observations);
+    //
+    //        return $this;
+    //    }
 
 }
