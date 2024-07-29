@@ -10,22 +10,24 @@ use Mediator\SatuSehat\Lib\Client\Model\ModelInterface;
 use Mediator\SatuSehat\Lib\Client\Model\Patient;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitResponse;
+use Mediator\SatuSehat\Lib\Client\Profiles\TB\Validation;
 
-abstract class MediatorForm
+abstract class MediatorForm extends Validation
 {
-    /** @var SubmitDataApi */
-    protected $submitApi;
 
-    /** @var SubmitRequest */
-    protected $data;
-
-    private array $defaultRules = [
+    protected array $defaultRules = [
         'Profile' ,
         'OrganizationId' ,
         'LocationId' ,
         'PractitionerNik' ,
         'Patient',
     ];
+
+    /** @var SubmitDataApi */
+    protected $submitApi;
+
+    /** @var SubmitRequest */
+    protected $data;
 
     /**
      * @param $submitApi
@@ -175,42 +177,6 @@ abstract class MediatorForm
         $validator->validate($this->data, get_called_class());
     }
 
-    /**
-     * @return array
-     */
-    protected function validationRules(): array
-    {
-        return array_merge($this->defaultRules, $this->mustValidated());
-    }
-
-    /**
-     * @throws \Exception
-     * @return void
-     */
-    public function validatedMethod()
-    {
-        $dataMissing = [];
-        foreach ($this->validationRules() as $key => $validationRule) {
-            $setter = "set{$validationRule}";
-            if (!method_exists($this, $setter)) {
-                throw new \Exception('Method for ' . $setter . '  does not exists', 500);
-            }
-            $getter = "get{$validationRule}";
-            if (!method_exists($this->data, $getter)) {
-                throw new \Exception('Method for ' . $getter . ' does not exists', 500);
-            }
-
-            $dataReceive = $this->data->{$getter}();
-            if (!$dataReceive) {
-                $dataMissing[] = $validationRule;
-            }
-        }
-
-        if (count($dataMissing) > 0) {
-            throw new \Exception('Missing required data for ('. implode(' & ', $dataMissing) .')', 500);
-        }
-    }
-
 
     /**
      * @throws GuzzleException
@@ -222,10 +188,4 @@ abstract class MediatorForm
         // send using submitApi
         return $this->submitApi->syncPost($this->data);
     }
-
-    /**
-     * @return array
-     */
-    abstract protected function mustValidated(): array;
-
 }

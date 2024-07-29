@@ -4,6 +4,10 @@ namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms;
 
 use Mediator\SatuSehat\Lib\Client\Model\ServiceRequest;
 use Mediator\SatuSehat\Lib\Client\Model\Specimen;
+use Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\MapModel;
+use Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\ServiceRequest\MapServiceRequest;
+use Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\ServiceRequest\ModelServiceRequestPermohonanLab;
+use Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\ServiceRequest\ModelSpecimenPermohonanLab;
 
 class PermohonanLab extends Terduga
 {
@@ -27,13 +31,23 @@ class PermohonanLab extends Terduga
     /**
      * Sets serviceRequest
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\ServiceRequest[] $serviceRequest serviceRequest
-     *
+     * @param array|MapModel|callable $callback
      * @return $this
      */
     public function setServiceRequest($serviceRequest)
     {
-        $this->data->setServiceRequest($serviceRequest);
+        $dataMap = $serviceRequest;
+        if (is_callable($serviceRequest)){
+            $map = $serviceRequest(new MapModel(ModelServiceRequestPermohonanLab::class));
+            $dataMap = $map->getMap();
+        }
+
+        if ($serviceRequest instanceof MapModel){
+            /** @var MapModel $serviceRequest */
+            $dataMap = $serviceRequest->getMap();
+        }
+
+        $this->data->setServiceRequest($dataMap);
 
         return $this;
     }
@@ -41,62 +55,29 @@ class PermohonanLab extends Terduga
     /**
      * Sets specimen
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\Specimen[] $specimens specimen
+     *
+     * @param array|MapModel|callable $specimens specimen
      *
      * @return $this
      */
     public function setSpecimens($specimens)
     {
-        $this->data->setSpecimen($specimens);
-
-        return $this;
-    }
-
-    /**
-     * Add specimen
-     *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\Specimen $specimen specimen
-     *
-     * @return $this
-     */
-    protected function addSpecimen($specimen)
-    {
-        if (!($specimen instanceof Specimen)) {
-            $specimen = new Specimen($specimen);
+        $dataMap = $specimens;
+        if (is_callable($specimens)){
+            $map = $specimens(new MapModel(ModelSpecimenPermohonanLab::class));
+            $dataMap = $map->getMap();
         }
 
-        $specimens = $this->data->getSpecimen();
-        if (empty($specimens)) {
-            $specimens = [$specimen];
-        } else {
-            $specimens[] = $specimen;
+        if ($specimens instanceof MapModel){
+            /** @var MapModel $specimens */
+            $dataMap = $specimens->getMap();
         }
-        $this->data->setSpecimen($specimens);
-        return $this;
-    }
 
-    public function setTanggalPermohonan($tanggal)
-    {
-        $this->serviceRequest->setRequestedTime($tanggal);
+        $this->data->setSpecimen($dataMap);
 
         return $this;
     }
 
-    public function setDokterPengirim($idNakes)
-    {
-        $this->serviceRequest
-            ->setRequesterType('Practitioner')
-            ->setRequester($idNakes);
-
-        return $this;
-    }
-
-    public function setFaskesTunjuan($orgId)
-    {
-        $this->serviceRequest->setFaskesTujuan($orgId);
-
-        return $this;
-    }
 
     public function setNomorSediaan($noSediaan)
     {
@@ -105,65 +86,9 @@ class PermohonanLab extends Terduga
         return $this;
     }
 
-    public function setTanggalWaktuPengambilanContohUji($datetime)
-    {
-        $this->specimen->setCollectedTime($datetime . $this->submitApi->getConfig()->getTimezone());
-
-        return $this;
-    }
-
-    public function setTanggalWaktuPengirimanContohUji($datetime)
-    {
-        $this->specimen->setTransportedTime($datetime . $this->submitApi->getConfig()->getTimezone());
-
-        return $this;
-    }
-
-    public function setAlasanPemeriksaan($alasan)
-    {
-        $this->serviceRequest->setReasonCode($alasan);
-
-        return $this;
-    }
-
-    public function setFollowUpBulanKe($detail)
-    {
-        $this->serviceRequest->setReasonDetail($detail);
-
-        return $this;
-    }
-
-    public function setPemeriksaanUlang($detail)
-    {
-        $this->serviceRequest->setReasonDetail($detail);
-
-        return $this;
-    }
-
     public function setDugaanLokasiAnatomi($lokasi)
     {
         $this->data->getTbSuspect()->setLocationAnatomy($lokasi);
-
-        return $this;
-    }
-
-    public function setJenisPemeriksaan($jenisLab)
-    {
-        $this->serviceRequest->setCodeRequest($jenisLab);
-
-        return $this;
-    }
-
-    public function setJenisContohUji($jenis)
-    {
-        $this->specimen->setTypeCode($jenis);
-
-        return $this;
-    }
-
-    public function setJenisContohUjiLainnya($detail)
-    {
-        $this->specimen->setTypeDetail($detail);
 
         return $this;
     }
