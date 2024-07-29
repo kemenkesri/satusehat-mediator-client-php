@@ -159,6 +159,7 @@ abstract class MediatorForm
      */
     public function validatedMethod()
     {
+        $dataMissing = [];
         foreach ($this->validationRules() as $key => $validationRule) {
             $setter = "set{$validationRule}";
             if (!method_exists($this, $setter)) {
@@ -168,6 +169,15 @@ abstract class MediatorForm
             if (!method_exists($this->data, $getter)) {
                 throw new \Exception('Method for ' . $getter . ' does not exists', 500);
             }
+
+            $dataReceive = $this->data->{$getter}();
+            if (!$dataReceive){
+                $dataMissing[] = $validationRule;
+            }
+        }
+
+        if (count($dataMissing) > 0){
+            throw new \Exception('Missing required data for ('. implode(' & ', $dataMissing) .')',500);
         }
     }
 

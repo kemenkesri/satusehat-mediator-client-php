@@ -2,16 +2,59 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms;
 
-class PermohonanLab extends Terduga
+use Mediator\SatuSehat\Lib\Client\Model\ServiceRequest;
+use Mediator\SatuSehat\Lib\Client\Model\Specimen;
+use Mediator\SatuSehat\Lib\Client\Model\TbSuspect;
+use Mediator\SatuSehat\Lib\Client\Profiles\MediatorForm;
+
+class PermohonanLab extends MediatorForm
 {
+    protected function mustValidated(): array
+    {
+        return [
+            'TbSuspect',
+            'Encounter',
+            'ServiceRequest',
+            'Specimen',
+        ];
+    }
+
     /**
-     * Sets service_request
+     * Sets tb_suspect
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\ServiceRequest[] $service_request service_request
+     * @param array $tb_suspect tb_suspect
      *
      * @return $this
      */
-    public function setServiceRequest($service_request)
+    public function setTbSuspect(array $tb_suspect): self
+    {
+        $this->data->setTbSuspect(!($tb_suspect instanceof TbSuspect) ? new TbSuspect($tb_suspect) : $tb_suspect);
+
+        return $this;
+    }
+
+    /**
+     * Sets encounter
+     *
+     * @param array $encounter encounter
+     *
+     * @return $this
+     */
+    public function setEncounter(array $encounter): self
+    {
+        $this->data->setEncounter($encounter);
+
+        return $this;
+    }
+
+    /**
+     * Sets service_request
+     *
+     * @param ServiceRequest[] $service_request service_request
+     *
+     * @return $this
+     */
+    public function setServiceRequest(array $service_request): self
     {
         $this->data->setServiceRequest($service_request);
 
@@ -21,11 +64,11 @@ class PermohonanLab extends Terduga
     /**
      * Sets specimen
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\Specimen[] $specimens specimen
+     * @param Specimen[] $specimens specimen
      *
      * @return $this
      */
-    public function setSpecimens($specimens)
+    public function setSpecimen($specimens): self
     {
         $this->data->setSpecimen($specimens);
 
@@ -35,11 +78,11 @@ class PermohonanLab extends Terduga
     /**
      * Add specimen
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\Specimen $specimen specimen
+     * @param Specimen $specimen specimen
      *
      * @return $this
      */
-    public function addSpecimen($specimen)
+    public function addSpecimen($specimen): self
     {
         $specimens = $this->data->getSpecimen();
         if (!$specimens) {
@@ -50,5 +93,4 @@ class PermohonanLab extends Terduga
         $this->data->setSpecimen($specimens);
         return $this;
     }
-
 }
