@@ -15,7 +15,7 @@ class MapModel
     public function addServiceRequest(callable $callback): self
     {
         $callable = $callback(new $this->modelMap());
-        array_push($this->maps, $callable->getData());
+        $this->maps[] = $callable->getData();
         return $this;
     }
 

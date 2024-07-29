@@ -686,7 +686,7 @@ class ConfigurationConstant
     /** @var string|null */
     public ?string $timezone;
 
-    public function __construct(string $authUrl, string $tokenUrl, string $baseUrl, ?string $clientId = null, ?string $clientSecret = null, ?string $bearerToken = null, $timezone = null)
+    public function __construct(string $authUrl, string $tokenUrl, string $baseUrl, ?string $clientId = null, ?string $clientSecret = null, ?string $bearerToken = null, $timezone = '+07:00')
     {
         if ($authUrl) {
             $this->authUrl = $authUrl;
@@ -706,9 +706,7 @@ class ConfigurationConstant
         if ($bearerToken) {
             $this->bearerToken = $bearerToken;
         }
-        if ($timezone) {
-            $this->timezone = $timezone;
-        }
+        $this->timezone = $timezone ?? '+07:00';
     }
 
     public static function create($constant): ConfigurationConstant
