@@ -2,13 +2,11 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\ServiceRequest;
 use Mediator\SatuSehat\Lib\Client\Configuration;
-use Mediator\SatuSehat\Lib\Client\Model\ServiceRequest;
 use Mediator\SatuSehat\Lib\Client\Model\Specimen;
 use Mediator\SatuSehat\Lib\Client\Profiles\TB\Validation;
 
 class ModelSpecimenPermohonanLab extends Validation
 {
-
     protected Specimen $specimen;
     private Configuration $config;
 

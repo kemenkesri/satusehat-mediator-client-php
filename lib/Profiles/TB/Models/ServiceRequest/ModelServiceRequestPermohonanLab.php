@@ -6,7 +6,6 @@ use Mediator\SatuSehat\Lib\Client\Profiles\TB\Validation;
 
 class ModelServiceRequestPermohonanLab extends Validation
 {
-
     protected ServiceRequest $serviceRequest;
 
     public function __construct()

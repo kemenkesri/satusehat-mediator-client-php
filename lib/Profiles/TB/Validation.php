@@ -9,7 +9,7 @@ abstract class Validation
      */
     protected function validationRules(): array
     {
-        if (property_exists($this, 'defaultRules')){
+        if (property_exists($this, 'defaultRules')) {
             return array_merge($this->defaultRules, $this->mustValidated());
         }
         return $this->mustValidated();

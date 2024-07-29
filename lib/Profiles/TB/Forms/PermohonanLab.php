@@ -5,7 +5,6 @@ namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms;
 use Mediator\SatuSehat\Lib\Client\Model\ServiceRequest;
 use Mediator\SatuSehat\Lib\Client\Model\Specimen;
 use Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\MapModel;
-use Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\ServiceRequest\MapServiceRequest;
 use Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\ServiceRequest\ModelServiceRequestPermohonanLab;
 use Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\ServiceRequest\ModelSpecimenPermohonanLab;
 
@@ -37,12 +36,12 @@ class PermohonanLab extends Terduga
     public function setServiceRequest($serviceRequest)
     {
         $dataMap = $serviceRequest;
-        if (is_callable($serviceRequest)){
+        if (is_callable($serviceRequest)) {
             $map = $serviceRequest(new MapModel(ModelServiceRequestPermohonanLab::class));
             $dataMap = $map->getMap();
         }
 
-        if ($serviceRequest instanceof MapModel){
+        if ($serviceRequest instanceof MapModel) {
             /** @var MapModel $serviceRequest */
             $dataMap = $serviceRequest->getMap();
         }
@@ -63,12 +62,12 @@ class PermohonanLab extends Terduga
     public function setSpecimens($specimens)
     {
         $dataMap = $specimens;
-        if (is_callable($specimens)){
+        if (is_callable($specimens)) {
             $map = $specimens(new MapModel(ModelSpecimenPermohonanLab::class));
             $dataMap = $map->getMap();
         }
 
-        if ($specimens instanceof MapModel){
+        if ($specimens instanceof MapModel) {
             /** @var MapModel $specimens */
             $dataMap = $specimens->getMap();
         }

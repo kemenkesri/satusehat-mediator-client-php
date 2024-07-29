@@ -14,7 +14,6 @@ use Mediator\SatuSehat\Lib\Client\Profiles\TB\Validation;
 
 abstract class MediatorForm extends Validation
 {
-
     protected array $defaultRules = [
         'Profile' ,
         'OrganizationId' ,
