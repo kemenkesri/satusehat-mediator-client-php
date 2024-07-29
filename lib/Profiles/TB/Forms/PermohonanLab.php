@@ -50,7 +50,7 @@ class PermohonanLab extends MediatorForm
     /**
      * Sets service_request
      *
-     * @param ServiceRequest[] $service_request service_request
+     * @param array $service_request service_request
      *
      * @return $this
      */
@@ -64,11 +64,11 @@ class PermohonanLab extends MediatorForm
     /**
      * Sets specimen
      *
-     * @param Specimen[] $specimens specimen
+     * @param array $specimens specimen
      *
      * @return $this
      */
-    public function setSpecimen($specimens): self
+    public function setSpecimen(array $specimens): self
     {
         $this->data->setSpecimen($specimens);
 

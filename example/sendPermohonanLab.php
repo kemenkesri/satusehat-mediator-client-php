@@ -19,7 +19,7 @@ Configuration::setConfigurationConstant(
         'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
         'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
         $clientId,
-         $clientSecret,
+        $clientSecret,
         //        bearerToken: 'RVWrblJr9uS1PHE5JGxLNIeLWpEK'
     )
 );
