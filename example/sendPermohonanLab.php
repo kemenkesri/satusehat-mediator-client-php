@@ -3,10 +3,8 @@
 use Mediator\SatuSehat\Lib\Client\Api\SubmitDataApi;
 use Mediator\SatuSehat\Lib\Client\Configuration;
 use Mediator\SatuSehat\Lib\Client\Model\AddressPatient;
-use Mediator\SatuSehat\Lib\Client\Model\Condition;
 use Mediator\SatuSehat\Lib\Client\Model\Patient;
 use Mediator\SatuSehat\Lib\Client\OAuthClient;
-use Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms\Terduga;
 
 require_once(__DIR__ . '/../vendor/autoload.php');
 
@@ -17,11 +15,11 @@ $clientSecret = 'NsL0ECP9LBTptVrqwPv9kdeRVpFwBhR13pjsFS52RTmYmQvjTCT4TenEO6RwbSu
 Configuration::setConfigurationConstant(
     'development',
     new \Mediator\SatuSehat\Lib\Client\ConfigurationConstant(
-        authUrl: 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
-        tokenUrl: 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
-        baseUrl: 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
-        clientId: $clientId,
-        clientSecret: $clientSecret,
+        'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
+        'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
+        'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
+        $clientId,
+         $clientSecret,
         //        bearerToken: 'RVWrblJr9uS1PHE5JGxLNIeLWpEK'
     )
 );
