@@ -171,13 +171,13 @@ abstract class MediatorForm
             }
 
             $dataReceive = $this->data->{$getter}();
-            if (!$dataReceive){
+            if (!$dataReceive) {
                 $dataMissing[] = $validationRule;
             }
         }
 
-        if (count($dataMissing) > 0){
-            throw new \Exception('Missing required data for ('. implode(' & ', $dataMissing) .')',500);
+        if (count($dataMissing) > 0) {
+            throw new \Exception('Missing required data for ('. implode(' & ', $dataMissing) .')', 500);
         }
     }
 
