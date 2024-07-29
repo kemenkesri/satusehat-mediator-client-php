@@ -2,7 +2,7 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms;
 
-use Mediator\SatuSehat\Lib\Client\Model\ServiceRequest;
+use Mediator\SatuSehat\Lib\Client\Model\Encounter;
 use Mediator\SatuSehat\Lib\Client\Model\Specimen;
 use Mediator\SatuSehat\Lib\Client\Model\TbSuspect;
 use Mediator\SatuSehat\Lib\Client\Profiles\MediatorForm;
@@ -42,7 +42,7 @@ class PermohonanLab extends MediatorForm
      */
     public function setEncounter(array $encounter): self
     {
-        $this->data->setEncounter($encounter);
+        $this->data->setEncounter(!($encounter instanceof Encounter) ? new Encounter($encounter) : $encounter);
 
         return $this;
     }
