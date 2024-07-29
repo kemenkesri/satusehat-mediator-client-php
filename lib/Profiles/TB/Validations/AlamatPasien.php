@@ -15,19 +15,19 @@ final class AlamatPasien extends ProfileValidation
      * @param SubmitRequest $data
      * @throws ValidationException
      */
-    public function validate($data)
+    public function validate($data, $class = null)
     {
         /** @var TbSuspect $suspect */
         $suspect = $data->getTbSuspect();
         if (!isset($suspect)) {
-            throw ValidationException::instance('TB_SUSPECT_REQUIRED');
+            throw ValidationException::create('TB_SUSPECT_REQUIRED');
         }
 
-        if (!$suspect->getId()) {
+        if (!$suspect->getId() && $class === 'Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms\Terduga') {
             /** @var Patient */
             $patient = $data->getPatient();
             if (!$patient || !$patient->getAddress() || count($patient->getAddress()) === 0) {
-                throw ValidationException::instance('TB_ADDRESS_REQUIRED');
+                throw ValidationException::create('TB_ADDRESS_REQUIRED');
             }
 
             /** @var AddressPatient[] */
@@ -36,7 +36,7 @@ final class AlamatPasien extends ProfileValidation
             /** @var AddressPatient $add */
             foreach ($address as $add) {
                 if (!$add->valid()) {
-                    throw ValidationException::instance('TB_ADDRESS_INVALID', $add->listInvalidProperties());
+                    throw ValidationException::create('TB_ADDRESS_INVALID', $add->listInvalidProperties());
                 }
             }
         }

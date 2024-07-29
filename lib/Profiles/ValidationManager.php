@@ -35,7 +35,9 @@ class ValidationManager
             if (isset($this->config[$profile]) && is_array($this->config[$profile])) {
                 foreach ($this->config[$profile] as $class) {
                     $plugin = new $class();
-                    $this->plugins[] = $plugin;
+                    if ($plugin instanceof ProfileValidation) {
+                        $this->plugins[] = $plugin;
+                    }
                 }
             }
         }
@@ -45,14 +47,14 @@ class ValidationManager
      * @param SubmitRequest $data
      * @throws ValidationException
      */
-    public function validate($data)
+    public function validate($data, $class = null)
     {
         if (!$data->valid()) {
-            throw ValidationException::instance('FIELDS_REQUIRED', $data->listInvalidProperties());
+            throw ValidationException::create('FIELDS_REQUIRED', $data->listInvalidProperties());
         }
 
         foreach ($this->plugins as $plugin) {
-            $plugin->validate($data);
+            $plugin->validate($data, $class);
         }
     }
 
