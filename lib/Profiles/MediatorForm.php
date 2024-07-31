@@ -170,9 +170,10 @@ abstract class MediatorForm
         $this->validatedMethod();
 
         // run Logical validation by use case profile (business process)
+        /** @var ValidationManager $validator */
         $validator = ValidationManager::instance();
         $validator->setProfile($this->data->getProfile());
-        $validator->validate($this->data, get_called_class());
+        $validator->validate($this);
     }
 
     /**

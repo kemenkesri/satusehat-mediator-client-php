@@ -4,6 +4,7 @@ namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Validations;
 
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
 use Mediator\SatuSehat\Lib\Client\Model\TbSuspect;
+use Mediator\SatuSehat\Lib\Client\Profiles\MediatorForm;
 use Mediator\SatuSehat\Lib\Client\Profiles\ProfileValidation;
 use Mediator\SatuSehat\Lib\Client\Profiles\ValidationException;
 
@@ -46,15 +47,16 @@ final class PermohonanLab extends ProfileValidation
     ];
 
     /**
-     * @param SubmitRequest $data
-     * @throws ValidationException
-     */
-    public function validate($data, $class = null)
+    * @param MediatorForm $form
+    */
+    public function validate($form)
     {
-        if ($class !== 'Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms\PermohonanLab') {
+        if (!($form instanceof PermohonanLab)) {
             return;
         }
 
+        /** @var SubmitRequest $data */
+        $data = $form->getData();
         /** @var TbSuspect $suspect */
         $suspect = $data->getTbSuspect();
         if (!isset($suspect)) {

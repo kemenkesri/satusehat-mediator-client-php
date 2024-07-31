@@ -8,10 +8,10 @@ use Mediator\SatuSehat\Lib\Client\Model\Specimen;
 class PermohonanLab extends Terduga
 {
     /** @var ServiceRequest */
-    private $serviceRequest;
+    protected $serviceRequest;
 
     /** @var Specimen */
-    private $specimen;
+    protected $specimen;
 
     /**
      * @param $submitApi
@@ -50,6 +50,16 @@ class PermohonanLab extends Terduga
         $this->data->setSpecimen($specimens);
 
         return $this;
+    }
+
+    /**
+     * Get specimen
+     * 
+     * @return Specimen
+     */
+    public function getSpecimen()
+    {
+        return $this->specimen;
     }
 
     /**
