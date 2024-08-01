@@ -67,10 +67,8 @@ $form->setTbSuspect([
     "fasyankes_id" => "1000119617",
     "jenis_fasyankes_id" => "1",
     "terduga_tb_id" => "1",
-    // "terduga_ro_id" => null,
-    // "tipe_pasien_id" => "1",
-    // "status_dm_id" => "1",
-    // "status_hiv_id" => "3"
+    "terduga_ro_id" => null,
+    "tipe_pasien_id" => "1"
 ]);
 $form->setEncounter([
     "encounter_id" => "83ef7e32-64f3-40a7-87c4-3cc59d44b4c6",
