@@ -103,6 +103,14 @@ class Configuration
      *
      * @var string|null
      */
+    protected ?string $satusehatUrl = null;
+
+
+    /**
+     * The Base URL
+     *
+     * @var string|null
+     */
     protected ?string $baseUrl = null;
 
     /**
@@ -192,6 +200,7 @@ class Configuration
         }
         $this->tempFolderPath = sys_get_temp_dir();
         $constant = self::$CONSTANTS[$name];
+        $this->satusehatUrl = !empty($constant->satusehatUrl) ? $constant->satusehatUrl : null;
         $this->baseUrl = !empty($constant->baseUrl) ? $constant->baseUrl : null;
         $this->authUrl = !empty($constant->authUrl) ? $constant->authUrl : null;
         $this->tokenUrl = !empty($constant->tokenUrl) ? $constant->tokenUrl : null;
@@ -336,13 +345,36 @@ class Configuration
     }
 
     /**
-     * Gets the base URL
+     * Gets the SATUSEHAT base URL
      *
-     * @return string Base URL
+     * @return string SATUSEHAT Base URL
      */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
+    }
+
+    /**
+     * Sets the SATUSEHAT Base URL
+     *
+     * @param string $satusehatUrl Host
+     *
+     * @return $this
+     */
+    public function setSatusehatUrl(string $satusehatUrl): Configuration
+    {
+        $this->satusehatUrl = $satusehatUrl;
+        return $this;
+    }
+
+    /**
+     * Gets the SATUSEHAT base URL
+     *
+     * @return string SATUSEHAT Base URL
+     */
+    public function getSatusehatUrl(): ?string
+    {
+        return $this->satusehatUrl;
     }
 
     /**
@@ -676,6 +708,8 @@ class ConfigurationConstant
     /** @var string */
     public string $tokenUrl;
     /** @var string */
+    public string $satusehatUrl;
+    /** @var string */
     public string $baseUrl;
     /** @var string|null */
     public ?string $clientId;
@@ -686,13 +720,16 @@ class ConfigurationConstant
     /** @var string|null */
     public ?string $timezone;
 
-    public function __construct(string $authUrl, string $tokenUrl, string $baseUrl, ?string $clientId = null, ?string $clientSecret = null, ?string $bearerToken = null, $timezone = '+07:00')
+    public function __construct(string $authUrl, string $tokenUrl, string $satusehatUrl, string $baseUrl, ?string $clientId = null, ?string $clientSecret = null, ?string $bearerToken = null, $timezone = null)
     {
         if ($authUrl) {
             $this->authUrl = $authUrl;
         }
         if ($tokenUrl) {
             $this->tokenUrl = $tokenUrl;
+        }
+        if ($satusehatUrl) {
+            $this->satusehatUrl = $satusehatUrl;
         }
         if ($baseUrl) {
             $this->baseUrl = $baseUrl;
@@ -711,6 +748,6 @@ class ConfigurationConstant
 
     public static function create($constant): ConfigurationConstant
     {
-        return new ConfigurationConstant($constant['authUrl'], $constant['tokenUrl'], $constant['baseUrl'], $constant['clientId'], $constant['clientSecret'], $constant['bearerToken'], $constant['timezone']);
+        return new ConfigurationConstant($constant['authUrl'], $constant['tokenUrl'], $constant['satusehatUrl'], $constant['baseUrl'], $constant['clientId'], $constant['clientSecret'], $constant['bearerToken'], $constant['timezone']);
     }
 }
