@@ -52,7 +52,7 @@ class HasilLab extends Terduga
     /**
      * Sets serviceRequest
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\ServiceRequest[] $serviceRequest serviceRequest
+     * @param ServiceRequest[] $serviceRequest serviceRequest
      *
      * @return $this
      */
@@ -66,7 +66,7 @@ class HasilLab extends Terduga
     /**
      * Sets specimen
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\Specimen[] $specimens specimen
+     * @param Specimen[] $specimens specimen
      *
      * @return $this
      */
@@ -132,62 +132,6 @@ class HasilLab extends Terduga
     public function getHasil()
     {
         return $this->hasil;
-    }
-
-    /**
-     * Sets tb_suspect
-     *
-     * @param array $tb_suspect tb_suspect
-     *
-     * @return $this
-     */
-    public function setTbSuspect(array $tb_suspect): self
-    {
-        $this->data->setTbSuspect(!($tb_suspect instanceof TbSuspect) ? new TbSuspect($tb_suspect) : $tb_suspect);
-
-        return $this;
-    }
-
-    /**
-     * Sets encounter
-     *
-     * @param array $encounter encounter
-     *
-     * @return $this
-     */
-    public function setEncounter(array $encounter): self
-    {
-        $this->data->setEncounter(!($encounter instanceof Encounter) ? new Encounter($encounter) : $encounter);
-
-        return $this;
-    }
-
-    /**
-     * Sets encounter
-     *
-     * @param array $episodeOrCare encounter
-     *
-     * @return $this
-     */
-    public function setEpisodeOfCare(array $episodeOrCare): self
-    {
-        $this->data->setEpisodeOfCare(!($episodeOrCare instanceof EpisodeOfCare) ? new EpisodeOfCare($episodeOrCare) : $episodeOrCare);
-
-        return $this;
-    }
-
-    /**
-     * Sets service_request
-     *
-     * @param array $service_request service_request
-     *
-     * @return $this
-     */
-    public function setServiceRequest(array $service_request): self
-    {
-        $this->data->setServiceRequest($service_request);
-
-        return $this;
     }
 
     /**

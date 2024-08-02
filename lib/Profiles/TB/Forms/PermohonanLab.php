@@ -4,17 +4,14 @@ namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms;
 
 use Mediator\SatuSehat\Lib\Client\Model\ServiceRequest;
 use Mediator\SatuSehat\Lib\Client\Model\Specimen;
-use Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\MapModel;
-use Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\ServiceRequest\ModelServiceRequestPermohonanLab;
-use Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\ServiceRequest\ModelSpecimenPermohonanLab;
 
 class PermohonanLab extends Terduga
 {
     /** @var ServiceRequest */
-    protected $serviceRequest;
+    private $serviceRequest;
 
     /** @var Specimen */
-    protected $specimen;
+    private $specimen;
 
     /**
      * @param $submitApi
@@ -30,66 +27,115 @@ class PermohonanLab extends Terduga
     /**
      * Sets serviceRequest
      *
-     * @param array|MapModel|callable $callback
+     * @param \Mediator\SatuSehat\Lib\Client\Model\ServiceRequest[] $serviceRequest serviceRequest
+     *
      * @return $this
      */
     public function setServiceRequest($serviceRequest)
     {
-        $dataMap = $serviceRequest;
-        if (is_callable($serviceRequest)) {
-            $map = $serviceRequest(new MapModel(ModelServiceRequestPermohonanLab::class));
-            $dataMap = $map->getMap();
-        }
-
-        if ($serviceRequest instanceof MapModel) {
-            /** @var MapModel $serviceRequest */
-            $dataMap = $serviceRequest->getMap();
-        }
-
-        $this->data->setServiceRequest($dataMap);
+        $this->data->setServiceRequest($serviceRequest);
 
         return $this;
     }
 
     /**
-     * Get specimen
-     * 
-     * @return Specimen
-     */
-    public function getSpecimen()
-    {
-        return $this->specimen;
-    }
-
-    /**
-     * Add specimen
+     * Sets specimen
      *
-     * @param array|MapModel|callable $specimens specimen
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Specimen[] $specimens specimen
      *
      * @return $this
      */
     public function setSpecimens($specimens)
     {
-        $dataMap = $specimens;
-        if (is_callable($specimens)) {
-            $map = $specimens(new MapModel(ModelSpecimenPermohonanLab::class));
-            $dataMap = $map->getMap();
-        }
-
-        if ($specimens instanceof MapModel) {
-            /** @var MapModel $specimens */
-            $dataMap = $specimens->getMap();
-        }
-
-        $this->data->setSpecimen($dataMap);
+        $this->data->setSpecimen($specimens);
 
         return $this;
     }
 
+    /**
+     * Add specimen
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Specimen $specimen specimen
+     *
+     * @return $this
+     */
+    protected function addSpecimen($specimen)
+    {
+        if (!($specimen instanceof Specimen)) {
+            $specimen = new Specimen($specimen);
+        }
+
+        $specimens = $this->data->getSpecimen();
+        if (empty($specimens)) {
+            $specimens = [$specimen];
+        } else {
+            $specimens[] = $specimen;
+        }
+        $this->data->setSpecimen($specimens);
+        return $this;
+    }
+
+    public function setTanggalPermohonan($tanggal)
+    {
+        $this->serviceRequest->setRequestedTime($tanggal);
+
+        return $this;
+    }
+
+    public function setDokterPengirim($idNakes)
+    {
+        $this->serviceRequest
+            ->setRequesterType('Practitioner')
+            ->setRequester($idNakes);
+
+        return $this;
+    }
+
+    public function setFaskesTunjuan($orgId)
+    {
+        $this->serviceRequest->setFaskesTujuan($orgId);
+
+        return $this;
+    }
 
     public function setNomorSediaan($noSediaan)
     {
         $this->data->getTbSuspect()->setNoSediaan($noSediaan);
+
+        return $this;
+    }
+
+    public function setTanggalWaktuPengambilanContohUji($datetime)
+    {
+        $this->specimen->setCollectedTime($datetime . $this->submitApi->getConfig()->getTimezone());
+
+        return $this;
+    }
+
+    public function setTanggalWaktuPengirimanContohUji($datetime)
+    {
+        $this->specimen->setTransportedTime($datetime . $this->submitApi->getConfig()->getTimezone());
+
+        return $this;
+    }
+
+    public function setAlasanPemeriksaan($alasan)
+    {
+        $this->serviceRequest->setReasonCode($alasan);
+
+        return $this;
+    }
+
+    public function setFollowUpBulanKe($detail)
+    {
+        $this->serviceRequest->setReasonDetail($detail);
+
+        return $this;
+    }
+
+    public function setPemeriksaanUlang($detail)
+    {
+        $this->serviceRequest->setReasonDetail($detail);
 
         return $this;
     }
