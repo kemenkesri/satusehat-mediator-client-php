@@ -91,7 +91,7 @@ $form->setTanggalPermohonan("2024-05-24")
     ->setTanggalWaktuPengambilanContohUji("2024-05-24T10:10:00")
     ->setTanggalWaktuPengirimanContohUji("2024-05-24T12:10:00")
     ->setAlasanPemeriksaan('pemeriksaan_diagnosis')
-    // ->setDugaanLokasiAnatomi('PTB')
+    ->setDugaanLokasiAnatomi('PTB')
     ->setJenisPemeriksaan('tcm')
     ->setJenisContohUji('dahak_sewaktu')
     ->build();
@@ -101,7 +101,7 @@ $form->validate();
 try {
     $response = $form->send();
     dump($response);
-} catch(RequestException $e) {
+} catch (RequestException $e) {
     // echo ' ABCDEF ' . json_encode($e->getResponseBody());
     print_r(json_encode(json_decode($e->getResponse()->getBody()->getContents()), JSON_PRETTY_PRINT));
 }
