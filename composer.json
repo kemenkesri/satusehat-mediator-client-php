@@ -18,11 +18,11 @@
         "ohie-mediator"
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^5.5 || ^7.4 || ^8.0",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "^7.3",
+        "guzzlehttp/guzzle": "^6.5",
         "guzzlehttp/psr7": "^1.7 || ^2.0",
         "kamermans/guzzle-oauth2-subscriber": "^1.1",
         "dcarbone/php-fhir-generated": "v3.0.4.1"

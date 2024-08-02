@@ -62,7 +62,7 @@ $patient->setBirthDate("2019-10-25");
 $form->setPatient($patient);
 $form->setTbSuspect([
     "id" => "2405101601149056",
-    // "person_id" => "1000001601149056",
+    "person_id" => "1000001601149056",
     "fasyankes_id" => "1000119617",
     "jenis_fasyankes_id" => "1",
     "terduga_tb_id" => "1",
@@ -77,7 +77,11 @@ $form->setEncounter([
     "period_in_progress" => "2024-05-24T09:58:01+07:00",
     "period_end" => "2024-05-24T10:58:01+07:00"
 ]);
-$form->addCondition((new Condition())->setCodeCondition("Z10"));
+$form->addCondition(
+    (new Condition())
+    ->setId('e552612b-9bd4-41fb-9677-90a12bc0cc1c')
+    ->setCodeCondition("Z10")
+);
 $form->setTanggalPermohonan("2024-05-24")
     ->setDokterPengirim('N10000001')
     ->setFaskesTunjuan('100011961')

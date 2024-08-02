@@ -79,7 +79,11 @@ $form->setEncounter([
     "period_end" => "2024-05-24T10:58:01+07:00"
 ]);
 
-$form->addCondition((new Condition())->setCodeCondition("Z10"));
+$form->addCondition(
+    (new Condition())
+    ->setId('e552612b-9bd4-41fb-9677-90a12bc0cc1c')
+    ->setCodeCondition("Z10")
+);
 $hasil = $form
     ->setPermohonanLabId('XXXX')
     ->setJenisPemeriksaan('tcm')

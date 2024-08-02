@@ -79,11 +79,7 @@ $terduga->setEncounter([
     "period_in_progress" => "2024-05-24T09:58:01+07:00",
     "period_end" => "2024-05-24T10:58:01+07:00"
 ]);
-$terduga->setCondition([new Condition(
-    [
-        "code_condition" => "Z10"
-    ]
-)]);
+$terduga->addCondition((new Condition())->setCodeCondition('Z10'));
 
 $terduga->validate();
 
