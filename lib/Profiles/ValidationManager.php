@@ -2,8 +2,6 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Profiles;
 
-use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
-
 class ValidationManager
 {
     // Singleton for ValidationManager
@@ -44,17 +42,18 @@ class ValidationManager
     }
 
     /**
-     * @param SubmitRequest $data
+     * @param MediatorForm $form
      * @throws ValidationException
      */
-    public function validate($data, $class = null)
+    public function validate($form)
     {
+        $data = $form->getData();
         if (!$data->valid()) {
             throw ValidationException::create('FIELDS_REQUIRED', $data->listInvalidProperties());
         }
 
         foreach ($this->plugins as $plugin) {
-            $plugin->validate($data, $class);
+            $plugin->validate($form);
         }
     }
 

@@ -11,10 +11,10 @@ use Mediator\SatuSehat\Lib\Client\Profiles\TB\Models\ServiceRequest\ModelSpecime
 class PermohonanLab extends Terduga
 {
     /** @var ServiceRequest */
-    private $serviceRequest;
+    protected $serviceRequest;
 
     /** @var Specimen */
-    private $specimen;
+    protected $specimen;
 
     /**
      * @param $submitApi
@@ -52,8 +52,17 @@ class PermohonanLab extends Terduga
     }
 
     /**
-     * Sets specimen
-     *
+     * Get specimen
+     * 
+     * @return Specimen
+     */
+    public function getSpecimen()
+    {
+        return $this->specimen;
+    }
+
+    /**
+     * Add specimen
      *
      * @param array|MapModel|callable $specimens specimen
      *
@@ -88,6 +97,34 @@ class PermohonanLab extends Terduga
     public function setDugaanLokasiAnatomi($lokasi)
     {
         $this->data->getTbSuspect()->setLocationAnatomy($lokasi);
+
+        return $this;
+    }
+
+    public function setJenisPemeriksaan($jenisLab)
+    {
+        $this->serviceRequest->setCodeRequest($jenisLab);
+        $codes = $this->specimen->getCodeRequest();
+        if (empty($codes)) {
+            $codes = [$jenisLab];
+        } elseif (!in_array($jenisLab, $codes)) {
+            $codes[] = $jenisLab;
+        }
+        $this->specimen->setCodeRequest($codes);
+
+        return $this;
+    }
+
+    public function setJenisContohUji($jenis)
+    {
+        $this->specimen->setTypeCode($jenis);
+
+        return $this;
+    }
+
+    public function setJenisContohUjiLainnya($detail)
+    {
+        $this->specimen->setTypeDetail($detail);
 
         return $this;
     }

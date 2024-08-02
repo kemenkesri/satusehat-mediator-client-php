@@ -61,16 +61,12 @@ $patient->setBirthDate("2019-10-25");
 $form->setPatient($patient);
 $form->setTbSuspect([
     "id" => "2405101601149056",
-    "person_id" => "1000001601149056",
-    // "tgl_daftar" => "2024-05-24",
-    // "asal_rujukan_id" => "3",
+    // "person_id" => "1000001601149056",
     "fasyankes_id" => "1000119617",
     "jenis_fasyankes_id" => "1",
     "terduga_tb_id" => "1",
-    // "terduga_ro_id" => null,
-    // "tipe_pasien_id" => "1",
-    // "status_dm_id" => "1",
-    // "status_hiv_id" => "3"
+    "terduga_ro_id" => null,
+    "tipe_pasien_id" => "1"
 ]);
 $form->setEncounter([
     "encounter_id" => "83ef7e32-64f3-40a7-87c4-3cc59d44b4c6",
@@ -80,11 +76,7 @@ $form->setEncounter([
     "period_in_progress" => "2024-05-24T09:58:01+07:00",
     "period_end" => "2024-05-24T10:58:01+07:00"
 ]);
-$form->setCondition([new Condition(
-    [
-        "code_condition" => "Z10"
-    ]
-)]);
+$form->addCondition((new Condition())->setCodeCondition("Z10"));
 $form->setTanggalPermohonan("2024-05-24")
     ->setDokterPengirim('N10000001')
     ->setFaskesTunjuan('100011961')

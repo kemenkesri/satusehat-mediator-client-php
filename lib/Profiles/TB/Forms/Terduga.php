@@ -2,6 +2,7 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms;
 
+use Mediator\SatuSehat\Lib\Client\Model\Condition;
 use Mediator\SatuSehat\Lib\Client\Model\TbSuspect;
 use Mediator\SatuSehat\Lib\Client\Profiles\MediatorForm;
 
@@ -54,6 +55,26 @@ class Terduga extends MediatorForm
     public function setCondition(array $condition): Terduga
     {
         $this->data->setCondition($condition);
+
+        return $this;
+    }
+
+    /**
+     * Sets condition
+     *
+     * @param Condition $condition condition
+     *
+     * @return $this
+     */
+    public function addCondition($condition): Terduga
+    {
+        $conditions = $this->data->getCondition();
+        if (empty($conditions)) {
+            $conditions = [$condition];
+        } else {
+            $conditions[] = $condition;
+        }
+        $this->data->setCondition($conditions);
 
         return $this;
     }

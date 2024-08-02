@@ -3,7 +3,9 @@
 namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Validations;
 
 use Mediator\SatuSehat\Lib\Client\Model\TbSuspect;
+use Mediator\SatuSehat\Lib\Client\Profiles\MediatorForm;
 use Mediator\SatuSehat\Lib\Client\Profiles\ProfileValidation;
+use Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms\Terduga;
 use Mediator\SatuSehat\Lib\Client\Profiles\ValidationException;
 
 final class TipeTerduga extends ProfileValidation
@@ -23,10 +25,13 @@ final class TipeTerduga extends ProfileValidation
         '12' => '5',
     ];
 
-    public function validate($data, $class = null)
+    /**
+     * @param MediatorForm $form
+     */
+    public function validate($form)
     {
         /** @var TbSuspect $suspect */
-        $suspect = $data->getTbSuspect();
+        $suspect = $form->getData()->getTbSuspect();
         if (!isset($suspect)) {
             throw ValidationException::create('TB_SUSPECT_REQUIRED');
         }
@@ -37,7 +42,7 @@ final class TipeTerduga extends ProfileValidation
             }
         }
 
-        if ($class !== 'Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms\Terduga') {
+        if (!($form instanceof Terduga)) {
             return;
         }
 

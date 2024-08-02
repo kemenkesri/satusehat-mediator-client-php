@@ -67,8 +67,9 @@ class Specimen extends MediatorResourceBasic
         'entrier' => 'string',
         'entry_time' => '\DateTime',
         'processing_time' => '\DateTime',
-        'code_request' => 'string',
+        'code_request' => 'string[]',
         'condition' => 'string',
+        'condition_detail' => 'string',
         'specimen_no' => 'string',
         'note_author' => 'string',
         'note_detail' => 'string'
@@ -94,6 +95,7 @@ class Specimen extends MediatorResourceBasic
         'processing_time' => 'date-time',
         'code_request' => null,
         'condition' => null,
+        'condition_detail' => null,
         'specimen_no' => null,
         'note_author' => null,
         'note_detail' => null
@@ -140,6 +142,7 @@ class Specimen extends MediatorResourceBasic
         'processing_time' => 'processing_time',
         'code_request' => 'code_request',
         'condition' => 'condition',
+        'condition_detail' => 'condition_detail',
         'specimen_no' => 'specimen_no',
         'note_author' => 'note_author',
         'note_detail' => 'note_detail'
@@ -165,6 +168,7 @@ class Specimen extends MediatorResourceBasic
         'processing_time' => 'setProcessingTime',
         'code_request' => 'setCodeRequest',
         'condition' => 'setCondition',
+        'condition_detail' => 'setConditionDetail',
         'specimen_no' => 'setSpecimenNo',
         'note_author' => 'setNoteAuthor',
         'note_detail' => 'setNoteDetail'
@@ -190,6 +194,7 @@ class Specimen extends MediatorResourceBasic
         'processing_time' => 'getProcessingTime',
         'code_request' => 'getCodeRequest',
         'condition' => 'getCondition',
+        'condition_detail' => 'getConditionDetail',
         'specimen_no' => 'getSpecimenNo',
         'note_author' => 'getNoteAuthor',
         'note_detail' => 'getNoteDetail'
@@ -281,6 +286,7 @@ class Specimen extends MediatorResourceBasic
         $this->container['processing_time'] = isset($data['processing_time']) ? $data['processing_time'] : null;
         $this->container['code_request'] = isset($data['code_request']) ? $data['code_request'] : null;
         $this->container['condition'] = isset($data['condition']) ? $data['condition'] : null;
+        $this->container['condition_detail'] = isset($data['condition_detail']) ? $data['condition_detail'] : null;
         $this->container['specimen_no'] = isset($data['specimen_no']) ? $data['specimen_no'] : null;
         $this->container['note_author'] = isset($data['note_author']) ? $data['note_author'] : null;
         $this->container['note_detail'] = isset($data['note_detail']) ? $data['note_detail'] : null;
@@ -618,7 +624,7 @@ class Specimen extends MediatorResourceBasic
     /**
      * Gets code_request
      *
-     * @return string
+     * @return string[]
      */
     public function getCodeRequest()
     {
@@ -628,7 +634,7 @@ class Specimen extends MediatorResourceBasic
     /**
      * Sets code_request
      *
-     * @param string $code_request code_request
+     * @param string[] $code_request code_request
      *
      * @return $this
      */
@@ -659,6 +665,30 @@ class Specimen extends MediatorResourceBasic
     public function setCondition($condition)
     {
         $this->container['condition'] = $condition;
+
+        return $this;
+    }
+
+    /**
+     * Gets condition_detail
+     *
+     * @return string
+     */
+    public function getConditionDetail()
+    {
+        return $this->container['condition_detail'];
+    }
+
+    /**
+     * Sets condition_detail
+     *
+     * @param string $condition_detail condition detail
+     *
+     * @return $this
+     */
+    public function setConditionDetail($condition_detail)
+    {
+        $this->container['condition_detail'] = $condition_detail;
 
         return $this;
     }
