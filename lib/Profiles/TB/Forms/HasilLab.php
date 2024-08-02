@@ -36,6 +36,19 @@ class HasilLab extends Terduga
         $this->diagnosticReport = new DiagnosticReport();
     }
 
+    protected function mustValidated(): array
+    {
+        return [
+            'TbSuspect',
+            'Encounter',
+            'EpisodeOfCare',
+            'ServiceRequest',
+            'Specimen',
+            'Observation',
+            'DiagnosticReport',
+        ];
+    }
+
     /**
      * Sets serviceRequest
      *
@@ -118,17 +131,101 @@ class HasilLab extends Terduga
      */
     public function getHasil()
     {
-        return $this->hasil;    
+        return $this->hasil;
+    }
+
+    /**
+     * Sets tb_suspect
+     *
+     * @param array $tb_suspect tb_suspect
+     *
+     * @return $this
+     */
+    public function setTbSuspect(array $tb_suspect): self
+    {
+        $this->data->setTbSuspect(!($tb_suspect instanceof TbSuspect) ? new TbSuspect($tb_suspect) : $tb_suspect);
+
+        return $this;
+    }
+
+    /**
+     * Sets encounter
+     *
+     * @param array $encounter encounter
+     *
+     * @return $this
+     */
+    public function setEncounter(array $encounter): self
+    {
+        $this->data->setEncounter(!($encounter instanceof Encounter) ? new Encounter($encounter) : $encounter);
+
+        return $this;
+    }
+
+    /**
+     * Sets encounter
+     *
+     * @param array $episodeOrCare encounter
+     *
+     * @return $this
+     */
+    public function setEpisodeOfCare(array $episodeOrCare): self
+    {
+        $this->data->setEpisodeOfCare(!($episodeOrCare instanceof EpisodeOfCare) ? new EpisodeOfCare($episodeOrCare) : $episodeOrCare);
+
+        return $this;
+    }
+
+    /**
+     * Sets service_request
+     *
+     * @param array $service_request service_request
+     *
+     * @return $this
+     */
+    public function setServiceRequest(array $service_request): self
+    {
+        $this->data->setServiceRequest($service_request);
+
+        return $this;
+    }
+
+    /**
+     * Sets specimen
+     *
+     * @param array $specimens specimen
+     *
+     * @return $this
+     */
+    public function setSpecimen(array $specimens): self
+    {
+        $this->data->setSpecimen($specimens);
+
+        return $this;
+    }
+
+    /**
+     * Sets encounter
+     *
+     * @param array $observation encounter
+     *
+     * @return $this
+     */
+    public function setObservation(array $observation): self
+    {
+        $this->data->setObservation($observation);
+
+        return $this;
     }
 
     /**
      * Sets diagnosticReport
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\DiagnosticReport[] $diagnosticReports diagnosticReport
+     * @param DiagnosticReport[] $diagnosticReports diagnosticReport
      *
      * @return $this
      */
-    public function setDiagnosticReports($diagnosticReports)
+    public function setDiagnosticReport(array $diagnosticReports): self
     {
         $this->data->setDiagnosticReport($diagnosticReports);
 
@@ -138,7 +235,7 @@ class HasilLab extends Terduga
     /**
      * Add diagnosticReport
      *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\DiagnosticReport $diagnosticReport diagnosticReport
+     * @param DiagnosticReport $diagnosticReport diagnosticReport
      *
      * @return $this
      */
@@ -151,40 +248,6 @@ class HasilLab extends Terduga
             $diagnosticReports[] = $diagnosticReport;
         }
         $this->data->setDiagnosticReport($diagnosticReports);
-
-        return $this;
-    }
-
-    /**
-     * Sets Observation
-     *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\Observation[] $observations Observation
-     *
-     * @return $this
-     */
-    public function setObservations($observations)
-    {
-        $this->data->setObservation($observations);
-
-        return $this;
-    }
-
-    /**
-     * Add Observation
-     *
-     * @param \Mediator\SatuSehat\Lib\Client\Model\Observation $observation Obervation
-     *
-     * @return $this
-     */
-    public function addObservation($observation)
-    {
-        $observations = $this->data->getObservation();
-        if (!$observations) {
-            $observations = [$observation];
-        } else {
-            $observations[] = $observation;
-        }
-        $this->data->setObservation($observations);
 
         return $this;
     }
