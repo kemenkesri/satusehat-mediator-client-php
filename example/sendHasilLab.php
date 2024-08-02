@@ -6,7 +6,7 @@ use Mediator\SatuSehat\Lib\Client\Configuration;
 use Mediator\SatuSehat\Lib\Client\Model\Condition;
 use Mediator\SatuSehat\Lib\Client\Model\Patient;
 use Mediator\SatuSehat\Lib\Client\OAuthClient;
-use Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms\PermohonanLab;
+use Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms\HasilLab;
 
 require_once(__DIR__ . '/../vendor/autoload.php');
 
@@ -19,6 +19,7 @@ Configuration::setConfigurationConstant(
     new \Mediator\SatuSehat\Lib\Client\ConfigurationConstant(
         authUrl: 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
         tokenUrl: 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
+        satusehatUrl: 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
         baseUrl: 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
         clientId: $clientId,
         clientSecret: $clientSecret,
@@ -33,7 +34,7 @@ $apiInstance = new SubmitDataApi(
     new OAuthClient(Configuration::getDefaultConfiguration())
 );
 
-$form = new PermohonanLab($apiInstance);
+$form = new HasilLab($apiInstance);
 $form->setProfile(['TB']);
 $form->setOrganizationId('100011961');
 $form->setLocationId('ef011065-38c9-46f8-9c35-d1fe68966a3e');
@@ -61,7 +62,9 @@ $patient->setBirthDate("2019-10-25");
 $form->setPatient($patient);
 $form->setTbSuspect([
     "id" => "2405101601149056",
-    // "person_id" => "1000001601149056",
+    "person_id" => "1000001601149056",
+    // "tgl_daftar" => "2024-05-24",
+    // "asal_rujukan_id" => "3",
     "fasyankes_id" => "1000119617",
     "jenis_fasyankes_id" => "1",
     "terduga_tb_id" => "1",
@@ -77,17 +80,23 @@ $form->setEncounter([
     "period_end" => "2024-05-24T10:58:01+07:00"
 ]);
 $form->addCondition((new Condition())->setCodeCondition("Z10"));
-$form->setTanggalPermohonan("2024-05-24")
-    ->setDokterPengirim('N10000001')
-    ->setFaskesTunjuan('100011961')
-    ->setTanggalWaktuPengambilanContohUji("2024-05-24T10:10:00")
-    ->setTanggalWaktuPengirimanContohUji("2024-05-24T12:10:00")
-    ->setAlasanPemeriksaan('pemeriksaan_diagnosis')
-    // ->setDugaanLokasiAnatomi('PTB')
+$hasil = $form
+    ->setPermohonanLabId('XXXX')
     ->setJenisPemeriksaan('tcm')
-    ->setJenisContohUji('dahak_sewaktu')
-    ->build();
+    ->setSpesimenId('XXX', 'specimen_1')
+    ->setTanggalWaktuPenerimaanContohUji("2024-05-24T10:10:00")
+    ->setKonfirmasiContohUji('baik', 'Tidak ada retakan pada tabung specimen')
+    ->setPenerimaContohUji('N10000001')
+    ->setTanggalWaktuRegisterLab('2024-05-24T10:10:00')
+    ->setDokterPemeriksaLab('N10000001')
+    ->getHasil();
 
+$hasil->setContohUji('dahak_sewaktu')
+    ->setTanggalHasil('2024-05-24T10:10:00')
+    ->setNomorRegistrasiLab('123342')
+    ->setNilai('2');
+
+$form->build();
 $form->validate();
 
 try {

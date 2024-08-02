@@ -5,10 +5,18 @@ namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Forms;
 use Mediator\SatuSehat\Lib\Client\Model\DiagnosticReport;
 use Mediator\SatuSehat\Lib\Client\Model\Observation;
 use Mediator\SatuSehat\Lib\Client\Model\ObservationComponent;
+use Mediator\SatuSehat\Lib\Client\Model\ServiceRequest;
+use Mediator\SatuSehat\Lib\Client\Model\Specimen;
 use Mediator\SatuSehat\Lib\Client\Profiles\ProfileValidation;
 
-class HasilLab extends PermohonanLab
+class HasilLab extends Terduga
 {
+    /** @var ServiceRequest */
+    protected $serviceRequest;
+
+    /** @var Specimen */
+    protected $specimen;
+
     /** @var Observation */
     protected $observation;
 
@@ -22,8 +30,71 @@ class HasilLab extends PermohonanLab
     {
         parent::__construct($submitApi);
 
+        $this->serviceRequest = new ServiceRequest();
+        $this->specimen = new Specimen();
         $this->observation = new Observation();
         $this->diagnosticReport = new DiagnosticReport();
+    }
+
+    /**
+     * Sets serviceRequest
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\ServiceRequest[] $serviceRequest serviceRequest
+     *
+     * @return $this
+     */
+    public function setServiceRequest($serviceRequest)
+    {
+        $this->data->setServiceRequest($serviceRequest);
+
+        return $this;
+    }
+
+    /**
+     * Sets specimen
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Specimen[] $specimens specimen
+     *
+     * @return $this
+     */
+    public function setSpecimens($specimens)
+    {
+        $this->data->setSpecimen($specimens);
+
+        return $this;
+    }
+
+    /**
+     * Get specimen
+     * 
+     * @return Specimen
+     */
+    public function getSpecimen()
+    {
+        return $this->specimen;
+    }
+
+    /**
+     * Add specimen
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Specimen $specimen specimen
+     *
+     * @return $this
+     */
+    protected function addSpecimen($specimen)
+    {
+        if (!($specimen instanceof Specimen)) {
+            $specimen = new Specimen($specimen);
+        }
+
+        $specimens = $this->data->getSpecimen();
+        if (empty($specimens)) {
+            $specimens = [$specimen];
+        } else {
+            $specimens[] = $specimen;
+        }
+        $this->data->setSpecimen($specimens);
+        return $this;
     }
 
     /**
@@ -118,6 +189,78 @@ class HasilLab extends PermohonanLab
         return $this;
     }
 
+    public function setJenisPemeriksaan($jenisLab)
+    {
+        $this->serviceRequest->setCodeRequest($jenisLab);
+        $codes = $this->specimen->getCodeRequest();
+        if (empty($codes)) {
+            $codes = [$jenisLab];
+        } elseif (!in_array($jenisLab, $codes)) {
+            $codes[] = $jenisLab;
+        }
+        $this->specimen->setCodeRequest($codes);
+
+        $this->diagnosticReport->setServiceRequest($jenisLab);
+
+        switch ($jenisLab) {
+            case 'mikroskopis':
+                $this->hasil = new HasilMikroskopis();
+                break;
+            case 'tcm':
+                $this->hasil = new HasilTcm();
+                break;
+            case 'tcm_xdr':
+                $this->hasil = new HasilTcmXdr();
+                break;
+            case 'lini_1':
+                $this->hasil = new HasilLini1();
+                break;
+            case 'lini_2':
+                $this->hasil = new HasilLini2();
+                break;
+            case 'biakan':
+                $this->hasil = new HasilBiakan();
+                break;
+            case 'kepekaan':
+                $this->hasil = new HasilKepekaan();
+                break;
+            case 'tcm_bdmax':
+                $this->hasil = new HasilTcmBDmax();
+                break;
+            case 'pcr':
+                $this->hasil = new HasilPCR();
+                break;
+        }
+
+        return $this;
+    }
+
+    public function setJenisContohUji($jenis)
+    {
+        $this->specimen->setTypeCode($jenis);
+
+        return $this;
+    }
+
+    public function setJenisContohUjiLainnya($detail)
+    {
+        $this->specimen->setTypeDetail($detail);
+
+        return $this;
+    }
+
+    public function setSpesimenId($id, $name)
+    {
+        $this->specimen->setId($id);
+        $this->specimen->setReference($name);
+        $this->observation->setSpecimen($name);
+        $this->diagnosticReport->setSpecimen($name);
+        $this->specimen->setShouldUpdate(true);
+        $this->specimen->setStatus('available');
+
+        return $this;
+    }
+
     public function setTanggalWaktuPenerimaanContohUji($datetime)
     {
         $this->specimen->setReceivedTime($datetime . $this->submitApi->getConfig()->getTimezone());
@@ -125,9 +268,12 @@ class HasilLab extends PermohonanLab
         return $this;
     }
 
-    public function setKonfirmasiContohUji($konfirmasi)
+    public function setKonfirmasiContohUji($kondisi, $detail = null)
     {
-        $this->specimen->setCondition($konfirmasi);
+        $this->specimen->setCondition($kondisi);
+        if ($detail) {
+            $this->specimen->setConditionDetail($detail);
+        }
 
         return $this;
     }
@@ -141,6 +287,7 @@ class HasilLab extends PermohonanLab
 
     public function setTanggalWaktuRegisterLab($datetime)
     {
+        $this->diagnosticReport->setEffectiveDateTime($datetime . $this->submitApi->getConfig()->getTimezone());
         $this->observation->setEffectiveDateTime($datetime . $this->submitApi->getConfig()->getTimezone());
 
         return $this;
@@ -153,7 +300,7 @@ class HasilLab extends PermohonanLab
         return $this;
     }
 
-    public function setHasilLabId($labId)
+    public function setPermohonanLabId($labId)
     {
         $this->data->getTbSuspect()->setLabId($labId);
         $this->serviceRequest->setId($labId);
@@ -163,20 +310,23 @@ class HasilLab extends PermohonanLab
 
     /**
      * 
-     * @param HasilUji $hasil
+     * @return HasilUji
      */
-    public function setHasilUji($hasil)
+    public function getHasilUji()
     {
-        $this->hasil = $hasil;
-        $hasil->build($this);
+        return $this->hasil;
+    }
 
+    public function build()
+    {
+        $this->hasil->build($this);
         return $this;
     }
 }
 
 abstract class HasilUji extends ProfileValidation
 {
-    protected $value;
+    protected $nilai;
     protected $contoh;
     protected $jenis;
     protected $tanggal;
@@ -184,9 +334,9 @@ abstract class HasilUji extends ProfileValidation
     protected $catatan;
     protected $components = [];
 
-    public function setHasil($value)
+    public function setNilai($nilai)
     {
-        $this->value = $value;
+        $this->nilai = $nilai;
 
         return $this;
     }
@@ -194,13 +344,6 @@ abstract class HasilUji extends ProfileValidation
     public function setContohUji($contoh)
     {
         $this->contoh = $contoh;
-
-        return $this;
-    }
-
-    public function setJenisContohUji($jenis)
-    {
-        $this->jenis = $jenis;
 
         return $this;
     }
@@ -231,18 +374,19 @@ abstract class HasilUji extends ProfileValidation
      */
     public function build($hasilLab)
     {
-        $hasilLab->setJenisContohUji($this->jenis);
+        $hasilLab->setJenisContohUji($this->contoh);
 
         $hasilLab->getObservation()->setTypeObservation($this->jenis);
-        $hasilLab->getDiagnosticReport()->setCodeReport($this->contoh);
+        $hasilLab->getDiagnosticReport()->setCodeReport($this->jenis);
 
+        $hasilLab->getDiagnosticReport()->setIssued($this->tanggal);
         $hasilLab->getObservation()->setIssued($this->tanggal);
 
         $hasilLab->getObservation()->setLocalId($this->noregLab);
 
         $hasilLab->getObservation()->setNotesDetail($this->catatan);
 
-        $hasilLab->getObservation()->setValue($this->value);
+        $hasilLab->getObservation()->setValue($this->nilai);
     }
 }
 
@@ -251,7 +395,6 @@ class HasilMikroskopis extends HasilUji
     public function __construct()
     {
         $this->jenis = 'mikroskopis';
-        $this->contoh = 'mikroskopis';
     }
 
     public function validate($form)
@@ -265,7 +408,6 @@ class HasilTcm extends HasilUji
     public function __construct()
     {
         $this->jenis = 'tcm';
-        $this->contoh = 'tcm';
     }
 
     public function validate($form)
@@ -330,7 +472,6 @@ class HasilTcmXdr extends HasilTcmX
     public function __construct()
     {
         $this->jenis = 'tcm_xdr';
-        $this->contoh = 'tcm_xdr';
     }
 
     public function setMtb($mtb)
@@ -416,7 +557,6 @@ class HasilLini1 extends HasilTcmX
     public function __construct()
     {
         $this->jenis = 'lini_1';
-        $this->contoh = 'lini_1';
     }
 
     public function setMtb($mtb)
@@ -483,7 +623,6 @@ class HasilLini2 extends HasilUji
     public function __construct()
     {
         $this->jenis = 'lini_1';
-        $this->contoh = 'lini_1';
     }
 
     public function setMtb($mtb)
@@ -542,7 +681,7 @@ class HasilBiakan extends HasilUji
     }
 }
 
-class HasilKepekaan extends HasilUji
+class HasilKepekaan extends HasilTcmX
 {
     public function validate($form)
     {

@@ -160,6 +160,13 @@ class PermohonanLab extends Terduga
     public function setJenisPemeriksaan($jenisLab)
     {
         $this->serviceRequest->setCodeRequest($jenisLab);
+        $codes = $this->specimen->getCodeRequest();
+        if (empty($codes)) {
+            $codes = [$jenisLab];
+        } elseif (!in_array($jenisLab, $codes)) {
+            $codes[] = $jenisLab;
+        }
+        $this->specimen->setCodeRequest($codes);
 
         return $this;
     }

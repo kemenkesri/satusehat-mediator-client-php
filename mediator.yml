@@ -293,7 +293,7 @@ components:
           type: string
         profile:
           type: string
-        shouldUpdaate:
+        shouldUpdate:
           type: boolean
     EpisodeOfCare:
       allOf:
@@ -513,8 +513,12 @@ components:
               type: string
               format: date-time
             code_request:
-              type: string
+              type: array
+              items:
+                type: string
             condition:
+              type: string
+            condition_detail:
               type: string
             specimen_no:
               type: string
