@@ -743,9 +743,7 @@ class ConfigurationConstant
         if ($bearerToken) {
             $this->bearerToken = $bearerToken;
         }
-        if ($timezone) {
-            $this->timezone = $timezone;
-        }
+        $this->timezone = $timezone ?? '+07:00';
     }
 
     public static function create($constant): ConfigurationConstant

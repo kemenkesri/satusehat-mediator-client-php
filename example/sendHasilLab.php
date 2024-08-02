@@ -39,7 +39,6 @@ $form->setProfile(['TB']);
 $form->setOrganizationId('100011961');
 $form->setLocationId('ef011065-38c9-46f8-9c35-d1fe68966a3e');
 $form->setPractitionerNik('N10000001');
-
 $patient = new Patient();
 $patient->setNik("3515126510190001");
 $patient->setName("FAUZIA HAYZA AHMAD");
@@ -79,6 +78,7 @@ $form->setEncounter([
     "period_in_progress" => "2024-05-24T09:58:01+07:00",
     "period_end" => "2024-05-24T10:58:01+07:00"
 ]);
+
 $form->addCondition((new Condition())->setCodeCondition("Z10"));
 $hasil = $form
     ->setPermohonanLabId('XXXX')
