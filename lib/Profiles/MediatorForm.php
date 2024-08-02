@@ -31,10 +31,15 @@ abstract class MediatorForm extends Validation
     /**
      * @param $submitApi
      */
-    public function __construct($submitApi)
+    public function __construct($submitApi = null)
     {
         $this->submitApi = $submitApi;
         $this->data = new SubmitRequest();
+    }
+
+    public function setSubmitApi($submitApi)
+    {
+        $this->submitApi = $submitApi;
     }
 
     /**
