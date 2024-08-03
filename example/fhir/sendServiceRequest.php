@@ -34,8 +34,8 @@ Configuration::setConfigurationConstant(
 );
 
 $apiInstance = new ResourceApi(
-// If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-// This is optional, `GuzzleHttp\Client` will be used as default.
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new OAuthClient(Configuration::getDefaultConfiguration())
 );
 
@@ -63,20 +63,24 @@ $sr->addIdentifier($id->setSystem('http://sys-ids.kemkes.go.id/servicerequest/' 
             ->setDisplay('Microscopic observation [Identifier] in Sputum by Acid fast stain')
     )
     ->setSubject((new FHIRReference())->setReference('Patient/100000030009'))
-    ->setEncounter((new FHIRReference())
+    ->setEncounter(
+        (new FHIRReference())
         ->setReference("Encounter/{$Encounter_uuid}")
         ->setDisplay('Permintaan BTA Sputum Budi Santoso di hari Selasa, 14 Juni 2022 pukul 09:30 WIB')
     )
     ->setOccurrenceDateTime((new FHIRDateTime())->setValue('2022-06-14T09:30:27+07:00'))
     ->setAuthoredOn((new FHIRDateTime())->setValue('2022-06-13T12:30:27+07:00'))
-    ->setRequester((new FHIRReference())
+    ->setRequester(
+        (new FHIRReference())
         ->setReference('Practitioner/N10000001')
         ->setDisplay('Dokter Bronsig')
-    )->addPerformer((new FHIRReference())
+    )->addPerformer(
+        (new FHIRReference())
         ->setReference('Practitioner/N10000001')
         ->setDisplay('Dokter Bronsig')
     )
-    ->addReasonCode((new FHIRCodeableConcept())
+    ->addReasonCode(
+        (new FHIRCodeableConcept())
         ->setText('Periksa jika ada kemungkinan Tuberculosis')
     );
 
