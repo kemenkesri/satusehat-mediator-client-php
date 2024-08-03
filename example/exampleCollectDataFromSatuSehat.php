@@ -23,9 +23,5 @@ Configuration::setConfigurationConstant(
     )
 );
 
-$apiInstance = new OAuthClient(Configuration::getDefaultConfiguration());
-$response =  $apiInstance->request('get', "https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/ServiceRequest/c7f7365e-8f4f-484c-99d5-8713ac2621aa/_history/MTcyMjY3NjYwNDQ5NzAxNDAwMA",);
-
-$body = $response->getBody()->getContents();
-dump($body);
-
+$response = satuSehatShowData("https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/ServiceRequest/c7f7365e-8f4f-484c-99d5-8713ac2621aa/_history/MTcyMjY3NjYwNDQ5NzAxNDAwMA");
+dump($response);
