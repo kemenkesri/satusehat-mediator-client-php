@@ -1,7 +1,6 @@
 <?php
 
 use Mediator\SatuSehat\Lib\Client\Configuration;
-use Mediator\SatuSehat\Lib\Client\OAuthClient;
 
 require_once(__DIR__ . '/../vendor/autoload.php');
 
