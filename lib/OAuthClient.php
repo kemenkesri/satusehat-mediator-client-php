@@ -34,7 +34,7 @@ class OAuthClient extends Client
             ]);
 
             $oauth = new OAuth2Middleware($grantType);
-            $oauth->setTokenPersistence(new FileTokenPersistence('/tmp/oauth-token'));
+            $oauth->setTokenPersistence(new FileTokenPersistence($config->getFileToken()));
 
             $stack = HandlerStack::create();
             $stack->push($oauth);

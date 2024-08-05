@@ -156,6 +156,13 @@ class Configuration
     protected ?string $timezone = null;
 
     /**
+     * The fileToken
+     *
+     * @var string|null
+     */
+    protected ?string $fileToken = null;
+
+    /**
      * User agent of the HTTP request, set to "PHP-Swagger" by default
      *
      * @var string
@@ -208,6 +215,7 @@ class Configuration
         $this->clientSecret = !empty($constant->clientSecret) ? $constant->clientSecret : null;
         $this->bearerToken = !empty($constant->bearerToken) ? $constant->bearerToken : null;
         $this->timezone = !empty($constant->timezone) ? $constant->timezone : null;
+        $this->fileToken = !empty($constant->fileToken) ? $constant->fileToken : '/tmp/oauth-token';
     }
 
     /**
@@ -515,6 +523,29 @@ class Configuration
         return $this->timezone;
     }
 
+    /**
+     * Sets the FileToken
+     *
+     * @param string $fileToken FileToken
+     *
+     * @return $this
+     */
+    public function setFileToken(string $fileToken): Configuration
+    {
+        $this->fileToken = $fileToken;
+        return $this;
+    }
+
+    /**
+     * Gets the FileToken
+     *
+     * @return string FileToken
+     */
+    public function getFileToken(): ?string
+    {
+        return $this->fileToken;
+    }
+
     public function getAuthType(): ?string
     {
 
@@ -719,8 +750,10 @@ class ConfigurationConstant
     public ?string $bearerToken;
     /** @var string|null */
     public ?string $timezone;
+    /** @var string|null */
+    public ?string $fileToken;
 
-    public function __construct(string $authUrl, string $tokenUrl, string $satusehatUrl, string $baseUrl, ?string $clientId = null, ?string $clientSecret = null, ?string $bearerToken = null, $timezone = null)
+    public function __construct(string $authUrl, string $tokenUrl, string $satusehatUrl, string $baseUrl, ?string $clientId = null, ?string $clientSecret = null, ?string $bearerToken = null, $timezone = null, $fileToken = null)
     {
         if ($authUrl) {
             $this->authUrl = $authUrl;
@@ -744,6 +777,7 @@ class ConfigurationConstant
             $this->bearerToken = $bearerToken;
         }
         $this->timezone = $timezone ?? '+07:00';
+        $this->fileToken = $fileToken ?? '/tmp/oauth-token';
     }
 
     public static function create($constant): ConfigurationConstant
