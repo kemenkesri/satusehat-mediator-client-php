@@ -117,9 +117,9 @@ class Diagnosis extends Terduga
     /**
      * @return $this
      */
-    public function setTanggalHasilDiagnosis()
+    public function setTanggalHasilDiagnosis($datetime)
     {
-
+        $this->observation->setIssued($datetime . $this->submitApi->getConfig()->getTimezone());
         return $this;
     }
 
