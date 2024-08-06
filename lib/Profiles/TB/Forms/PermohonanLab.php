@@ -16,7 +16,7 @@ class PermohonanLab extends Terduga
     /**
      * @param $submitApi
      */
-    public function __construct($submitApi)
+    public function __construct($submitApi = null)
     {
         parent::__construct($submitApi);
 

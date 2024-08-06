@@ -32,7 +32,7 @@ class Diagnosis extends Terduga
     /** @var QuestionnaireResponse */
     protected $questionnaireResponse;
 
-    public function __construct($submitApi)
+    public function __construct($submitApi = null)
     {
         parent::__construct($submitApi);
 

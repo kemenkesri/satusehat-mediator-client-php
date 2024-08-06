@@ -26,7 +26,7 @@ class HasilLab extends Terduga
     /** @var HasilUji */
     protected $hasil;
 
-    public function __construct($submitApi)
+    public function __construct($submitApi = null)
     {
         parent::__construct($submitApi);
 
