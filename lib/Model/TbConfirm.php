@@ -58,7 +58,11 @@ class TbConfirm implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'paduan_oat' => 'string',
         'bentuk_oat' => 'string',
-        'paduan_pengobatan' => 'string'
+        'paduan_pengobatan' => 'string',
+        'tindak_lanjut' => 'string',
+        'status_pengobatan' => 'string',
+        'faskes_pengobatan' => 'string',
+        'asal_rujukan_id' => 'string'
     ];
 
     /**
@@ -69,7 +73,11 @@ class TbConfirm implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'paduan_oat' => null,
         'bentuk_oat' => null,
-        'paduan_pengobatan' => null
+        'paduan_pengobatan' => null,
+        'tindak_lanjut' => null,
+        'status_pengobatan' => null,
+        'faskes_pengobatan' => null,
+        'asal_rujukan_id' => null
     ];
 
     /**
@@ -101,7 +109,11 @@ class TbConfirm implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'paduan_oat' => 'paduan_oat',
         'bentuk_oat' => 'bentuk_oat',
-        'paduan_pengobatan' => 'paduan_pengobatan'
+        'paduan_pengobatan' => 'paduan_pengobatan',
+        'tindak_lanjut' => 'tindak_lanjut',
+        'status_pengobatan' => 'status_pengobatan',
+        'faskes_pengobatan' => 'faskes_pengobatan',
+        'asal_rujukan_id' => 'asal_rujukan_id'
     ];
 
     /**
@@ -112,7 +124,11 @@ class TbConfirm implements ModelInterface, ArrayAccess
     protected static $setters = [
         'paduan_oat' => 'setPaduanOat',
         'bentuk_oat' => 'setBentukOat',
-        'paduan_pengobatan' => 'setPaduanPengobatan'
+        'paduan_pengobatan' => 'setPaduanPengobatan',
+        'tindak_lanjut' => 'setTindakLanjut',
+        'status_pengobatan' => 'setStatusPengobatan',
+        'faskes_pengobatan' => 'setFaskesPengobatan',
+        'asal_rujukan_id' => 'setAsalRujukanId'
     ];
 
     /**
@@ -123,7 +139,11 @@ class TbConfirm implements ModelInterface, ArrayAccess
     protected static $getters = [
         'paduan_oat' => 'getPaduanOat',
         'bentuk_oat' => 'getBentukOat',
-        'paduan_pengobatan' => 'getPaduanPengobatan'
+        'paduan_pengobatan' => 'getPaduanPengobatan',
+        'tindak_lanjut' => 'getTindakLanjut',
+        'status_pengobatan' => 'getStatusPengobatan',
+        'faskes_pengobatan' => 'getFaskesPengobatan',
+        'asal_rujukan_id' => 'getAsalRujukanId'
     ];
 
     /**
@@ -187,6 +207,10 @@ class TbConfirm implements ModelInterface, ArrayAccess
         $this->container['paduan_oat'] = isset($data['paduan_oat']) ? $data['paduan_oat'] : null;
         $this->container['bentuk_oat'] = isset($data['bentuk_oat']) ? $data['bentuk_oat'] : null;
         $this->container['paduan_pengobatan'] = isset($data['paduan_pengobatan']) ? $data['paduan_pengobatan'] : null;
+        $this->container['tindak_lanjut'] = isset($data['tindak_lanjut']) ? $data['tindak_lanjut'] : null;
+        $this->container['status_pengobatan'] = isset($data['status_pengobatan']) ? $data['status_pengobatan'] : null;
+        $this->container['faskes_pengobatan'] = isset($data['faskes_pengobatan']) ? $data['faskes_pengobatan'] : null;
+        $this->container['asal_rujukan_id'] = isset($data['asal_rujukan_id']) ? $data['asal_rujukan_id'] : null;
     }
 
     /**
@@ -284,6 +308,103 @@ class TbConfirm implements ModelInterface, ArrayAccess
 
         return $this;
     }
+
+    /**
+     * Gets tindak_lanjut
+     *
+     * @return string
+     */
+    public function getTindakLanjut()
+    {
+        return $this->container['tindak_lanjut'];
+    }
+
+    /**
+     * Sets tindak_lanjut
+     *
+     * @param string $tindak_lanjut tindak_lanjut
+     *
+     * @return $this
+     */
+    public function setTindakLanjut($tindak_lanjut)
+    {
+        $this->container['tindak_lanjut'] = $tindak_lanjut;
+
+        return $this;
+    }
+
+    /**
+     * Gets status_pengobatan
+     *
+     * @return string
+     */
+    public function getStatusPengobatan()
+    {
+        return $this->container['status_pengobatan'];
+    }
+
+    /**
+     * Sets status_pengobatan
+     *
+     * @param string $status_pengobatan status_pengobatan
+     *
+     * @return $this
+     */
+    public function setStatusPengobatan($status_pengobatan)
+    {
+        $this->container['status_pengobatan'] = $status_pengobatan;
+
+        return $this;
+    }
+
+    /**
+     * Gets faskes_pengobatan
+     *
+     * @return string
+     */
+    public function getFaskesPengobatan()
+    {
+        return $this->container['faskes_pengobatan'];
+    }
+
+    /**
+     * Sets faskes_pengobatan
+     *
+     * @param string $faskes_pengobatan faskes_pengobatan
+     *
+     * @return $this
+     */
+    public function setFaskesPengobatan($faskes_pengobatan)
+    {
+        $this->container['faskes_pengobatan'] = $faskes_pengobatan;
+
+        return $this;
+    }
+
+    /**
+     * Gets asal_rujukan_id
+     *
+     * @return string
+     */
+    public function getAsalRujukanId()
+    {
+        return $this->container['asal_rujukan_id'];
+    }
+
+    /**
+     * Sets asal_rujukan_id
+     *
+     * @param string $asal_rujukan_id asal_rujukan_id
+     *
+     * @return $this
+     */
+    public function setAsalRujukanId($asal_rujukan_id)
+    {
+        $this->container['asal_rujukan_id'] = $asal_rujukan_id;
+
+        return $this;
+    }
+
     /**
      * Returns true if offset exists. False otherwise.
      *

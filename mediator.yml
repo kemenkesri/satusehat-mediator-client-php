@@ -1170,6 +1170,14 @@ components:
           type: string
         paduan_pengobatan:
           type: string
+        tindak_lanjut:
+          type: string
+        status_pengobatan:
+          type: string
+        faskes_pengobatan:
+          type: string
+        asal_rujukan_id:
+          type: string
     GetPatientRequest:
       type: object
       properties:

@@ -41,7 +41,6 @@ class HasilLab extends Terduga
         return [
             'TbSuspect',
             'Encounter',
-            'EpisodeOfCare',
             'ServiceRequest',
             'Specimen',
             'Observation',
