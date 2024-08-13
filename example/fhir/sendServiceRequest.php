@@ -22,14 +22,14 @@ $clientSecret = 'NsL0ECP9LBTptVrqwPv9kdeRVpFwBhR13pjsFS52RTmYmQvjTCT4TenEO6RwbSu
 Configuration::setConfigurationConstant(
     'development',
     new \Mediator\SatuSehat\Lib\Client\ConfigurationConstant(
-        authUrl: 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
-        tokenUrl: 'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
-        satusehatUrl: 'https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1',
-        baseUrl: 'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
-        clientId: $clientId,
-        clientSecret: $clientSecret,
-        bearerToken: 'RVWrblJr9uS1PHE5JGxLNIeLWpEK',
-        timezone: '+07:00'
+        'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
+        'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
+        'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
+        'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
+        $clientId,
+        $clientSecret,
+        'RVWrblJr9uS1PHE5JGxLNIeLWpEK',
+        '+07:00'
     )
 );
 
