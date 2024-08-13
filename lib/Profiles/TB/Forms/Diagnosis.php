@@ -109,7 +109,7 @@ class Diagnosis extends Terduga
     {
         $this->observation->setIssued(self::isoDate($datetime, $this->config->getTimezone()));
         $this->diagnosticReport->setIssued(self::isoDate($datetime, $this->config->getTimezone()));
-        
+
         return $this;
     }
 
@@ -155,12 +155,12 @@ class Diagnosis extends Terduga
      */
     public function setHasilDiagnosis($status, $hasil = null)
     {
-        if ($status === 'cancelled' || $hasil == '3') {
+        if ($status === 'cancelled' || $hasil === '3') {
             $this->episodeOfCare->setStatus($status);
         } else {
             $this->episodeOfCare->setStatus($status);
         }
-        $this->episodeOfCare->setTypeCode($hasil == '2' ? 'TB-RO' : 'TB-SO');
+        $this->episodeOfCare->setTypeCode($hasil === '2' ? 'TB-RO' : 'TB-SO');
         return $this;
     }
 

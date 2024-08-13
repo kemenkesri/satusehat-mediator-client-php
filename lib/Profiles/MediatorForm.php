@@ -207,7 +207,7 @@ abstract class MediatorForm extends Validation
         if (!$datetime) {
             return null;
         }
-        
+
         return str_replace(' ', 'T', date('Y-m-d H:i:s', strtotime($datetime))) . $timezone;
     }
 }

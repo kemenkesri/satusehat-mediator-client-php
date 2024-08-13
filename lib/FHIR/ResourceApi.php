@@ -76,11 +76,7 @@ class ResourceApi
      * @param Configuration|null $config
      * @param HeaderSelector|null $selector
      */
-    public function __construct(
-        OAuthClient    $client,
-        Configuration  $config = null,
-        HeaderSelector $selector = null
-    ) {
+    public function __construct($client, $config = null, $selector = null) {
         $this->client = $client;
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         $this->headerSelector = $selector ?: new HeaderSelector();
@@ -105,7 +101,7 @@ class ResourceApi
      * @throws GuzzleException
      * @return ModelInterface|array
      */
-    public function resourcePost(FHIRResource $body): FHIRResource
+    public function resourcePost($body)
     {
         list($response) = $this->resourcePostWithHttpInfo($body);
         return $response;
@@ -122,7 +118,7 @@ class ResourceApi
      * @throws GuzzleException
      * @return array of \DCarbone\PHPFHIRGenerated\R4\FHIRResource, HTTP status code, HTTP response headers (array of strings)
      */
-    public function resourcePostWithHttpInfo(FHIRResource $body): array
+    public function resourcePostWithHttpInfo($body)
     {
         $returnType = '\DCarbone\PHPFHIRGenerated\R4\FHIRResource';
         $request = $this->resourcePostRequest($body);
@@ -214,7 +210,7 @@ class ResourceApi
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function resourcePostAsync(FHIRResource $body): PromiseInterface
+    public function resourcePostAsync($body)
     {
         return $this->resourcePostAsyncWithHttpInfo($body)
             ->then(
@@ -234,7 +230,7 @@ class ResourceApi
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function resourcePostAsyncWithHttpInfo(FHIRResource $body): PromiseInterface
+    public function resourcePostAsyncWithHttpInfo($body)
     {
         $returnType = '\DCarbone\PHPFHIRGenerated\R4\FHIRResource';
         $request = $this->resourcePostRequest($body);
@@ -284,7 +280,7 @@ class ResourceApi
      * @throws InvalidArgumentException
      * @return Request
      */
-    protected function resourcePostRequest(FHIRResource $body): Request
+    protected function resourcePostRequest($body)
     {
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
@@ -374,7 +370,7 @@ class ResourceApi
      * @throws RuntimeException on file opening failure
      * @return array of http client options
      */
-    protected function createHttpClientOption(): array
+    protected function createHttpClientOption()
     {
         $options = [];
         if ($this->config->getDebug()) {

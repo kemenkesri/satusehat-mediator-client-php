@@ -270,7 +270,7 @@ class HasilLab extends Terduga
     public function setServiceRequestId($id)
     {
         $this->serviceRequest->setId($id);
-        
+
         return $this;
     }
 
@@ -378,19 +378,19 @@ abstract class HasilUji extends ProfileValidation
     public function getContoh() {
         return $this->contoh;
     }
-    
+
     public function getJenis() {
         return $this->jenis;
     }
-    
+
     public function getTanggal() {
         return $this->tanggal;
     }
-    
+
     public function getNoRegLab() {
         return $this->noregLab;
     }
-    
+
     public function getCatatan() {
         return $this->catatan;
     }
@@ -398,7 +398,7 @@ abstract class HasilUji extends ProfileValidation
     public function getComponents() {
         return $this->components;
     }
-    
+
     public function setNilai($nilai)
     {
         $this->nilai = $nilai;
@@ -439,7 +439,7 @@ abstract class HasilUji extends ProfileValidation
      */
     public function build($hasilLab)
     {
-        
+
     }
 }
 

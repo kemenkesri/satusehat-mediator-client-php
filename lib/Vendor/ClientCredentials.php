@@ -7,7 +7,6 @@ use GuzzleHttp\Psr7\Request;
 use kamermans\OAuth2\GrantType\GrantTypeInterface;
 use kamermans\OAuth2\Utils\Helper;
 use kamermans\OAuth2\Utils\Collection;
-use kamermans\OAuth2\Signer\ClientCredentials\SignerInterface;
 
 /**
  * Client credentials grant type.

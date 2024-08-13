@@ -7,7 +7,7 @@ use Mediator\SatuSehat\Lib\Client\OAuthClient;
 
 class SatuSehatShowData
 {
-    public string $url;
+    public $url;
 
     public function __construct(string $url)
     {

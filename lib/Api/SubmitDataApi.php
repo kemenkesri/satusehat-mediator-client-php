@@ -42,7 +42,6 @@ use Mediator\SatuSehat\Lib\Client\Configuration;
 use Mediator\SatuSehat\Lib\Client\HeaderSelector;
 use Mediator\SatuSehat\Lib\Client\Model\ModelInterface;
 use Mediator\SatuSehat\Lib\Client\Model\SubmitRequest;
-use Mediator\SatuSehat\Lib\Client\Model\SubmitResponse;
 use Mediator\SatuSehat\Lib\Client\OAuthClient;
 use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
 use RuntimeException;
