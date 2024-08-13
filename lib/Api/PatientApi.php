@@ -69,11 +69,7 @@ class PatientApi
      * @param Configuration   $config
      * @param HeaderSelector  $selector
      */
-    public function __construct(
-        OAuthClient $client,
-        Configuration $config = null,
-        HeaderSelector $selector = null
-    ) {
+    public function __construct($client, $config = null, $selector = null) {
         $this->client = $client;
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         $this->headerSelector = $selector ?: new HeaderSelector();

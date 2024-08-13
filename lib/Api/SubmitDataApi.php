@@ -78,11 +78,7 @@ class SubmitDataApi
      * @param Configuration|null $config
      * @param HeaderSelector|null $selector
      */
-    public function __construct(
-        OAuthClient    $client,
-        Configuration  $config = null,
-        HeaderSelector $selector = null
-    ) {
+    public function __construct($client, $config = null, $selector = null) {
         $this->client = $client;
         $this->config = $config ?: Configuration::getDefaultConfiguration();
         $this->headerSelector = $selector ?: new HeaderSelector();
@@ -107,7 +103,7 @@ class SubmitDataApi
      * @throws GuzzleException
      * @return ModelInterface|array
      */
-    public function syncPost(SubmitRequest $body): SubmitResponse
+    public function syncPost($body)
     {
         list($response) = $this->syncPostWithHttpInfo($body);
         return $response;
@@ -124,7 +120,7 @@ class SubmitDataApi
      * @throws GuzzleException
      * @return array of \Mediator\SatuSehat\Lib\Client\Model\SubmitResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function syncPostWithHttpInfo(SubmitRequest $body): array
+    public function syncPostWithHttpInfo($body)
     {
         $returnType = '\Mediator\SatuSehat\Lib\Client\Model\SubmitResponse';
         $request = $this->syncPostRequest($body);
@@ -216,7 +212,7 @@ class SubmitDataApi
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function syncPostAsync(SubmitRequest $body): PromiseInterface
+    public function syncPostAsync($body)
     {
         return $this->syncPostAsyncWithHttpInfo($body)
             ->then(
@@ -236,7 +232,7 @@ class SubmitDataApi
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function syncPostAsyncWithHttpInfo(SubmitRequest $body): PromiseInterface
+    public function syncPostAsyncWithHttpInfo($body)
     {
         $returnType = '\Mediator\SatuSehat\Lib\Client\Model\SubmitResponse';
         $request = $this->syncPostRequest($body);
@@ -286,7 +282,7 @@ class SubmitDataApi
      * @throws InvalidArgumentException
      * @return Request
      */
-    protected function syncPostRequest(SubmitRequest $body): Request
+    protected function syncPostRequest($body)
     {
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
@@ -376,7 +372,7 @@ class SubmitDataApi
      * @throws RuntimeException on file opening failure
      * @return array of http client options
      */
-    protected function createHttpClientOption(): array
+    protected function createHttpClientOption()
     {
         $options = [];
         if ($this->config->getDebug()) {

@@ -6,14 +6,14 @@ use Mediator\SatuSehat\Lib\Client\Profiles\TB\Validation;
 
 class ModelServiceRequestPermohonanLab extends Validation
 {
-    protected ServiceRequest $serviceRequest;
+    protected $serviceRequest;
 
     public function __construct()
     {
         $this->serviceRequest = new ServiceRequest();
     }
 
-    protected function mustValidated(): array
+    protected function mustValidated()
     {
         return [];
     }
@@ -69,7 +69,7 @@ class ModelServiceRequestPermohonanLab extends Validation
         return $this;
     }
 
-    public function getData(): ServiceRequest
+    public function getData()
     {
         return $this->serviceRequest;
     }

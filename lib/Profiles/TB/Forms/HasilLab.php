@@ -36,7 +36,7 @@ class HasilLab extends Terduga
         $this->diagnosticReport = new DiagnosticReport();
     }
 
-    protected function mustValidated(): array
+    protected function mustValidated()
     {
         return [
             'TbSuspect',
@@ -140,7 +140,7 @@ class HasilLab extends Terduga
      *
      * @return $this
      */
-    public function setSpecimen(array $specimens): self
+    public function setSpecimen($specimens)
     {
         $this->data->setSpecimen($specimens);
 
@@ -154,7 +154,7 @@ class HasilLab extends Terduga
      *
      * @return $this
      */
-    public function setObservation(array $observation): self
+    public function setObservation($observation)
     {
         $this->data->setObservation($observation);
 
@@ -168,7 +168,7 @@ class HasilLab extends Terduga
      *
      * @return $this
      */
-    public function setDiagnosticReport(array $diagnosticReports): self
+    public function setDiagnosticReport($diagnosticReports)
     {
         $this->data->setDiagnosticReport($diagnosticReports);
 
@@ -267,9 +267,16 @@ class HasilLab extends Terduga
         return $this;
     }
 
+    public function setServiceRequestId($id)
+    {
+        $this->serviceRequest->setId($id);
+        
+        return $this;
+    }
+
     public function setTanggalWaktuPenerimaanContohUji($datetime)
     {
-        $this->specimen->setReceivedTime($datetime . $this->submitApi->getConfig()->getTimezone());
+        $this->specimen->setReceivedTime(self::isoDate($datetime, $this->config->getTimezone()));
 
         return $this;
     }
@@ -293,8 +300,8 @@ class HasilLab extends Terduga
 
     public function setTanggalWaktuRegisterLab($datetime)
     {
-        $this->diagnosticReport->setEffectiveDateTime($datetime . $this->submitApi->getConfig()->getTimezone());
-        $this->observation->setEffectiveDateTime($datetime . $this->submitApi->getConfig()->getTimezone());
+        $this->diagnosticReport->setEffectiveDateTime(self::isoDate($datetime, $this->config->getTimezone()));
+        $this->observation->setEffectiveDateTime(self::isoDate($datetime, $this->config->getTimezone()));
 
         return $this;
     }
@@ -326,6 +333,30 @@ class HasilLab extends Terduga
     public function build()
     {
         $this->hasil->build($this);
+
+        $this->setJenisContohUji($this->contoh);
+
+        $this->observation->setTypeObservation($this->hasil->getJenis());
+        $this->diagnosticReport->setCodeReport($this->hasil->getJenis());
+
+        $this->diagnosticReport->setIssued(self::isoDate($this->hasil->getTanggal(), $this->config->getTimezone()));
+        $this->observation->setIssued(self::isoDate($this->hasil->getTanggal(), $this->config->getTimezone()));
+
+        $this->observation->setLocalId($this->hasil->getNoregLab());
+
+        $this->observation->setNotesDetail($this->hasil->getCatatan());
+
+        $this->observation->setValue($this->hasil->getNilai());
+
+        if ($this->serviceRequest->getCodeRequest())
+            $this->setServiceRequest([$this->serviceRequest]);
+        if ($this->specimen->getCodeRequest())
+            $this->setSpecimens([$this->specimen]);
+        if ($this->observation->getSpecimen())
+            $this->setObservation([$this->observation]);
+        if ($this->diagnosticReport->getSpecimen())
+            $this->setDiagnosticReport([$this->diagnosticReport]);
+
         return $this;
     }
 }
@@ -340,6 +371,34 @@ abstract class HasilUji extends ProfileValidation
     protected $catatan;
     protected $components = [];
 
+    public function getNilai() {
+        return $this->nilai;
+    }
+
+    public function getContoh() {
+        return $this->contoh;
+    }
+    
+    public function getJenis() {
+        return $this->jenis;
+    }
+    
+    public function getTanggal() {
+        return $this->tanggal;
+    }
+    
+    public function getNoRegLab() {
+        return $this->noregLab;
+    }
+    
+    public function getCatatan() {
+        return $this->catatan;
+    }
+
+    public function getComponents() {
+        return $this->components;
+    }
+    
     public function setNilai($nilai)
     {
         $this->nilai = $nilai;
@@ -380,19 +439,7 @@ abstract class HasilUji extends ProfileValidation
      */
     public function build($hasilLab)
     {
-        $hasilLab->setJenisContohUji($this->contoh);
-
-        $hasilLab->getObservation()->setTypeObservation($this->jenis);
-        $hasilLab->getDiagnosticReport()->setCodeReport($this->jenis);
-
-        $hasilLab->getDiagnosticReport()->setIssued($this->tanggal);
-        $hasilLab->getObservation()->setIssued($this->tanggal);
-
-        $hasilLab->getObservation()->setLocalId($this->noregLab);
-
-        $hasilLab->getObservation()->setNotesDetail($this->catatan);
-
-        $hasilLab->getObservation()->setValue($this->nilai);
+        
     }
 }
 

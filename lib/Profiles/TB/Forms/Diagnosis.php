@@ -11,9 +11,6 @@ use Mediator\SatuSehat\Lib\Client\Model\TbSuspect;
 
 class Diagnosis extends Terduga
 {
-    /** @var TbSuspect */
-    protected $tbSuspect;
-
     /** @var TbConfirm */
     protected $tbConfirm;
 
@@ -36,7 +33,6 @@ class Diagnosis extends Terduga
     {
         parent::__construct($submitApi);
 
-        $this->tbSuspect = new TbSuspect();
         $this->tbConfirm = new TbConfirm();
         $this->toraks = new Observation();
         $this->observation = new Observation();
@@ -45,25 +41,17 @@ class Diagnosis extends Terduga
         $this->questionnaireResponse = new QuestionnaireResponse();
     }
 
-    protected function mustValidated(): array
+    protected function mustValidated()
     {
         return [
-            'TbSuspect',
-            'TbConfirm',
-            'Encounter',
-            'EpisodeOfCare',
-            'Observation',
-            'DiagnosticReport',
-            'QuestionnaireResponse',
+            // 'TbSuspect',
+            // 'TbConfirm',
+            // 'Encounter',
+            // 'EpisodeOfCare',
+            // 'Observation',
+            // 'DiagnosticReport',
+            // 'QuestionnaireResponse',
         ];
-    }
-
-    /**
-     * @return TbSuspect
-     */
-    public function getTbSuspect()
-    {
-        return $this->tbSuspect;    
     }
 
     /**
@@ -111,7 +99,7 @@ class Diagnosis extends Terduga
      */
     public function getQuestionnaireResponse()
     {
-        return $this->questionnaireResponse;    
+        return $this->questionnaireResponse;
     }
 
     /**
@@ -119,7 +107,9 @@ class Diagnosis extends Terduga
      */
     public function setTanggalHasilDiagnosis($datetime)
     {
-        $this->observation->setIssued($datetime . $this->submitApi->getConfig()->getTimezone());
+        $this->observation->setIssued(self::isoDate($datetime, $this->config->getTimezone()));
+        $this->diagnosticReport->setIssued(self::isoDate($datetime, $this->config->getTimezone()));
+        
         return $this;
     }
 
@@ -137,7 +127,7 @@ class Diagnosis extends Terduga
      */
     public function setXrayTanggalWaktu($datetime)
     {
-        $this->toraks->setEffectiveDateTime($datetime . $this->submitApi->getConfig()->getTimezone());
+        $this->toraks->setEffectiveDateTime(self::isoDate($datetime, $this->config->getTimezone()));
         return $this;
     }
 
@@ -165,12 +155,12 @@ class Diagnosis extends Terduga
      */
     public function setHasilDiagnosis($status, $hasil = null)
     {
-        if ($status === 'cancelled') {
+        if ($status === 'cancelled' || $hasil == '3') {
             $this->episodeOfCare->setStatus($status);
         } else {
-            $this->episodeOfCare->setTypeCode($hasil);
             $this->episodeOfCare->setStatus($status);
         }
+        $this->episodeOfCare->setTypeCode($hasil == '2' ? 'TB-RO' : 'TB-SO');
         return $this;
     }
 
@@ -179,7 +169,7 @@ class Diagnosis extends Terduga
      */
     public function setTipeDiagnosis($diagnosis)
     {
-        $this->observation->setValue($diagnosis);
+        $this->questionnaireResponse->setTypeDiagnosis($diagnosis);
         return $this;
     }
 
@@ -219,7 +209,7 @@ class Diagnosis extends Terduga
             $this->data->setDiagnosticReport([$this->diagnosticReport]);
         }
 
-        if ($this->questionnaireResponse->getLocationAnatomy()) {
+        if ($this->questionnaireResponse->getLocationAnatomy() || $this->questionnaireResponse->getTypeDiagnosis()) {
             $this->data->setQuestionnaireResponse([$this->questionnaireResponse]);
         }
 
@@ -227,7 +217,6 @@ class Diagnosis extends Terduga
             $this->data->setEpisodeOfCare($this->episodeOfCare);
         }
 
-        $this->data->setTbSuspect($this->tbSuspect);
         $this->data->setTbConfirm($this->tbConfirm);
         $this->data->setObservation($observation);
 

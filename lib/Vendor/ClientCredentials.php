@@ -21,20 +21,20 @@ class ClientCredentials implements GrantTypeInterface
      *
      * @var ClientInterface
      */
-    private ClientInterface $client;
+    private $client;
 
     /**
      * Configuration settings.
      *
      * @var Collection
      */
-    private Collection $config;
+    private $config;
 
     /**
      * @param ClientInterface $client
      * @param array $config
      */
-    public function __construct(ClientInterface $client, array $config)
+    public function __construct($client, $config)
     {
         $this->client = $client;
         $this->config = Collection::fromConfig(
@@ -52,7 +52,7 @@ class ClientCredentials implements GrantTypeInterface
         );
     }
 
-    public function getRawData(SignerInterface $clientCredentialsSigner, $refreshToken = null)
+    public function getRawData($clientCredentialsSigner, $refreshToken = null)
     {
         $url = $this->config['auth_url'];
         if (Helper::guzzleIs('>=', 6)) {

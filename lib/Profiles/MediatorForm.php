@@ -3,6 +3,7 @@
 namespace Mediator\SatuSehat\Lib\Client\Profiles;
 
 use GuzzleHttp\Exception\GuzzleException;
+use Mediator\SatuSehat\Lib\Client\Configuration;
 use Mediator\SatuSehat\Lib\Client\Api\SubmitDataApi;
 use Mediator\SatuSehat\Lib\Client\ApiException;
 use Mediator\SatuSehat\Lib\Client\Model\AddressPatient;
@@ -14,13 +15,15 @@ use Mediator\SatuSehat\Lib\Client\Profiles\TB\Validation;
 
 abstract class MediatorForm extends Validation
 {
-    protected array $defaultRules = [
+    protected $defaultRules = [
         'Profile' ,
         'OrganizationId' ,
         'LocationId' ,
         'PractitionerNik' ,
         'Patient',
     ];
+
+    protected $config;
 
     /** @var SubmitDataApi */
     protected $submitApi;
@@ -33,8 +36,13 @@ abstract class MediatorForm extends Validation
      */
     public function __construct($submitApi = null)
     {
+        $this->config = Configuration::getDefaultConfiguration();
         $this->submitApi = $submitApi;
         $this->data = new SubmitRequest();
+    }
+
+    public function getConfig() {
+        return $this->config;
     }
 
     public function setSubmitApi($submitApi)
@@ -73,7 +81,7 @@ abstract class MediatorForm extends Validation
      *
      * @return $this
      */
-    public function setProfile(array $profile): MediatorForm
+    public function setProfile($profile)
     {
         $this->data->setProfile($profile);
 
@@ -87,7 +95,7 @@ abstract class MediatorForm extends Validation
      *
      * @return $this
      */
-    public function setOrganizationId(string $organization_id): MediatorForm
+    public function setOrganizationId($organization_id)
     {
         $this->data->setOrganizationId($organization_id);
 
@@ -101,7 +109,7 @@ abstract class MediatorForm extends Validation
      *
      * @return $this
      */
-    public function setLocationId(string $location_id): MediatorForm
+    public function setLocationId($location_id)
     {
         $this->data->setLocationId($location_id);
 
@@ -115,7 +123,7 @@ abstract class MediatorForm extends Validation
      *
      * @return $this
      */
-    public function setPractitionerNik(string $practitioner_nik): MediatorForm
+    public function setPractitionerNik($practitioner_nik)
     {
         $this->data->setPractitionerNik($practitioner_nik);
 
@@ -129,7 +137,7 @@ abstract class MediatorForm extends Validation
      *
      * @return $this
      */
-    public function setPatient($patient): MediatorForm
+    public function setPatient($patient)
     {
         $this->data->setPatient($patient instanceof Patient ? $patient : new Patient($patient));
 
@@ -143,7 +151,7 @@ abstract class MediatorForm extends Validation
      *
      * @return $this
      */
-    public function setPatientAddress($patientAddress): MediatorForm
+    public function setPatientAddress($patientAddress)
     {
         if (!$this->data->getPatient()) {
             return $this;
@@ -170,7 +178,7 @@ abstract class MediatorForm extends Validation
      * @throws \Exception
      * @return void
      */
-    public function validate(): void
+    public function validate()
     {
         // validate required methods in Form Class
         $this->validatedMethod();
@@ -192,5 +200,14 @@ abstract class MediatorForm extends Validation
     {
         // send using submitApi
         return $this->submitApi->syncPost($this->data);
+    }
+
+    public static function isoDate($datetime, $timezone = '+00:00')
+    {
+        if (!$datetime) {
+            return null;
+        }
+        
+        return str_replace(' ', 'T', date('Y-m-d H:i:s', strtotime($datetime))) . $timezone;
     }
 }

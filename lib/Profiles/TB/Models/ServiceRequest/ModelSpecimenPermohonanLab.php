@@ -7,8 +7,8 @@ use Mediator\SatuSehat\Lib\Client\Profiles\TB\Validation;
 
 class ModelSpecimenPermohonanLab extends Validation
 {
-    protected Specimen $specimen;
-    private Configuration $config;
+    protected $specimen;
+    private $config;
 
     public function __construct()
     {
@@ -16,7 +16,7 @@ class ModelSpecimenPermohonanLab extends Validation
         $this->config = Configuration::getDefaultConfiguration();
     }
 
-    protected function mustValidated(): array
+    protected function mustValidated()
     {
         return [];
     }
@@ -49,7 +49,7 @@ class ModelSpecimenPermohonanLab extends Validation
         return $this;
     }
 
-    public function getData(): Specimen
+    public function getData()
     {
         return $this->specimen;
     }

@@ -4,7 +4,7 @@ namespace Mediator\SatuSehat\Lib\Client\Profiles\TB\Models;
 
 class MapModel
 {
-    public array $maps = [];
+    public $maps = [];
 
     public $modelMap;
     public function __construct($modelMap)
@@ -12,14 +12,14 @@ class MapModel
         $this->modelMap = $modelMap;
     }
 
-    public function addServiceRequest(callable $callback): self
+    public function addServiceRequest($callback)
     {
         $callable = $callback(new $this->modelMap());
         $this->maps[] = $callable->getData();
         return $this;
     }
 
-    public function getMap(): array
+    public function getMap()
     {
         return $this->maps;
     }

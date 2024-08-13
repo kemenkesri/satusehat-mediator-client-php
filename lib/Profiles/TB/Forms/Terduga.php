@@ -8,7 +8,7 @@ use Mediator\SatuSehat\Lib\Client\Profiles\MediatorForm;
 
 class Terduga extends MediatorForm
 {
-    protected function mustValidated(): array
+    protected function mustValidated()
     {
         return [
             'TbSuspect',
@@ -24,7 +24,7 @@ class Terduga extends MediatorForm
      *
      * @return $this
      */
-    public function setTbSuspect(array $tb_suspect): Terduga
+    public function setTbSuspect($tb_suspect)
     {
         $this->data->setTbSuspect(!($tb_suspect instanceof TbSuspect) ? new TbSuspect($tb_suspect) : $tb_suspect);
 
@@ -38,7 +38,7 @@ class Terduga extends MediatorForm
      *
      * @return $this
      */
-    public function setEncounter(array $encounter): Terduga
+    public function setEncounter($encounter)
     {
         $this->data->setEncounter($encounter);
 
@@ -52,7 +52,7 @@ class Terduga extends MediatorForm
      *
      * @return $this
      */
-    public function setCondition(array $condition): Terduga
+    public function setCondition($condition)
     {
         $this->data->setCondition($condition);
 
@@ -66,7 +66,7 @@ class Terduga extends MediatorForm
      *
      * @return $this
      */
-    public function addCondition($condition): Terduga
+    public function addCondition($condition)
     {
         $conditions = $this->data->getCondition();
         if (empty($conditions)) {

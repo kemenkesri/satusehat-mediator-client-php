@@ -77,7 +77,7 @@ class PermohonanLab extends Terduga
 
     public function setTanggalPermohonan($tanggal)
     {
-        $this->serviceRequest->setRequestedTime($tanggal);
+        $this->serviceRequest->setRequestedTime(self::isoDate($tanggal, $this->config->getTimezone()));
 
         return $this;
     }
@@ -107,14 +107,14 @@ class PermohonanLab extends Terduga
 
     public function setTanggalWaktuPengambilanContohUji($datetime)
     {
-        $this->specimen->setCollectedTime($datetime . $this->submitApi->getConfig()->getTimezone());
+        $this->specimen->setCollectedTime(self::isoDate($datetime, $this->config->getTimezone()));
 
         return $this;
     }
 
     public function setTanggalWaktuPengirimanContohUji($datetime)
     {
-        $this->specimen->setTransportedTime($datetime . $this->submitApi->getConfig()->getTimezone());
+        $this->specimen->setTransportedTime(self::isoDate($datetime, $this->config->getTimezone()));
 
         return $this;
     }

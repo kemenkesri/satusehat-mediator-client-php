@@ -12,7 +12,7 @@ use Mediator\SatuSehat\Lib\Client\Vendor\ClientCredentials;
 
 class OAuthClient extends Client
 {
-    public function __construct(Configuration $config)
+    public function __construct($config)
     {
         $authType = $config->getAuthType();
 

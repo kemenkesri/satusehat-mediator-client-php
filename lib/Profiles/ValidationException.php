@@ -22,7 +22,7 @@ class ValidationException extends Exception
         parent::__construct($message, $code);
     }
 
-    public static function create(string $type, $errors = [], $vars = []): ValidationException
+    public static function create($type, $errors = [], $vars = [])
     {
         if (!isset(self::$ERROR_MAP)) {
             self::$ERROR_MAP = require(__DIR__ . '/../Config/ErrorCodes.php');
