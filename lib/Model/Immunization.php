@@ -40,7 +40,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class Immunization extends MediatorResourceBasic
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -181,8 +181,8 @@ class Immunization extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    public const STATUS_COMPLETED = 'completed';
-    public const STATUS_NOT_DONE = 'not-done';
+    public static $STATUS_COMPLETED = 'completed';
+    public static $STATUS_NOT_DONE = 'not-done';
 
     /**
      * Gets allowable values of the enum
@@ -192,8 +192,8 @@ class Immunization extends MediatorResourceBasic
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_COMPLETED,
-            self::STATUS_NOT_DONE,
+            self::$STATUS_COMPLETED,
+            self::$STATUS_NOT_DONE,
         ];
     }
 

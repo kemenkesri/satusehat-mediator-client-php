@@ -39,7 +39,7 @@ use \Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class Condition extends MediatorResourceBasic
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -200,22 +200,22 @@ class Condition extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    public const CATEGORY_ENCOUNTER_DIAGNOSIS = 'encounter-diagnosis';
-    public const CATEGORY_PROBLEM_LIST_ITEM = 'problem-list-item';
-    public const DIAGNOSIS_TYPE_AD = 'AD';
-    public const DIAGNOSIS_TYPE_DD = 'DD';
-    public const DIAGNOSIS_TYPE_CC = 'CC';
-    public const DIAGNOSIS_TYPE_CM = 'CM';
-    public const DIAGNOSIS_TYPE_PRE_OP = 'pre-op';
-    public const DIAGNOSIS_TYPE_POST_OP = 'post-op';
-    public const DIAGNOSIS_TYPE_BILLING = 'billing';
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_RECURRENCE = 'recurrence';
-    public const STATUS_RELAPSE = 'relapse';
-    public const STATUS_INACTIVE = 'inactive';
-    public const STATUS_REMISSION = 'remission';
-    public const STATUS_RESOLVED = 'resolved';
-    public const STATUS_UNKNOWN = 'unknown';
+    public static $CATEGORY_ENCOUNTER_DIAGNOSIS = 'encounter-diagnosis';
+    public static $CATEGORY_PROBLEM_LIST_ITEM = 'problem-list-item';
+    public static $DIAGNOSIS_TYPE_AD = 'AD';
+    public static $DIAGNOSIS_TYPE_DD = 'DD';
+    public static $DIAGNOSIS_TYPE_CC = 'CC';
+    public static $DIAGNOSIS_TYPE_CM = 'CM';
+    public static $DIAGNOSIS_TYPE_PRE_OP = 'pre-op';
+    public static $DIAGNOSIS_TYPE_POST_OP = 'post-op';
+    public static $DIAGNOSIS_TYPE_BILLING = 'billing';
+    public static $STATUS_ACTIVE = 'active';
+    public static $STATUS_RECURRENCE = 'recurrence';
+    public static $STATUS_RELAPSE = 'relapse';
+    public static $STATUS_INACTIVE = 'inactive';
+    public static $STATUS_REMISSION = 'remission';
+    public static $STATUS_RESOLVED = 'resolved';
+    public static $STATUS_UNKNOWN = 'unknown';
 
     /**
      * Gets allowable values of the enum
@@ -225,8 +225,8 @@ class Condition extends MediatorResourceBasic
     public function getCategoryAllowableValues()
     {
         return [
-            self::CATEGORY_ENCOUNTER_DIAGNOSIS,
-            self::CATEGORY_PROBLEM_LIST_ITEM,
+            self::$CATEGORY_ENCOUNTER_DIAGNOSIS,
+            self::$CATEGORY_PROBLEM_LIST_ITEM,
         ];
     }
     /**
@@ -237,13 +237,13 @@ class Condition extends MediatorResourceBasic
     public function getDiagnosisTypeAllowableValues()
     {
         return [
-            self::DIAGNOSIS_TYPE_AD,
-            self::DIAGNOSIS_TYPE_DD,
-            self::DIAGNOSIS_TYPE_CC,
-            self::DIAGNOSIS_TYPE_CM,
-            self::DIAGNOSIS_TYPE_PRE_OP,
-            self::DIAGNOSIS_TYPE_POST_OP,
-            self::DIAGNOSIS_TYPE_BILLING,
+            self::$DIAGNOSIS_TYPE_AD,
+            self::$DIAGNOSIS_TYPE_DD,
+            self::$DIAGNOSIS_TYPE_CC,
+            self::$DIAGNOSIS_TYPE_CM,
+            self::$DIAGNOSIS_TYPE_PRE_OP,
+            self::$DIAGNOSIS_TYPE_POST_OP,
+            self::$DIAGNOSIS_TYPE_BILLING,
         ];
     }
     /**
@@ -254,13 +254,13 @@ class Condition extends MediatorResourceBasic
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_ACTIVE,
-            self::STATUS_RECURRENCE,
-            self::STATUS_RELAPSE,
-            self::STATUS_INACTIVE,
-            self::STATUS_REMISSION,
-            self::STATUS_RESOLVED,
-            self::STATUS_UNKNOWN,
+            self::$STATUS_ACTIVE,
+            self::$STATUS_RECURRENCE,
+            self::$STATUS_RELAPSE,
+            self::$STATUS_INACTIVE,
+            self::$STATUS_REMISSION,
+            self::$STATUS_RESOLVED,
+            self::$STATUS_UNKNOWN,
         ];
     }
 

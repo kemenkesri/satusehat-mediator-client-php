@@ -40,7 +40,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class Encounter extends MediatorResourceBasic
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -181,13 +181,13 @@ class Encounter extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    public const CLASSIFICATION_AMB = 'AMB';
-    public const CLASSIFICATION_EMER = 'EMER';
-    public const CLASSIFICATION_IMP = 'IMP';
-    public const STATUS_AKHIR_PULANG_PAKSA = 'pulang_paksa';
-    public const STATUS_AKHIR_DIRUJUK = 'dirujuk';
-    public const STATUS_AKHIR_MENINGGAL = 'meninggal';
-    public const STATUS_AKHIR_SEMBUH = 'sembuh';
+    public static $CLASSIFICATION_AMB = 'AMB';
+    public static $CLASSIFICATION_EMER = 'EMER';
+    public static $CLASSIFICATION_IMP = 'IMP';
+    public static $STATUS_AKHIR_PULANG_PAKSA = 'pulang_paksa';
+    public static $STATUS_AKHIR_DIRUJUK = 'dirujuk';
+    public static $STATUS_AKHIR_MENINGGAL = 'meninggal';
+    public static $STATUS_AKHIR_SEMBUH = 'sembuh';
 
     /**
      * Gets allowable values of the enum
@@ -197,9 +197,9 @@ class Encounter extends MediatorResourceBasic
     public function getClassificationAllowableValues()
     {
         return [
-            self::CLASSIFICATION_AMB,
-            self::CLASSIFICATION_EMER,
-            self::CLASSIFICATION_IMP,
+            self::$CLASSIFICATION_AMB,
+            self::$CLASSIFICATION_EMER,
+            self::$CLASSIFICATION_IMP,
         ];
     }
     /**
@@ -210,10 +210,10 @@ class Encounter extends MediatorResourceBasic
     public function getStatusAkhirAllowableValues()
     {
         return [
-            self::STATUS_AKHIR_PULANG_PAKSA,
-            self::STATUS_AKHIR_DIRUJUK,
-            self::STATUS_AKHIR_MENINGGAL,
-            self::STATUS_AKHIR_SEMBUH,
+            self::$STATUS_AKHIR_PULANG_PAKSA,
+            self::$STATUS_AKHIR_DIRUJUK,
+            self::$STATUS_AKHIR_MENINGGAL,
+            self::$STATUS_AKHIR_SEMBUH,
         ];
     }
 
