@@ -74,8 +74,8 @@ class OAuthClient extends Client
 
     /**
      * @param $config
-     * @return array
      * @throws GuzzleException
+     * @return array
      */
     public function createRequest($config): array
     {
