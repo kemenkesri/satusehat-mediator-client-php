@@ -41,7 +41,8 @@ abstract class MediatorForm extends Validation
         $this->data = new SubmitRequest();
     }
 
-    public function getConfig() {
+    public function getConfig()
+    {
         return $this->config;
     }
 

@@ -366,14 +366,18 @@ class HasilLab extends Terduga
 
         $this->observation->setValue($this->hasil->getNilai());
 
-        if ($this->serviceRequest->getCodeRequest())
+        if ($this->serviceRequest->getCodeRequest()) {
             $this->setServiceRequest([$this->serviceRequest]);
-        if ($this->specimen->getCodeRequest())
+        }
+        if ($this->specimen->getCodeRequest()) {
             $this->setSpecimens([$this->specimen]);
-        if ($this->observation->getSpecimen())
+        }
+        if ($this->observation->getSpecimen()) {
             $this->setObservation([$this->observation]);
-        if ($this->diagnosticReport->getSpecimen())
+        }
+        if ($this->diagnosticReport->getSpecimen()) {
             $this->setDiagnosticReport([$this->diagnosticReport]);
+        }
 
         return $this;
     }
