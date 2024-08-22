@@ -76,14 +76,30 @@ class HasilLab extends Terduga
         return $this;
     }
 
+    public function setFaskesTunjuan($orgId)
+    {
+        $this->serviceRequest->setFaskesTujuan($orgId);
+
+        return $this;
+    }
+
     /**
      * Get specimen
-     * 
+     *
      * @return Specimen
      */
     public function getSpecimen()
     {
         return $this->specimen;
+    }
+
+    public function setDokterPengirim($idNakes)
+    {
+        $this->serviceRequest
+            ->setRequesterType('Practitioner')
+            ->setRequester($idNakes);
+
+        return $this;
     }
 
     /**
@@ -114,7 +130,7 @@ class HasilLab extends Terduga
      */
     public function getObservation()
     {
-        return $this->observation;    
+        return $this->observation;
     }
 
     /**
@@ -122,7 +138,7 @@ class HasilLab extends Terduga
      */
     public function getDiagnosticReport()
     {
-        return $this->diagnosticReport;    
+        return $this->diagnosticReport;
     }
 
     /**
@@ -206,7 +222,11 @@ class HasilLab extends Terduga
         }
         $this->specimen->setCodeRequest($codes);
 
-        $this->diagnosticReport->setServiceRequest($jenisLab);
+        $this->diagnosticReport->setServiceRequest($jenisLab)
+            ->setCodeReport($jenisLab);
+        $this->observation->setTypeObservation($jenisLab)
+            ->setServiceRequest($jenisLab)
+            ->setDiagnosticReport($jenisLab);
 
         switch ($jenisLab) {
             case 'mikroskopis':
@@ -322,7 +342,7 @@ class HasilLab extends Terduga
     }
 
     /**
-     * 
+     *
      * @return HasilUji
      */
     public function getHasilUji()
@@ -333,8 +353,6 @@ class HasilLab extends Terduga
     public function build()
     {
         $this->hasil->build($this);
-
-        $this->setJenisContohUji($this->contoh);
 
         $this->observation->setTypeObservation($this->hasil->getJenis());
         $this->diagnosticReport->setCodeReport($this->hasil->getJenis());
@@ -371,31 +389,38 @@ abstract class HasilUji extends ProfileValidation
     protected $catatan;
     protected $components = [];
 
-    public function getNilai() {
+    public function getNilai()
+    {
         return $this->nilai;
     }
 
-    public function getContoh() {
+    public function getContoh()
+    {
         return $this->contoh;
     }
 
-    public function getJenis() {
+    public function getJenis()
+    {
         return $this->jenis;
     }
 
-    public function getTanggal() {
+    public function getTanggal()
+    {
         return $this->tanggal;
     }
 
-    public function getNoRegLab() {
+    public function getNoRegLab()
+    {
         return $this->noregLab;
     }
 
-    public function getCatatan() {
+    public function getCatatan()
+    {
         return $this->catatan;
     }
 
-    public function getComponents() {
+    public function getComponents()
+    {
         return $this->components;
     }
 
