@@ -140,6 +140,12 @@ class Diagnosis extends Terduga
 
         return $this;
     }
+    public function setStatusPengobatan($status_pengobatan)
+    {
+        $this->tbConfirm->setStatusPengobatan($status_pengobatan);
+
+        return $this;
+    }
 
     /**
      * @return $this
