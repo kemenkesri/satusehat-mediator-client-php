@@ -90,27 +90,27 @@ class Terduga extends MediatorForm
             }
 
             if ($encounter->getPeriodStart()) {
-                $datetime = date('Y-m-d H:i:s',  strtotime(rand(5, 60) . ' sec',strtotime($encounter->getPeriodStart())));
+                $datetime = date('Y-m-d H:i:s', strtotime(rand(5, 60) . ' sec', strtotime($encounter->getPeriodStart())));
                 $encounter->setPeriodStart(self::isoDate($datetime, $this->config->getTimezone()));
             }
 
             if ($encounter->getPeriodEnd()) {
-                $datetime = date('Y-m-d H:i:s',  strtotime(rand(61, 120) . ' sec',strtotime($encounter->getPeriodEnd())));
+                $datetime = date('Y-m-d H:i:s', strtotime(rand(61, 120) . ' sec', strtotime($encounter->getPeriodEnd())));
                 $encounter->setPeriodEnd(self::isoDate($datetime, $this->config->getTimezone()));
             }
-        }else {
+        } else {
             if ($encounter['local_id']) {
                 $localId = $encounter['local_id'] . rand(10, 10000);
                 $encounter['local_id'] = $localId;
             }
 
             if (isset($encounter['period_start'])) {
-                $datetime = date('Y-m-d H:i:s',  strtotime(rand(5, 60) . ' sec',strtotime($encounter['period_start'])));
+                $datetime = date('Y-m-d H:i:s', strtotime(rand(5, 60) . ' sec', strtotime($encounter['period_start'])));
                 $encounter['period_start'] = self::isoDate($datetime, $this->config->getTimezone());
             }
 
             if (isset($encounter['period_end'])) {
-                $datetime = date('Y-m-d H:i:s',  strtotime(rand(61, 120) . ' sec',strtotime($encounter['period_end'])));
+                $datetime = date('Y-m-d H:i:s', strtotime(rand(61, 120) . ' sec', strtotime($encounter['period_end'])));
                 $encounter['period_end'] = self::isoDate($datetime, $this->config->getTimezone());
             }
         }
@@ -118,14 +118,14 @@ class Terduga extends MediatorForm
 
         if ($localId) {
             $condition = $this->data->getCondition();
-            for ($i=0; $i < count($condition); $i++) {
+            for ($i = 0; $i < count($condition); $i++) {
                 if ($condition[$i] instanceof Condition) {
                     $condition[$i]->setLocalId($localId);
                     /*if ($condition[$i]->getRecordDate()) {
                         $datetime = date('Y-m-d H:i:s',  strtotime(rand(5, 100) . ' sec',strtotime($condition[$i]->getRecordDate())));
                         $condition[$i]->setRecordDate(self::isoDate($datetime, $this->config->getTimezone()));
                     }*/
-                }else {
+                } else {
                     $condition[$i]['local_id'] = $localId;
                     /*if (isset($condition[$i]['record_date'])) {
                         $datetime = date('Y-m-d H:i:s',  strtotime(rand(5, 100) . ' sec',strtotime($condition[$i]['record_date'])));
