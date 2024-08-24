@@ -54,6 +54,7 @@ class Condition extends MediatorResourceBasic
       * @var string[]
       */
     protected static $swaggerTypes = [
+        'local_id' => 'string',
         'code_condition' => 'string',
         'code_system' => 'string',
         'code_detail' => 'string',
@@ -72,6 +73,7 @@ class Condition extends MediatorResourceBasic
       * @var string[]
       */
     protected static $swaggerFormats = [
+        'local_id' => null,
         'code_condition' => null,
         'code_system' => null,
         'code_detail' => null,
@@ -111,6 +113,7 @@ class Condition extends MediatorResourceBasic
      * @var string[]
      */
     protected static $attributeMap = [
+        'local_id' => 'local_id',
         'code_condition' => 'code_condition',
         'code_system' => 'code_system',
         'code_detail' => 'code_detail',
@@ -129,6 +132,7 @@ class Condition extends MediatorResourceBasic
      * @var string[]
      */
     protected static $setters = [
+        'local_id' => 'setLocalId',
         'code_condition' => 'setCodeCondition',
         'code_system' => 'setCodeSystem',
         'code_detail' => 'setCodeDetail',
@@ -147,6 +151,7 @@ class Condition extends MediatorResourceBasic
      * @var string[]
      */
     protected static $getters = [
+        'local_id' => 'setLocalId',
         'code_condition' => 'getCodeCondition',
         'code_system' => 'getCodeSystem',
         'code_detail' => 'getCodeDetail',
@@ -275,6 +280,7 @@ class Condition extends MediatorResourceBasic
     {
         parent::__construct($data);
 
+        $this->container['local_id'] = isset($data['local_id']) ? $data['local_id'] : null;
         $this->container['code_condition'] = isset($data['code_condition']) ? $data['code_condition'] : null;
         $this->container['code_system'] = isset($data['code_system']) ? $data['code_system'] : null;
         $this->container['code_detail'] = isset($data['code_detail']) ? $data['code_detail'] : null;
@@ -334,6 +340,29 @@ class Condition extends MediatorResourceBasic
         return count($this->listInvalidProperties()) === 0;
     }
 
+    /**
+     * Gets local_id
+     *
+     * @return string
+     */
+    public function getLocalId()
+    {
+        return $this->container['local_id'];
+    }
+
+    /**
+     * Sets local_id
+     *
+     * @param string $local_id local_id
+     *
+     * @return $this
+     */
+    public function setLocalId($local_id)
+    {
+        $this->container['local_id'] = $local_id;
+
+        return $this;
+    }
 
     /**
      * Gets code_condition

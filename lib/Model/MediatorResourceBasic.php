@@ -59,7 +59,7 @@ class MediatorResourceBasic implements ModelInterface, ArrayAccess
         'id' => 'string',
         'local_id' => 'string',
         'profile' => 'string',
-        'should_update' => 'bool'
+        'shouldUpdate' => 'bool'
     ];
 
     /**
@@ -71,7 +71,7 @@ class MediatorResourceBasic implements ModelInterface, ArrayAccess
         'id' => null,
         'local_id' => null,
         'profile' => null,
-        'should_update' => null
+        'shouldUpdate' => null
     ];
 
     /**
@@ -104,7 +104,7 @@ class MediatorResourceBasic implements ModelInterface, ArrayAccess
         'id' => 'id',
         'local_id' => 'local_id',
         'profile' => 'profile',
-        'should_update' => 'shouldUpdaate'
+        'shouldUpdate' => 'shouldUpdaate'
     ];
 
     /**
@@ -116,7 +116,7 @@ class MediatorResourceBasic implements ModelInterface, ArrayAccess
         'id' => 'setId',
         'local_id' => 'setLocalId',
         'profile' => 'setProfile',
-        'should_update' => 'setShouldUpdate'
+        'shouldUpdate' => 'setShouldUpdate'
     ];
 
     /**
@@ -128,7 +128,7 @@ class MediatorResourceBasic implements ModelInterface, ArrayAccess
         'id' => 'getId',
         'local_id' => 'getLocalId',
         'profile' => 'getProfile',
-        'should_update' => 'getShouldUpdate'
+        'shouldUpdate' => 'getShouldUpdate'
     ];
 
     /**
@@ -192,7 +192,7 @@ class MediatorResourceBasic implements ModelInterface, ArrayAccess
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['local_id'] = isset($data['local_id']) ? $data['local_id'] : null;
         $this->container['profile'] = isset($data['profile']) ? $data['profile'] : null;
-        $this->container['should_update'] = isset($data['should_update']) ? $data['should_update'] : null;
+        $this->container['shouldUpdate'] = isset($data['shouldUpdate']) ? $data['shouldUpdate'] : null;
     }
 
     /**
@@ -292,25 +292,25 @@ class MediatorResourceBasic implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets should_update
+     * Gets shouldUpdate
      *
      * @return bool
      */
     public function getShouldUpdate()
     {
-        return $this->container['should_update'];
+        return $this->container['shouldUpdate'];
     }
 
     /**
-     * Sets should_update
+     * Sets shouldUpdate
      *
-     * @param bool $should_update should_update
+     * @param bool $shouldUpdate shouldUpdate
      *
      * @return $this
      */
-    public function setShouldUpdate($should_update)
+    public function setShouldUpdate($shouldUpdate)
     {
-        $this->container['should_update'] = $should_update;
+        $this->container['shouldUpdate'] = $shouldUpdate;
 
         return $this;
     }

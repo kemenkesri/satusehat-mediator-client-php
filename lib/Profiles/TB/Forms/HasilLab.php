@@ -339,6 +339,8 @@ class HasilLab extends Terduga
 
     public function build()
     {
+        parent::build();
+
         $this->hasil->build($this);
 
         $this->setJenisContohUji($this->hasil->getContoh());

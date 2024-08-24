@@ -56,6 +56,7 @@ class Encounter extends MediatorResourceBasic
       */
     protected static $swaggerTypes = [
         'classification' => 'string',
+        'local_id' => 'string',
         'status_akhir' => 'string',
         'period_start' => '\DateTime',
         'perion_in_progress' => '\DateTime',
@@ -70,6 +71,7 @@ class Encounter extends MediatorResourceBasic
       */
     protected static $swaggerFormats = [
         'classification' => null,
+        'local_id' => null,
         'status_akhir' => null,
         'period_start' => 'date-time',
         'perion_in_progress' => 'date-time',
@@ -105,6 +107,7 @@ class Encounter extends MediatorResourceBasic
      */
     protected static $attributeMap = [
         'classification' => 'classification',
+        'local_id' => 'local_id',
         'status_akhir' => 'status_akhir',
         'period_start' => 'period_start',
         'perion_in_progress' => 'perion_in_progress',
@@ -119,6 +122,7 @@ class Encounter extends MediatorResourceBasic
      */
     protected static $setters = [
         'classification' => 'setClassification',
+        'local_id' => 'setLocalId',
         'status_akhir' => 'setStatusAkhir',
         'period_start' => 'setPeriodStart',
         'perion_in_progress' => 'setPerionInProgress',
@@ -133,6 +137,7 @@ class Encounter extends MediatorResourceBasic
      */
     protected static $getters = [
         'classification' => 'getClassification',
+        'local_id' => 'getLocalId',
         'status_akhir' => 'getStatusAkhir',
         'period_start' => 'getPeriodStart',
         'perion_in_progress' => 'getPerionInProgress',
@@ -228,6 +233,7 @@ class Encounter extends MediatorResourceBasic
     {
         parent::__construct($data);
 
+        $this->container['local_id'] = isset($data['local_id']) ? $data['local_id'] : null;
         $this->container['classification'] = isset($data['classification']) ? $data['classification'] : null;
         $this->container['status_akhir'] = isset($data['status_akhir']) ? $data['status_akhir'] : null;
         $this->container['period_start'] = isset($data['period_start']) ? $data['period_start'] : null;
@@ -305,6 +311,30 @@ class Encounter extends MediatorResourceBasic
             );
         }
         $this->container['classification'] = $classification;
+
+        return $this;
+    }
+
+    /**
+     * Gets local_id
+     *
+     * @return string
+     */
+    public function getLocalId()
+    {
+        return $this->container['local_id'];
+    }
+
+    /**
+     * Sets local_id
+     *
+     * @param string $local_id local_id
+     *
+     * @return $this
+     */
+    public function setLocalId($local_id)
+    {
+        $this->container['local_id'] = $local_id;
 
         return $this;
     }
