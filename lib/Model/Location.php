@@ -40,7 +40,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class Location extends MediatorResourceBasic
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -206,11 +206,11 @@ class Location extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    public const TYPE_LOCATION_TEMPAT_MENINGGAL_NONFASKES = 'tempat_meninggal_nonfaskes';
-    public const TYPE_LOCATION_TEMPAT_MENINGGAL_FASKES = 'tempat_meninggal_faskes';
-    public const TYPE_LOCATION_ALAMAT_LAHIR = 'alamat_lahir';
-    public const TYPE_LOCATION_ALAMAT_MATI = 'alamat_mati';
-    public const TYPE_LOCATION_ALAMAT_BERSALIN = 'alamat_bersalin';
+    public static $TYPE_LOCATION_TEMPAT_MENINGGAL_NONFASKES = 'tempat_meninggal_nonfaskes';
+    public static $TYPE_LOCATION_TEMPAT_MENINGGAL_FASKES = 'tempat_meninggal_faskes';
+    public static $TYPE_LOCATION_ALAMAT_LAHIR = 'alamat_lahir';
+    public static $TYPE_LOCATION_ALAMAT_MATI = 'alamat_mati';
+    public static $TYPE_LOCATION_ALAMAT_BERSALIN = 'alamat_bersalin';
 
     /**
      * Gets allowable values of the enum
@@ -220,11 +220,11 @@ class Location extends MediatorResourceBasic
     public function getTypeLocationAllowableValues()
     {
         return [
-            self::TYPE_LOCATION_TEMPAT_MENINGGAL_NONFASKES,
-            self::TYPE_LOCATION_TEMPAT_MENINGGAL_FASKES,
-            self::TYPE_LOCATION_ALAMAT_LAHIR,
-            self::TYPE_LOCATION_ALAMAT_MATI,
-            self::TYPE_LOCATION_ALAMAT_BERSALIN,
+            self::$TYPE_LOCATION_TEMPAT_MENINGGAL_NONFASKES,
+            self::$TYPE_LOCATION_TEMPAT_MENINGGAL_FASKES,
+            self::$TYPE_LOCATION_ALAMAT_LAHIR,
+            self::$TYPE_LOCATION_ALAMAT_MATI,
+            self::$TYPE_LOCATION_ALAMAT_BERSALIN,
         ];
     }
 

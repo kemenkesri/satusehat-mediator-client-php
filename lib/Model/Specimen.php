@@ -40,7 +40,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class Specimen extends MediatorResourceBasic
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -241,10 +241,10 @@ class Specimen extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    public const STATUS_AVAILABLE = 'available';
-    public const STATUS_UNAVAILABLE = 'unavailable';
-    public const STATUS_UNSATISFACTORY = 'unsatisfactory';
-    public const STATUS_ENTERED_IN_ERROR = 'entered-in-error';
+    public static $STATUS_AVAILABLE = 'available';
+    public static $STATUS_UNAVAILABLE = 'unavailable';
+    public static $STATUS_UNSATISFACTORY = 'unsatisfactory';
+    public static $STATUS_ENTERED_IN_ERROR = 'entered-in-error';
 
     /**
      * Gets allowable values of the enum
@@ -254,10 +254,10 @@ class Specimen extends MediatorResourceBasic
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_AVAILABLE,
-            self::STATUS_UNAVAILABLE,
-            self::STATUS_UNSATISFACTORY,
-            self::STATUS_ENTERED_IN_ERROR,
+            self::$STATUS_AVAILABLE,
+            self::$STATUS_UNAVAILABLE,
+            self::$STATUS_UNSATISFACTORY,
+            self::$STATUS_ENTERED_IN_ERROR,
         ];
     }
 

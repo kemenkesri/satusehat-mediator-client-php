@@ -40,7 +40,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class EpisodeOfCare extends MediatorResourceBasic
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -181,13 +181,13 @@ class EpisodeOfCare extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    public const TYPE_CODE_PLANNED = 'planned';
-    public const TYPE_CODE_WAITLIST = 'waitlist';
-    public const TYPE_CODE_ACTIVE = 'active';
-    public const TYPE_CODE_ONHOLD = 'onhold';
-    public const TYPE_CODE_FINISHED = 'finished';
-    public const TYPE_CODE_CANCELLED = 'cancelled';
-    public const TYPE_CODE_ENTERED_IN_ERROR = 'entered-in-error';
+    public static $TYPE_CODE_PLANNED = 'planned';
+    public static $TYPE_CODE_WAITLIST = 'waitlist';
+    public static $TYPE_CODE_ACTIVE = 'active';
+    public static $TYPE_CODE_ONHOLD = 'onhold';
+    public static $TYPE_CODE_FINISHED = 'finished';
+    public static $TYPE_CODE_CANCELLED = 'cancelled';
+    public static $TYPE_CODE_ENTERED_IN_ERROR = 'entered-in-error';
 
     /**
      * Gets allowable values of the enum
@@ -197,13 +197,13 @@ class EpisodeOfCare extends MediatorResourceBasic
     public function getTypeCodeAllowableValues()
     {
         return [
-            self::TYPE_CODE_PLANNED,
-            self::TYPE_CODE_WAITLIST,
-            self::TYPE_CODE_ACTIVE,
-            self::TYPE_CODE_ONHOLD,
-            self::TYPE_CODE_FINISHED,
-            self::TYPE_CODE_CANCELLED,
-            self::TYPE_CODE_ENTERED_IN_ERROR,
+            self::$TYPE_CODE_PLANNED,
+            self::$TYPE_CODE_WAITLIST,
+            self::$TYPE_CODE_ACTIVE,
+            self::$TYPE_CODE_ONHOLD,
+            self::$TYPE_CODE_FINISHED,
+            self::$TYPE_CODE_CANCELLED,
+            self::$TYPE_CODE_ENTERED_IN_ERROR,
         ];
     }
 
@@ -277,6 +277,15 @@ class EpisodeOfCare extends MediatorResourceBasic
      */
     public function setStatus($status)
     {
+        $allowedValues = $this->getTypeCodeAllowableValues();
+        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'status', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['status'] = $status;
 
         return $this;
@@ -301,15 +310,6 @@ class EpisodeOfCare extends MediatorResourceBasic
      */
     public function setTypeCode($type_code)
     {
-        $allowedValues = $this->getTypeCodeAllowableValues();
-        if (!is_null($type_code) && !in_array($type_code, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'type_code', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['type_code'] = $type_code;
 
         return $this;

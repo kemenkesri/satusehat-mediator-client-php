@@ -6,6 +6,7 @@ use Mediator\SatuSehat\Lib\Client\Model\DiagnosticReport;
 use Mediator\SatuSehat\Lib\Client\Model\EpisodeOfCare;
 use Mediator\SatuSehat\Lib\Client\Model\Observation;
 use Mediator\SatuSehat\Lib\Client\Model\QuestionnaireResponse;
+use Mediator\SatuSehat\Lib\Client\Model\ServiceRequest;
 use Mediator\SatuSehat\Lib\Client\Model\TbConfirm;
 use Mediator\SatuSehat\Lib\Client\Model\TbSuspect;
 
@@ -140,6 +141,12 @@ class Diagnosis extends Terduga
 
         return $this;
     }
+    public function setStatusPengobatan($status_pengobatan)
+    {
+        $this->tbConfirm->setStatusPengobatan($status_pengobatan);
+
+        return $this;
+    }
 
     /**
      * @return $this
@@ -169,6 +176,9 @@ class Diagnosis extends Terduga
      */
     public function setTipeDiagnosis($diagnosis)
     {
+        $this->observation->setValue($diagnosis);
+        $this->observation->setTypeObservation('tipe_diagnosis');
+
         $this->questionnaireResponse->setTypeDiagnosis($diagnosis);
         return $this;
     }
@@ -193,14 +203,16 @@ class Diagnosis extends Terduga
 
     public function build()
     {
+        parent::build();
+
         $observation = [];
         if ($this->toraks->getValue()) {
             $this->toraks->setTypeObservation('xray');
+            $this->toraks->setDiagnosticReport('xray');
             $observation[] = $this->toraks;
         }
 
         if ($this->observation->getValue()) {
-            $this->observation->setTypeObservation('tipe_diagnosis');
             $observation[] = $this->observation;
         }
 

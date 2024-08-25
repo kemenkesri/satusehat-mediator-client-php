@@ -40,7 +40,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class Medication extends MediatorResourceBasic
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -296,224 +296,224 @@ class Medication extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    public const FORM_CODE_BS001 = 'BS001';
-    public const FORM_CODE_BS002 = 'BS002';
-    public const FORM_CODE_BS003 = 'BS003';
-    public const FORM_CODE_BS004 = 'BS004';
-    public const FORM_CODE_BS005 = 'BS005';
-    public const FORM_CODE_BS006 = 'BS006';
-    public const FORM_CODE_BS007 = 'BS007';
-    public const FORM_CODE_BS008 = 'BS008';
-    public const FORM_CODE_BS009 = 'BS009';
-    public const FORM_CODE_BS010 = 'BS010';
-    public const FORM_CODE_BS011 = 'BS011';
-    public const FORM_CODE_BS012 = 'BS012';
-    public const FORM_CODE_BS013 = 'BS013';
-    public const FORM_CODE_BS014 = 'BS014';
-    public const FORM_CODE_BS015 = 'BS015';
-    public const FORM_CODE_BS016 = 'BS016';
-    public const FORM_CODE_BS017 = 'BS017';
-    public const FORM_CODE_BS018 = 'BS018';
-    public const FORM_CODE_BS019 = 'BS019';
-    public const FORM_CODE_BS020 = 'BS020';
-    public const FORM_CODE_BS021 = 'BS021';
-    public const FORM_CODE_BS022 = 'BS022';
-    public const FORM_CODE_BS023 = 'BS023';
-    public const FORM_CODE_BS024 = 'BS024';
-    public const FORM_CODE_BS025 = 'BS025';
-    public const FORM_CODE_BS026 = 'BS026';
-    public const FORM_CODE_BS027 = 'BS027';
-    public const FORM_CODE_BS028 = 'BS028';
-    public const FORM_CODE_BS029 = 'BS029';
-    public const FORM_CODE_BS030 = 'BS030';
-    public const FORM_CODE_BS031 = 'BS031';
-    public const FORM_CODE_BS032 = 'BS032';
-    public const FORM_CODE_BS033 = 'BS033';
-    public const FORM_CODE_BS034 = 'BS034';
-    public const FORM_CODE_BS035 = 'BS035';
-    public const FORM_CODE_BS036 = 'BS036';
-    public const FORM_CODE_BS037 = 'BS037';
-    public const FORM_CODE_BS038 = 'BS038';
-    public const FORM_CODE_BS039 = 'BS039';
-    public const FORM_CODE_BS040 = 'BS040';
-    public const FORM_CODE_BS041 = 'BS041';
-    public const FORM_CODE_BS042 = 'BS042';
-    public const FORM_CODE_BS043 = 'BS043';
-    public const FORM_CODE_BS044 = 'BS044';
-    public const FORM_CODE_BS045 = 'BS045';
-    public const FORM_CODE_BS046 = 'BS046';
-    public const FORM_CODE_BS047 = 'BS047';
-    public const FORM_CODE_BS048 = 'BS048';
-    public const FORM_CODE_BS049 = 'BS049';
-    public const FORM_CODE_BS050 = 'BS050';
-    public const FORM_CODE_BS051 = 'BS051';
-    public const FORM_CODE_BS052 = 'BS052';
-    public const FORM_CODE_BS053 = 'BS053';
-    public const FORM_CODE_BS054 = 'BS054';
-    public const FORM_CODE_BS055 = 'BS055';
-    public const FORM_CODE_BS056 = 'BS056';
-    public const FORM_CODE_BS057 = 'BS057';
-    public const FORM_CODE_BS058 = 'BS058';
-    public const FORM_CODE_BS059 = 'BS059';
-    public const FORM_CODE_BS060 = 'BS060';
-    public const FORM_CODE_BS061 = 'BS061';
-    public const FORM_CODE_BS062 = 'BS062';
-    public const FORM_CODE_BS063 = 'BS063';
-    public const FORM_CODE_BS064 = 'BS064';
-    public const FORM_CODE_BS065 = 'BS065';
-    public const FORM_CODE_BS066 = 'BS066';
-    public const FORM_CODE_BS067 = 'BS067';
-    public const FORM_CODE_BS068 = 'BS068';
-    public const FORM_CODE_BS069 = 'BS069';
-    public const FORM_CODE_BS070 = 'BS070';
-    public const FORM_CODE_BS071 = 'BS071';
-    public const FORM_CODE_BS072 = 'BS072';
-    public const FORM_CODE_BS073 = 'BS073';
-    public const FORM_CODE_BS074 = 'BS074';
-    public const FORM_CODE_BS075 = 'BS075';
-    public const FORM_CODE_BS076 = 'BS076';
-    public const FORM_CODE_BS077 = 'BS077';
-    public const FORM_CODE_BS078 = 'BS078';
-    public const FORM_CODE_BS079 = 'BS079';
-    public const FORM_CODE_BS080 = 'BS080';
-    public const FORM_CODE_BS081 = 'BS081';
-    public const FORM_CODE_BS082 = 'BS082';
-    public const FORM_CODE_BS083 = 'BS083';
-    public const FORM_CODE_BS084 = 'BS084';
-    public const FORM_CODE_BS085 = 'BS085';
-    public const FORM_CODE_BS086 = 'BS086';
-    public const FORM_CODE_BS087 = 'BS087';
-    public const FORM_CODE_BS088 = 'BS088';
-    public const FORM_CODE_BS089 = 'BS089';
-    public const FORM_CODE_BS090 = 'BS090';
-    public const FORM_CODE_BS091 = 'BS091';
-    public const FORM_CODE_BS092 = 'BS092';
-    public const FORM_CODE_BS093 = 'BS093';
-    public const FORM_CODE_BS094 = 'BS094';
-    public const FORM_CODE_BS095 = 'BS095';
-    public const FORM_CODE_BS096 = 'BS096';
-    public const TYPE_NC = 'NC';
-    public const TYPE_SD = 'SD';
-    public const TYPE_EP = 'EP';
-    public const PROGRESS_REQUEST = 'request';
-    public const PROGRESS_DISPENSE = 'dispense';
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_ON_HOLD = 'on-hold';
-    public const STATUS_CANCELLED = 'cancelled';
-    public const STATUS_COMPLETED = 'completed';
-    public const STATUS_ENTERED_IN_ERROR = 'entered-in-error';
-    public const STATUS_STOPPED = 'stopped';
-    public const STATUS_DRAFT = 'draft';
-    public const STATUS_UNKNOWN = 'unknown';
-    public const PRIORITY_ROUTINE = 'routine';
-    public const PRIORITY_URGENT = 'urgent';
-    public const PRIORITY_ASAP = 'asap';
-    public const PRIORITY_STAT = 'stat';
-    public const DRUG_FORM_APPFUL = 'APPFUL';
-    public const DRUG_FORM_DROP = 'DROP';
-    public const DRUG_FORM_NDROP = 'NDROP';
-    public const DRUG_FORM_OPDROP = 'OPDROP';
-    public const DRUG_FORM_ORDROP = 'ORDROP';
-    public const DRUG_FORM_OTDROP = 'OTDROP';
-    public const DRUG_FORM_PUFF = 'PUFF';
-    public const DRUG_FORM_SCOOP = 'SCOOP';
-    public const DRUG_FORM_SPRY = 'SPRY';
-    public const DRUG_FORM_GASINHL = 'GASINHL';
-    public const DRUG_FORM_AER = 'AER';
-    public const DRUG_FORM_BAINHL = 'BAINHL';
-    public const DRUG_FORM_INHLSOL = 'INHLSOL';
-    public const DRUG_FORM_MDINHL = 'MDINHL';
-    public const DRUG_FORM_NASSPRY = 'NASSPRY';
-    public const DRUG_FORM_DERMSPRY = 'DERMSPRY';
-    public const DRUG_FORM_FOAM = 'FOAM';
-    public const DRUG_FORM_FOAMAPL = 'FOAMAPL';
-    public const DRUG_FORM_RECFORM = 'RECFORM';
-    public const DRUG_FORM_VAGFOAM = 'VAGFOAM';
-    public const DRUG_FORM_RECSPRY = 'RECSPRY';
-    public const DRUG_FORM_VAGSPRY = 'VAGSPRY';
-    public const DRUG_FORM_INHL = 'INHL';
-    public const DRUG_FORM_BAINHLPWD = 'BAINHLPWD';
-    public const DRUG_FORM_INHLPWD = 'INHLPWD';
-    public const DRUG_FORM_MDINHLPWD = 'MDINHLPWD';
-    public const DRUG_FORM_NASINHL = 'NASINHL';
-    public const DRUG_FORM_ORINHL = 'ORINHL';
-    public const DRUG_FORM_PWDSPRY = 'PWDSPRY';
-    public const DRUG_FORM_SPRYADAPT = 'SPRYADAPT';
-    public const DRUG_FORM_LIQCLN = 'LIQCLN';
-    public const DRUG_FORM_LIQSOAP = 'LIQSOAP';
-    public const DRUG_FORM_SHMP = 'SHMP';
-    public const DRUG_FORM_OIL = 'OIL';
-    public const DRUG_FORM_TOPOIL = 'TOPOIL';
-    public const DRUG_FORM_SOL = 'SOL';
-    public const DRUG_FORM_IPSOL = 'IPSOL';
-    public const DRUG_FORM_IRSOL = 'IRSOL';
-    public const DRUG_FORM_IVSOL = 'IVSOL';
-    public const DRUG_FORM_ORALSOL = 'ORALSOL';
-    public const DRUG_FORM_RECSOL = 'RECSOL';
-    public const DRUG_FORM_TOPSOL = 'TOPSOL';
-    public const DRUG_FORM_CRM = 'CRM';
-    public const DRUG_FORM_NASCRM = 'NASCRM';
-    public const DRUG_FORM_OPCRM = 'OPCRM';
-    public const DRUG_FORM_ORCRM = 'ORCRM';
-    public const DRUG_FORM_OTCRM = 'OTCRM';
-    public const DRUG_FORM_RECCRM = 'RECCRM';
-    public const DRUG_FORM_TOPCRM = 'TOPCRM';
-    public const DRUG_FORM_VAGCRM = 'VAGCRM';
-    public const DRUG_FORM_LTN = 'LTN';
-    public const DRUG_FORM_TOPLTN = 'TOPLTN';
-    public const DRUG_FORM_OINT = 'OINT';
-    public const DRUG_FORM_NASOINT = 'NASOINT';
-    public const DRUG_FORM_OINTAPL = 'OINTAPL';
-    public const DRUG_FORM_OPOINT = 'OPOINT';
-    public const DRUG_FORM_OTOINT = 'OTOINT';
-    public const DRUG_FORM_RECOINT = 'RECOINT';
-    public const DRUG_FORM_TOPOINT = 'TOPOINT';
-    public const DRUG_FORM_VAGOINT = 'VAGOINT';
-    public const DRUG_FORM_GEL = 'GEL';
-    public const DRUG_FORM_GELAPL = 'GELAPL';
-    public const DRUG_FORM_NASGEL = 'NASGEL';
-    public const DRUG_FORM_OPGEL = 'OPGEL';
-    public const DRUG_FORM_OTGEL = 'OTGEL';
-    public const DRUG_FORM_TOPGEL = 'TOPGEL';
-    public const DRUG_FORM_URETHGEL = 'URETHGEL';
-    public const DRUG_FORM_VAGGEL = 'VAGGEL';
-    public const DRUG_FORM_PASTE = 'PASTE';
-    public const DRUG_FORM_PUD = 'PUD';
-    public const DRUG_FORM_TPASTE = 'TPASTE';
-    public const DRUG_FORM_SUSP = 'SUSP';
-    public const DRUG_FORM_ITSUSP = 'ITSUSP';
-    public const DRUG_FORM_OPSUSP = 'OPSUSP';
-    public const DRUG_FORM_ORSUSP = 'ORSUSP';
-    public const DRUG_FORM_OTSUSP = 'OTSUSP';
-    public const DRUG_FORM_RECSUSP = 'RECSUSP';
-    public const DRUG_FORM_BAR = 'BAR';
-    public const DRUG_FORM_BARSOAP = 'BARSOAP';
-    public const DRUG_FORM_CHEWBAR = 'CHEWBAR';
-    public const DRUG_FORM_BEAD = 'BEAD';
-    public const DRUG_FORM_CAKE = 'CAKE';
-    public const DRUG_FORM_CEMENT = 'CEMENT';
-    public const DRUG_FORM_CRYS = 'CRYS';
-    public const DRUG_FORM_DISK = 'DISK';
-    public const DRUG_FORM_FLAKE = 'FLAKE';
-    public const DRUG_FORM_GRAN = 'GRAN';
-    public const DRUG_FORM_GUM = 'GUM';
-    public const DRUG_FORM_PAD = 'PAD';
-    public const DRUG_FORM_MEDPAD = 'MEDPAD';
-    public const DRUG_FORM_PATCH = 'PATCH';
-    public const DRUG_FORM_TPATCH = 'TPATCH';
-    public const DRUG_FORM_PELLET = 'PELLET';
-    public const DRUG_FORM_PILL = 'PILL';
-    public const DRUG_FORM_CAP = 'CAP';
-    public const DRUG_FORM_TAB = 'TAB';
-    public const DRUG_FORM_POWD = 'POWD';
-    public const DRUG_FORM_TOPPWD = 'TOPPWD';
-    public const DRUG_FORM_SUPP = 'SUPP';
-    public const DRUG_FORM_RECSUPP = 'RECSUPP';
-    public const DRUG_FORM_URETHSUPP = 'URETHSUPP';
-    public const DRUG_FORM_VAGSUPP = 'VAGSUPP';
-    public const DRUG_FORM_SWAB = 'SWAB';
-    public const DRUG_FORM_MEDSWAB = 'MEDSWAB';
-    public const DRUG_FORM_WAFER = 'WAFER';
+    public static $FORM_CODE_BS001 = 'BS001';
+    public static $FORM_CODE_BS002 = 'BS002';
+    public static $FORM_CODE_BS003 = 'BS003';
+    public static $FORM_CODE_BS004 = 'BS004';
+    public static $FORM_CODE_BS005 = 'BS005';
+    public static $FORM_CODE_BS006 = 'BS006';
+    public static $FORM_CODE_BS007 = 'BS007';
+    public static $FORM_CODE_BS008 = 'BS008';
+    public static $FORM_CODE_BS009 = 'BS009';
+    public static $FORM_CODE_BS010 = 'BS010';
+    public static $FORM_CODE_BS011 = 'BS011';
+    public static $FORM_CODE_BS012 = 'BS012';
+    public static $FORM_CODE_BS013 = 'BS013';
+    public static $FORM_CODE_BS014 = 'BS014';
+    public static $FORM_CODE_BS015 = 'BS015';
+    public static $FORM_CODE_BS016 = 'BS016';
+    public static $FORM_CODE_BS017 = 'BS017';
+    public static $FORM_CODE_BS018 = 'BS018';
+    public static $FORM_CODE_BS019 = 'BS019';
+    public static $FORM_CODE_BS020 = 'BS020';
+    public static $FORM_CODE_BS021 = 'BS021';
+    public static $FORM_CODE_BS022 = 'BS022';
+    public static $FORM_CODE_BS023 = 'BS023';
+    public static $FORM_CODE_BS024 = 'BS024';
+    public static $FORM_CODE_BS025 = 'BS025';
+    public static $FORM_CODE_BS026 = 'BS026';
+    public static $FORM_CODE_BS027 = 'BS027';
+    public static $FORM_CODE_BS028 = 'BS028';
+    public static $FORM_CODE_BS029 = 'BS029';
+    public static $FORM_CODE_BS030 = 'BS030';
+    public static $FORM_CODE_BS031 = 'BS031';
+    public static $FORM_CODE_BS032 = 'BS032';
+    public static $FORM_CODE_BS033 = 'BS033';
+    public static $FORM_CODE_BS034 = 'BS034';
+    public static $FORM_CODE_BS035 = 'BS035';
+    public static $FORM_CODE_BS036 = 'BS036';
+    public static $FORM_CODE_BS037 = 'BS037';
+    public static $FORM_CODE_BS038 = 'BS038';
+    public static $FORM_CODE_BS039 = 'BS039';
+    public static $FORM_CODE_BS040 = 'BS040';
+    public static $FORM_CODE_BS041 = 'BS041';
+    public static $FORM_CODE_BS042 = 'BS042';
+    public static $FORM_CODE_BS043 = 'BS043';
+    public static $FORM_CODE_BS044 = 'BS044';
+    public static $FORM_CODE_BS045 = 'BS045';
+    public static $FORM_CODE_BS046 = 'BS046';
+    public static $FORM_CODE_BS047 = 'BS047';
+    public static $FORM_CODE_BS048 = 'BS048';
+    public static $FORM_CODE_BS049 = 'BS049';
+    public static $FORM_CODE_BS050 = 'BS050';
+    public static $FORM_CODE_BS051 = 'BS051';
+    public static $FORM_CODE_BS052 = 'BS052';
+    public static $FORM_CODE_BS053 = 'BS053';
+    public static $FORM_CODE_BS054 = 'BS054';
+    public static $FORM_CODE_BS055 = 'BS055';
+    public static $FORM_CODE_BS056 = 'BS056';
+    public static $FORM_CODE_BS057 = 'BS057';
+    public static $FORM_CODE_BS058 = 'BS058';
+    public static $FORM_CODE_BS059 = 'BS059';
+    public static $FORM_CODE_BS060 = 'BS060';
+    public static $FORM_CODE_BS061 = 'BS061';
+    public static $FORM_CODE_BS062 = 'BS062';
+    public static $FORM_CODE_BS063 = 'BS063';
+    public static $FORM_CODE_BS064 = 'BS064';
+    public static $FORM_CODE_BS065 = 'BS065';
+    public static $FORM_CODE_BS066 = 'BS066';
+    public static $FORM_CODE_BS067 = 'BS067';
+    public static $FORM_CODE_BS068 = 'BS068';
+    public static $FORM_CODE_BS069 = 'BS069';
+    public static $FORM_CODE_BS070 = 'BS070';
+    public static $FORM_CODE_BS071 = 'BS071';
+    public static $FORM_CODE_BS072 = 'BS072';
+    public static $FORM_CODE_BS073 = 'BS073';
+    public static $FORM_CODE_BS074 = 'BS074';
+    public static $FORM_CODE_BS075 = 'BS075';
+    public static $FORM_CODE_BS076 = 'BS076';
+    public static $FORM_CODE_BS077 = 'BS077';
+    public static $FORM_CODE_BS078 = 'BS078';
+    public static $FORM_CODE_BS079 = 'BS079';
+    public static $FORM_CODE_BS080 = 'BS080';
+    public static $FORM_CODE_BS081 = 'BS081';
+    public static $FORM_CODE_BS082 = 'BS082';
+    public static $FORM_CODE_BS083 = 'BS083';
+    public static $FORM_CODE_BS084 = 'BS084';
+    public static $FORM_CODE_BS085 = 'BS085';
+    public static $FORM_CODE_BS086 = 'BS086';
+    public static $FORM_CODE_BS087 = 'BS087';
+    public static $FORM_CODE_BS088 = 'BS088';
+    public static $FORM_CODE_BS089 = 'BS089';
+    public static $FORM_CODE_BS090 = 'BS090';
+    public static $FORM_CODE_BS091 = 'BS091';
+    public static $FORM_CODE_BS092 = 'BS092';
+    public static $FORM_CODE_BS093 = 'BS093';
+    public static $FORM_CODE_BS094 = 'BS094';
+    public static $FORM_CODE_BS095 = 'BS095';
+    public static $FORM_CODE_BS096 = 'BS096';
+    public static $TYPE_NC = 'NC';
+    public static $TYPE_SD = 'SD';
+    public static $TYPE_EP = 'EP';
+    public static $PROGRESS_REQUEST = 'request';
+    public static $PROGRESS_DISPENSE = 'dispense';
+    public static $STATUS_ACTIVE = 'active';
+    public static $STATUS_ON_HOLD = 'on-hold';
+    public static $STATUS_CANCELLED = 'cancelled';
+    public static $STATUS_COMPLETED = 'completed';
+    public static $STATUS_ENTERED_IN_ERROR = 'entered-in-error';
+    public static $STATUS_STOPPED = 'stopped';
+    public static $STATUS_DRAFT = 'draft';
+    public static $STATUS_UNKNOWN = 'unknown';
+    public static $PRIORITY_ROUTINE = 'routine';
+    public static $PRIORITY_URGENT = 'urgent';
+    public static $PRIORITY_ASAP = 'asap';
+    public static $PRIORITY_STAT = 'stat';
+    public static $DRUG_FORM_APPFUL = 'APPFUL';
+    public static $DRUG_FORM_DROP = 'DROP';
+    public static $DRUG_FORM_NDROP = 'NDROP';
+    public static $DRUG_FORM_OPDROP = 'OPDROP';
+    public static $DRUG_FORM_ORDROP = 'ORDROP';
+    public static $DRUG_FORM_OTDROP = 'OTDROP';
+    public static $DRUG_FORM_PUFF = 'PUFF';
+    public static $DRUG_FORM_SCOOP = 'SCOOP';
+    public static $DRUG_FORM_SPRY = 'SPRY';
+    public static $DRUG_FORM_GASINHL = 'GASINHL';
+    public static $DRUG_FORM_AER = 'AER';
+    public static $DRUG_FORM_BAINHL = 'BAINHL';
+    public static $DRUG_FORM_INHLSOL = 'INHLSOL';
+    public static $DRUG_FORM_MDINHL = 'MDINHL';
+    public static $DRUG_FORM_NASSPRY = 'NASSPRY';
+    public static $DRUG_FORM_DERMSPRY = 'DERMSPRY';
+    public static $DRUG_FORM_FOAM = 'FOAM';
+    public static $DRUG_FORM_FOAMAPL = 'FOAMAPL';
+    public static $DRUG_FORM_RECFORM = 'RECFORM';
+    public static $DRUG_FORM_VAGFOAM = 'VAGFOAM';
+    public static $DRUG_FORM_RECSPRY = 'RECSPRY';
+    public static $DRUG_FORM_VAGSPRY = 'VAGSPRY';
+    public static $DRUG_FORM_INHL = 'INHL';
+    public static $DRUG_FORM_BAINHLPWD = 'BAINHLPWD';
+    public static $DRUG_FORM_INHLPWD = 'INHLPWD';
+    public static $DRUG_FORM_MDINHLPWD = 'MDINHLPWD';
+    public static $DRUG_FORM_NASINHL = 'NASINHL';
+    public static $DRUG_FORM_ORINHL = 'ORINHL';
+    public static $DRUG_FORM_PWDSPRY = 'PWDSPRY';
+    public static $DRUG_FORM_SPRYADAPT = 'SPRYADAPT';
+    public static $DRUG_FORM_LIQCLN = 'LIQCLN';
+    public static $DRUG_FORM_LIQSOAP = 'LIQSOAP';
+    public static $DRUG_FORM_SHMP = 'SHMP';
+    public static $DRUG_FORM_OIL = 'OIL';
+    public static $DRUG_FORM_TOPOIL = 'TOPOIL';
+    public static $DRUG_FORM_SOL = 'SOL';
+    public static $DRUG_FORM_IPSOL = 'IPSOL';
+    public static $DRUG_FORM_IRSOL = 'IRSOL';
+    public static $DRUG_FORM_IVSOL = 'IVSOL';
+    public static $DRUG_FORM_ORALSOL = 'ORALSOL';
+    public static $DRUG_FORM_RECSOL = 'RECSOL';
+    public static $DRUG_FORM_TOPSOL = 'TOPSOL';
+    public static $DRUG_FORM_CRM = 'CRM';
+    public static $DRUG_FORM_NASCRM = 'NASCRM';
+    public static $DRUG_FORM_OPCRM = 'OPCRM';
+    public static $DRUG_FORM_ORCRM = 'ORCRM';
+    public static $DRUG_FORM_OTCRM = 'OTCRM';
+    public static $DRUG_FORM_RECCRM = 'RECCRM';
+    public static $DRUG_FORM_TOPCRM = 'TOPCRM';
+    public static $DRUG_FORM_VAGCRM = 'VAGCRM';
+    public static $DRUG_FORM_LTN = 'LTN';
+    public static $DRUG_FORM_TOPLTN = 'TOPLTN';
+    public static $DRUG_FORM_OINT = 'OINT';
+    public static $DRUG_FORM_NASOINT = 'NASOINT';
+    public static $DRUG_FORM_OINTAPL = 'OINTAPL';
+    public static $DRUG_FORM_OPOINT = 'OPOINT';
+    public static $DRUG_FORM_OTOINT = 'OTOINT';
+    public static $DRUG_FORM_RECOINT = 'RECOINT';
+    public static $DRUG_FORM_TOPOINT = 'TOPOINT';
+    public static $DRUG_FORM_VAGOINT = 'VAGOINT';
+    public static $DRUG_FORM_GEL = 'GEL';
+    public static $DRUG_FORM_GELAPL = 'GELAPL';
+    public static $DRUG_FORM_NASGEL = 'NASGEL';
+    public static $DRUG_FORM_OPGEL = 'OPGEL';
+    public static $DRUG_FORM_OTGEL = 'OTGEL';
+    public static $DRUG_FORM_TOPGEL = 'TOPGEL';
+    public static $DRUG_FORM_URETHGEL = 'URETHGEL';
+    public static $DRUG_FORM_VAGGEL = 'VAGGEL';
+    public static $DRUG_FORM_PASTE = 'PASTE';
+    public static $DRUG_FORM_PUD = 'PUD';
+    public static $DRUG_FORM_TPASTE = 'TPASTE';
+    public static $DRUG_FORM_SUSP = 'SUSP';
+    public static $DRUG_FORM_ITSUSP = 'ITSUSP';
+    public static $DRUG_FORM_OPSUSP = 'OPSUSP';
+    public static $DRUG_FORM_ORSUSP = 'ORSUSP';
+    public static $DRUG_FORM_OTSUSP = 'OTSUSP';
+    public static $DRUG_FORM_RECSUSP = 'RECSUSP';
+    public static $DRUG_FORM_BAR = 'BAR';
+    public static $DRUG_FORM_BARSOAP = 'BARSOAP';
+    public static $DRUG_FORM_CHEWBAR = 'CHEWBAR';
+    public static $DRUG_FORM_BEAD = 'BEAD';
+    public static $DRUG_FORM_CAKE = 'CAKE';
+    public static $DRUG_FORM_CEMENT = 'CEMENT';
+    public static $DRUG_FORM_CRYS = 'CRYS';
+    public static $DRUG_FORM_DISK = 'DISK';
+    public static $DRUG_FORM_FLAKE = 'FLAKE';
+    public static $DRUG_FORM_GRAN = 'GRAN';
+    public static $DRUG_FORM_GUM = 'GUM';
+    public static $DRUG_FORM_PAD = 'PAD';
+    public static $DRUG_FORM_MEDPAD = 'MEDPAD';
+    public static $DRUG_FORM_PATCH = 'PATCH';
+    public static $DRUG_FORM_TPATCH = 'TPATCH';
+    public static $DRUG_FORM_PELLET = 'PELLET';
+    public static $DRUG_FORM_PILL = 'PILL';
+    public static $DRUG_FORM_CAP = 'CAP';
+    public static $DRUG_FORM_TAB = 'TAB';
+    public static $DRUG_FORM_POWD = 'POWD';
+    public static $DRUG_FORM_TOPPWD = 'TOPPWD';
+    public static $DRUG_FORM_SUPP = 'SUPP';
+    public static $DRUG_FORM_RECSUPP = 'RECSUPP';
+    public static $DRUG_FORM_URETHSUPP = 'URETHSUPP';
+    public static $DRUG_FORM_VAGSUPP = 'VAGSUPP';
+    public static $DRUG_FORM_SWAB = 'SWAB';
+    public static $DRUG_FORM_MEDSWAB = 'MEDSWAB';
+    public static $DRUG_FORM_WAFER = 'WAFER';
 
     /**
      * Gets allowable values of the enum
@@ -523,102 +523,102 @@ class Medication extends MediatorResourceBasic
     public function getFormCodeAllowableValues()
     {
         return [
-            self::FORM_CODE_BS001,
-            self::FORM_CODE_BS002,
-            self::FORM_CODE_BS003,
-            self::FORM_CODE_BS004,
-            self::FORM_CODE_BS005,
-            self::FORM_CODE_BS006,
-            self::FORM_CODE_BS007,
-            self::FORM_CODE_BS008,
-            self::FORM_CODE_BS009,
-            self::FORM_CODE_BS010,
-            self::FORM_CODE_BS011,
-            self::FORM_CODE_BS012,
-            self::FORM_CODE_BS013,
-            self::FORM_CODE_BS014,
-            self::FORM_CODE_BS015,
-            self::FORM_CODE_BS016,
-            self::FORM_CODE_BS017,
-            self::FORM_CODE_BS018,
-            self::FORM_CODE_BS019,
-            self::FORM_CODE_BS020,
-            self::FORM_CODE_BS021,
-            self::FORM_CODE_BS022,
-            self::FORM_CODE_BS023,
-            self::FORM_CODE_BS024,
-            self::FORM_CODE_BS025,
-            self::FORM_CODE_BS026,
-            self::FORM_CODE_BS027,
-            self::FORM_CODE_BS028,
-            self::FORM_CODE_BS029,
-            self::FORM_CODE_BS030,
-            self::FORM_CODE_BS031,
-            self::FORM_CODE_BS032,
-            self::FORM_CODE_BS033,
-            self::FORM_CODE_BS034,
-            self::FORM_CODE_BS035,
-            self::FORM_CODE_BS036,
-            self::FORM_CODE_BS037,
-            self::FORM_CODE_BS038,
-            self::FORM_CODE_BS039,
-            self::FORM_CODE_BS040,
-            self::FORM_CODE_BS041,
-            self::FORM_CODE_BS042,
-            self::FORM_CODE_BS043,
-            self::FORM_CODE_BS044,
-            self::FORM_CODE_BS045,
-            self::FORM_CODE_BS046,
-            self::FORM_CODE_BS047,
-            self::FORM_CODE_BS048,
-            self::FORM_CODE_BS049,
-            self::FORM_CODE_BS050,
-            self::FORM_CODE_BS051,
-            self::FORM_CODE_BS052,
-            self::FORM_CODE_BS053,
-            self::FORM_CODE_BS054,
-            self::FORM_CODE_BS055,
-            self::FORM_CODE_BS056,
-            self::FORM_CODE_BS057,
-            self::FORM_CODE_BS058,
-            self::FORM_CODE_BS059,
-            self::FORM_CODE_BS060,
-            self::FORM_CODE_BS061,
-            self::FORM_CODE_BS062,
-            self::FORM_CODE_BS063,
-            self::FORM_CODE_BS064,
-            self::FORM_CODE_BS065,
-            self::FORM_CODE_BS066,
-            self::FORM_CODE_BS067,
-            self::FORM_CODE_BS068,
-            self::FORM_CODE_BS069,
-            self::FORM_CODE_BS070,
-            self::FORM_CODE_BS071,
-            self::FORM_CODE_BS072,
-            self::FORM_CODE_BS073,
-            self::FORM_CODE_BS074,
-            self::FORM_CODE_BS075,
-            self::FORM_CODE_BS076,
-            self::FORM_CODE_BS077,
-            self::FORM_CODE_BS078,
-            self::FORM_CODE_BS079,
-            self::FORM_CODE_BS080,
-            self::FORM_CODE_BS081,
-            self::FORM_CODE_BS082,
-            self::FORM_CODE_BS083,
-            self::FORM_CODE_BS084,
-            self::FORM_CODE_BS085,
-            self::FORM_CODE_BS086,
-            self::FORM_CODE_BS087,
-            self::FORM_CODE_BS088,
-            self::FORM_CODE_BS089,
-            self::FORM_CODE_BS090,
-            self::FORM_CODE_BS091,
-            self::FORM_CODE_BS092,
-            self::FORM_CODE_BS093,
-            self::FORM_CODE_BS094,
-            self::FORM_CODE_BS095,
-            self::FORM_CODE_BS096,
+            self::$FORM_CODE_BS001,
+            self::$FORM_CODE_BS002,
+            self::$FORM_CODE_BS003,
+            self::$FORM_CODE_BS004,
+            self::$FORM_CODE_BS005,
+            self::$FORM_CODE_BS006,
+            self::$FORM_CODE_BS007,
+            self::$FORM_CODE_BS008,
+            self::$FORM_CODE_BS009,
+            self::$FORM_CODE_BS010,
+            self::$FORM_CODE_BS011,
+            self::$FORM_CODE_BS012,
+            self::$FORM_CODE_BS013,
+            self::$FORM_CODE_BS014,
+            self::$FORM_CODE_BS015,
+            self::$FORM_CODE_BS016,
+            self::$FORM_CODE_BS017,
+            self::$FORM_CODE_BS018,
+            self::$FORM_CODE_BS019,
+            self::$FORM_CODE_BS020,
+            self::$FORM_CODE_BS021,
+            self::$FORM_CODE_BS022,
+            self::$FORM_CODE_BS023,
+            self::$FORM_CODE_BS024,
+            self::$FORM_CODE_BS025,
+            self::$FORM_CODE_BS026,
+            self::$FORM_CODE_BS027,
+            self::$FORM_CODE_BS028,
+            self::$FORM_CODE_BS029,
+            self::$FORM_CODE_BS030,
+            self::$FORM_CODE_BS031,
+            self::$FORM_CODE_BS032,
+            self::$FORM_CODE_BS033,
+            self::$FORM_CODE_BS034,
+            self::$FORM_CODE_BS035,
+            self::$FORM_CODE_BS036,
+            self::$FORM_CODE_BS037,
+            self::$FORM_CODE_BS038,
+            self::$FORM_CODE_BS039,
+            self::$FORM_CODE_BS040,
+            self::$FORM_CODE_BS041,
+            self::$FORM_CODE_BS042,
+            self::$FORM_CODE_BS043,
+            self::$FORM_CODE_BS044,
+            self::$FORM_CODE_BS045,
+            self::$FORM_CODE_BS046,
+            self::$FORM_CODE_BS047,
+            self::$FORM_CODE_BS048,
+            self::$FORM_CODE_BS049,
+            self::$FORM_CODE_BS050,
+            self::$FORM_CODE_BS051,
+            self::$FORM_CODE_BS052,
+            self::$FORM_CODE_BS053,
+            self::$FORM_CODE_BS054,
+            self::$FORM_CODE_BS055,
+            self::$FORM_CODE_BS056,
+            self::$FORM_CODE_BS057,
+            self::$FORM_CODE_BS058,
+            self::$FORM_CODE_BS059,
+            self::$FORM_CODE_BS060,
+            self::$FORM_CODE_BS061,
+            self::$FORM_CODE_BS062,
+            self::$FORM_CODE_BS063,
+            self::$FORM_CODE_BS064,
+            self::$FORM_CODE_BS065,
+            self::$FORM_CODE_BS066,
+            self::$FORM_CODE_BS067,
+            self::$FORM_CODE_BS068,
+            self::$FORM_CODE_BS069,
+            self::$FORM_CODE_BS070,
+            self::$FORM_CODE_BS071,
+            self::$FORM_CODE_BS072,
+            self::$FORM_CODE_BS073,
+            self::$FORM_CODE_BS074,
+            self::$FORM_CODE_BS075,
+            self::$FORM_CODE_BS076,
+            self::$FORM_CODE_BS077,
+            self::$FORM_CODE_BS078,
+            self::$FORM_CODE_BS079,
+            self::$FORM_CODE_BS080,
+            self::$FORM_CODE_BS081,
+            self::$FORM_CODE_BS082,
+            self::$FORM_CODE_BS083,
+            self::$FORM_CODE_BS084,
+            self::$FORM_CODE_BS085,
+            self::$FORM_CODE_BS086,
+            self::$FORM_CODE_BS087,
+            self::$FORM_CODE_BS088,
+            self::$FORM_CODE_BS089,
+            self::$FORM_CODE_BS090,
+            self::$FORM_CODE_BS091,
+            self::$FORM_CODE_BS092,
+            self::$FORM_CODE_BS093,
+            self::$FORM_CODE_BS094,
+            self::$FORM_CODE_BS095,
+            self::$FORM_CODE_BS096,
         ];
     }
     /**
@@ -629,9 +629,9 @@ class Medication extends MediatorResourceBasic
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_NC,
-            self::TYPE_SD,
-            self::TYPE_EP,
+            self::$TYPE_NC,
+            self::$TYPE_SD,
+            self::$TYPE_EP,
         ];
     }
     /**
@@ -642,8 +642,8 @@ class Medication extends MediatorResourceBasic
     public function getProgressAllowableValues()
     {
         return [
-            self::PROGRESS_REQUEST,
-            self::PROGRESS_DISPENSE,
+            self::$PROGRESS_REQUEST,
+            self::$PROGRESS_DISPENSE,
         ];
     }
     /**
@@ -654,14 +654,14 @@ class Medication extends MediatorResourceBasic
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_ACTIVE,
-            self::STATUS_ON_HOLD,
-            self::STATUS_CANCELLED,
-            self::STATUS_COMPLETED,
-            self::STATUS_ENTERED_IN_ERROR,
-            self::STATUS_STOPPED,
-            self::STATUS_DRAFT,
-            self::STATUS_UNKNOWN,
+            self::$STATUS_ACTIVE,
+            self::$STATUS_ON_HOLD,
+            self::$STATUS_CANCELLED,
+            self::$STATUS_COMPLETED,
+            self::$STATUS_ENTERED_IN_ERROR,
+            self::$STATUS_STOPPED,
+            self::$STATUS_DRAFT,
+            self::$STATUS_UNKNOWN,
         ];
     }
     /**
@@ -672,10 +672,10 @@ class Medication extends MediatorResourceBasic
     public function getPriorityAllowableValues()
     {
         return [
-            self::PRIORITY_ROUTINE,
-            self::PRIORITY_URGENT,
-            self::PRIORITY_ASAP,
-            self::PRIORITY_STAT,
+            self::$PRIORITY_ROUTINE,
+            self::$PRIORITY_URGENT,
+            self::$PRIORITY_ASAP,
+            self::$PRIORITY_STAT,
         ];
     }
     /**
@@ -686,111 +686,111 @@ class Medication extends MediatorResourceBasic
     public function getDrugFormAllowableValues()
     {
         return [
-            self::DRUG_FORM_APPFUL,
-            self::DRUG_FORM_DROP,
-            self::DRUG_FORM_NDROP,
-            self::DRUG_FORM_OPDROP,
-            self::DRUG_FORM_ORDROP,
-            self::DRUG_FORM_OTDROP,
-            self::DRUG_FORM_PUFF,
-            self::DRUG_FORM_SCOOP,
-            self::DRUG_FORM_SPRY,
-            self::DRUG_FORM_GASINHL,
-            self::DRUG_FORM_AER,
-            self::DRUG_FORM_BAINHL,
-            self::DRUG_FORM_INHLSOL,
-            self::DRUG_FORM_MDINHL,
-            self::DRUG_FORM_NASSPRY,
-            self::DRUG_FORM_DERMSPRY,
-            self::DRUG_FORM_FOAM,
-            self::DRUG_FORM_FOAMAPL,
-            self::DRUG_FORM_RECFORM,
-            self::DRUG_FORM_VAGFOAM,
-            self::DRUG_FORM_RECSPRY,
-            self::DRUG_FORM_VAGSPRY,
-            self::DRUG_FORM_INHL,
-            self::DRUG_FORM_BAINHLPWD,
-            self::DRUG_FORM_INHLPWD,
-            self::DRUG_FORM_MDINHLPWD,
-            self::DRUG_FORM_NASINHL,
-            self::DRUG_FORM_ORINHL,
-            self::DRUG_FORM_PWDSPRY,
-            self::DRUG_FORM_SPRYADAPT,
-            self::DRUG_FORM_LIQCLN,
-            self::DRUG_FORM_LIQSOAP,
-            self::DRUG_FORM_SHMP,
-            self::DRUG_FORM_OIL,
-            self::DRUG_FORM_TOPOIL,
-            self::DRUG_FORM_SOL,
-            self::DRUG_FORM_IPSOL,
-            self::DRUG_FORM_IRSOL,
-            self::DRUG_FORM_IVSOL,
-            self::DRUG_FORM_ORALSOL,
-            self::DRUG_FORM_RECSOL,
-            self::DRUG_FORM_TOPSOL,
-            self::DRUG_FORM_CRM,
-            self::DRUG_FORM_NASCRM,
-            self::DRUG_FORM_OPCRM,
-            self::DRUG_FORM_ORCRM,
-            self::DRUG_FORM_OTCRM,
-            self::DRUG_FORM_RECCRM,
-            self::DRUG_FORM_TOPCRM,
-            self::DRUG_FORM_VAGCRM,
-            self::DRUG_FORM_LTN,
-            self::DRUG_FORM_TOPLTN,
-            self::DRUG_FORM_OINT,
-            self::DRUG_FORM_NASOINT,
-            self::DRUG_FORM_OINTAPL,
-            self::DRUG_FORM_OPOINT,
-            self::DRUG_FORM_OTOINT,
-            self::DRUG_FORM_RECOINT,
-            self::DRUG_FORM_TOPOINT,
-            self::DRUG_FORM_VAGOINT,
-            self::DRUG_FORM_GEL,
-            self::DRUG_FORM_GELAPL,
-            self::DRUG_FORM_NASGEL,
-            self::DRUG_FORM_OPGEL,
-            self::DRUG_FORM_OTGEL,
-            self::DRUG_FORM_TOPGEL,
-            self::DRUG_FORM_URETHGEL,
-            self::DRUG_FORM_VAGGEL,
-            self::DRUG_FORM_PASTE,
-            self::DRUG_FORM_PUD,
-            self::DRUG_FORM_TPASTE,
-            self::DRUG_FORM_SUSP,
-            self::DRUG_FORM_ITSUSP,
-            self::DRUG_FORM_OPSUSP,
-            self::DRUG_FORM_ORSUSP,
-            self::DRUG_FORM_OTSUSP,
-            self::DRUG_FORM_RECSUSP,
-            self::DRUG_FORM_BAR,
-            self::DRUG_FORM_BARSOAP,
-            self::DRUG_FORM_CHEWBAR,
-            self::DRUG_FORM_BEAD,
-            self::DRUG_FORM_CAKE,
-            self::DRUG_FORM_CEMENT,
-            self::DRUG_FORM_CRYS,
-            self::DRUG_FORM_DISK,
-            self::DRUG_FORM_FLAKE,
-            self::DRUG_FORM_GRAN,
-            self::DRUG_FORM_GUM,
-            self::DRUG_FORM_PAD,
-            self::DRUG_FORM_MEDPAD,
-            self::DRUG_FORM_PATCH,
-            self::DRUG_FORM_TPATCH,
-            self::DRUG_FORM_PELLET,
-            self::DRUG_FORM_PILL,
-            self::DRUG_FORM_CAP,
-            self::DRUG_FORM_TAB,
-            self::DRUG_FORM_POWD,
-            self::DRUG_FORM_TOPPWD,
-            self::DRUG_FORM_SUPP,
-            self::DRUG_FORM_RECSUPP,
-            self::DRUG_FORM_URETHSUPP,
-            self::DRUG_FORM_VAGSUPP,
-            self::DRUG_FORM_SWAB,
-            self::DRUG_FORM_MEDSWAB,
-            self::DRUG_FORM_WAFER,
+            self::$DRUG_FORM_APPFUL,
+            self::$DRUG_FORM_DROP,
+            self::$DRUG_FORM_NDROP,
+            self::$DRUG_FORM_OPDROP,
+            self::$DRUG_FORM_ORDROP,
+            self::$DRUG_FORM_OTDROP,
+            self::$DRUG_FORM_PUFF,
+            self::$DRUG_FORM_SCOOP,
+            self::$DRUG_FORM_SPRY,
+            self::$DRUG_FORM_GASINHL,
+            self::$DRUG_FORM_AER,
+            self::$DRUG_FORM_BAINHL,
+            self::$DRUG_FORM_INHLSOL,
+            self::$DRUG_FORM_MDINHL,
+            self::$DRUG_FORM_NASSPRY,
+            self::$DRUG_FORM_DERMSPRY,
+            self::$DRUG_FORM_FOAM,
+            self::$DRUG_FORM_FOAMAPL,
+            self::$DRUG_FORM_RECFORM,
+            self::$DRUG_FORM_VAGFOAM,
+            self::$DRUG_FORM_RECSPRY,
+            self::$DRUG_FORM_VAGSPRY,
+            self::$DRUG_FORM_INHL,
+            self::$DRUG_FORM_BAINHLPWD,
+            self::$DRUG_FORM_INHLPWD,
+            self::$DRUG_FORM_MDINHLPWD,
+            self::$DRUG_FORM_NASINHL,
+            self::$DRUG_FORM_ORINHL,
+            self::$DRUG_FORM_PWDSPRY,
+            self::$DRUG_FORM_SPRYADAPT,
+            self::$DRUG_FORM_LIQCLN,
+            self::$DRUG_FORM_LIQSOAP,
+            self::$DRUG_FORM_SHMP,
+            self::$DRUG_FORM_OIL,
+            self::$DRUG_FORM_TOPOIL,
+            self::$DRUG_FORM_SOL,
+            self::$DRUG_FORM_IPSOL,
+            self::$DRUG_FORM_IRSOL,
+            self::$DRUG_FORM_IVSOL,
+            self::$DRUG_FORM_ORALSOL,
+            self::$DRUG_FORM_RECSOL,
+            self::$DRUG_FORM_TOPSOL,
+            self::$DRUG_FORM_CRM,
+            self::$DRUG_FORM_NASCRM,
+            self::$DRUG_FORM_OPCRM,
+            self::$DRUG_FORM_ORCRM,
+            self::$DRUG_FORM_OTCRM,
+            self::$DRUG_FORM_RECCRM,
+            self::$DRUG_FORM_TOPCRM,
+            self::$DRUG_FORM_VAGCRM,
+            self::$DRUG_FORM_LTN,
+            self::$DRUG_FORM_TOPLTN,
+            self::$DRUG_FORM_OINT,
+            self::$DRUG_FORM_NASOINT,
+            self::$DRUG_FORM_OINTAPL,
+            self::$DRUG_FORM_OPOINT,
+            self::$DRUG_FORM_OTOINT,
+            self::$DRUG_FORM_RECOINT,
+            self::$DRUG_FORM_TOPOINT,
+            self::$DRUG_FORM_VAGOINT,
+            self::$DRUG_FORM_GEL,
+            self::$DRUG_FORM_GELAPL,
+            self::$DRUG_FORM_NASGEL,
+            self::$DRUG_FORM_OPGEL,
+            self::$DRUG_FORM_OTGEL,
+            self::$DRUG_FORM_TOPGEL,
+            self::$DRUG_FORM_URETHGEL,
+            self::$DRUG_FORM_VAGGEL,
+            self::$DRUG_FORM_PASTE,
+            self::$DRUG_FORM_PUD,
+            self::$DRUG_FORM_TPASTE,
+            self::$DRUG_FORM_SUSP,
+            self::$DRUG_FORM_ITSUSP,
+            self::$DRUG_FORM_OPSUSP,
+            self::$DRUG_FORM_ORSUSP,
+            self::$DRUG_FORM_OTSUSP,
+            self::$DRUG_FORM_RECSUSP,
+            self::$DRUG_FORM_BAR,
+            self::$DRUG_FORM_BARSOAP,
+            self::$DRUG_FORM_CHEWBAR,
+            self::$DRUG_FORM_BEAD,
+            self::$DRUG_FORM_CAKE,
+            self::$DRUG_FORM_CEMENT,
+            self::$DRUG_FORM_CRYS,
+            self::$DRUG_FORM_DISK,
+            self::$DRUG_FORM_FLAKE,
+            self::$DRUG_FORM_GRAN,
+            self::$DRUG_FORM_GUM,
+            self::$DRUG_FORM_PAD,
+            self::$DRUG_FORM_MEDPAD,
+            self::$DRUG_FORM_PATCH,
+            self::$DRUG_FORM_TPATCH,
+            self::$DRUG_FORM_PELLET,
+            self::$DRUG_FORM_PILL,
+            self::$DRUG_FORM_CAP,
+            self::$DRUG_FORM_TAB,
+            self::$DRUG_FORM_POWD,
+            self::$DRUG_FORM_TOPPWD,
+            self::$DRUG_FORM_SUPP,
+            self::$DRUG_FORM_RECSUPP,
+            self::$DRUG_FORM_URETHSUPP,
+            self::$DRUG_FORM_VAGSUPP,
+            self::$DRUG_FORM_SWAB,
+            self::$DRUG_FORM_MEDSWAB,
+            self::$DRUG_FORM_WAFER,
         ];
     }
 

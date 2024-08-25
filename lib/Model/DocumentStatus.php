@@ -40,7 +40,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class DocumentStatus extends MediatorResourceBasic
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -166,9 +166,9 @@ class DocumentStatus extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    public const STATUS_CODE_PRELIMINARY = 'preliminary';
-    public const STATUS_CODE_AMENDED = 'amended';
-    public const STATUS_CODE__FINAL = 'final';
+    public static $STATUS_CODE_PRELIMINARY = 'preliminary';
+    public static $STATUS_CODE_AMENDED = 'amended';
+    public static $STATUS_CODE__FINAL = 'final';
 
     /**
      * Gets allowable values of the enum
@@ -178,9 +178,9 @@ class DocumentStatus extends MediatorResourceBasic
     public function getStatusCodeAllowableValues()
     {
         return [
-            self::STATUS_CODE_PRELIMINARY,
-            self::STATUS_CODE_AMENDED,
-            self::STATUS_CODE__FINAL,
+            self::$STATUS_CODE_PRELIMINARY,
+            self::$STATUS_CODE_AMENDED,
+            self::$STATUS_CODE__FINAL,
         ];
     }
 

@@ -190,6 +190,7 @@ abstract class MediatorForm extends Validation
         $validator->validate($this);
     }
 
+    public abstract function build();
 
     /**
      * @throws GuzzleException

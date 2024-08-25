@@ -40,7 +40,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class ServiceRequest extends MediatorResourceBasic
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -211,10 +211,10 @@ class ServiceRequest extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    public const REFERRAL_STATUS__3457005 = '3457005';
-    public const REFERRAL_STATUS__306098008 = '306098008';
-    public const REQUESTER_TYPE_ORGANIZATION = 'Organization';
-    public const REQUESTER_TYPE_PRACTITIONER = 'Practitioner';
+    public static $REFERRAL_STATUS__3457005 = '3457005';
+    public static $REFERRAL_STATUS__306098008 = '306098008';
+    public static $REQUESTER_TYPE_ORGANIZATION = 'Organization';
+    public static $REQUESTER_TYPE_PRACTITIONER = 'Practitioner';
 
     /**
      * Gets allowable values of the enum
@@ -224,8 +224,8 @@ class ServiceRequest extends MediatorResourceBasic
     public function getReferralStatusAllowableValues()
     {
         return [
-            self::REFERRAL_STATUS__3457005,
-            self::REFERRAL_STATUS__306098008,
+            self::$REFERRAL_STATUS__3457005,
+            self::$REFERRAL_STATUS__306098008,
         ];
     }
     /**
@@ -236,8 +236,8 @@ class ServiceRequest extends MediatorResourceBasic
     public function getRequesterTypeAllowableValues()
     {
         return [
-            self::REQUESTER_TYPE_ORGANIZATION,
-            self::REQUESTER_TYPE_PRACTITIONER,
+            self::$REQUESTER_TYPE_ORGANIZATION,
+            self::$REQUESTER_TYPE_PRACTITIONER,
         ];
     }
 

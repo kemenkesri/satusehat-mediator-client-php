@@ -294,7 +294,14 @@ class HasilLab extends Terduga
     public function setPenerimaContohUji($idNakes)
     {
         $this->observation->setPerformer($idNakes);
+        $this->serviceRequest->setRequester($idNakes);
+        $this->serviceRequest->setRequesterType('Practitioner');
+        return $this;
+    }
 
+    public function setFasyankesTujuan($fasyankes_id)
+    {
+        $this->serviceRequest->setFaskesTujuan($fasyankes_id);
         return $this;
     }
 
@@ -332,11 +339,14 @@ class HasilLab extends Terduga
 
     public function build()
     {
+        parent::build();
+
         $this->hasil->build($this);
 
-        $this->setJenisContohUji($this->contoh);
+        $this->setJenisContohUji($this->hasil->getContoh());
 
         $this->observation->setTypeObservation($this->hasil->getJenis());
+        $this->observation->setDiagnosticReport($this->hasil->getJenis());
         $this->diagnosticReport->setCodeReport($this->hasil->getJenis());
 
         $this->diagnosticReport->setIssued(self::isoDate($this->hasil->getTanggal(), $this->config->getTimezone()));

@@ -38,11 +38,11 @@ final class AlamatPasien extends ProfileValidation
             $address = $patient->getAddress();
             // print_r($address);exit;
             /** @var AddressPatient $add */
-            foreach ($address as $add) {
-                if (!$add->valid()) {
-                    throw ValidationException::create('TB_ADDRESS_INVALID', $add->listInvalidProperties());
-                }
-            }
+            // foreach ($address as $add) {
+            //     if (!$add->valid()) {
+            //         throw ValidationException::create('TB_ADDRESS_INVALID', $add->listInvalidProperties());
+            //     }
+            // }
         }
     }
 }
