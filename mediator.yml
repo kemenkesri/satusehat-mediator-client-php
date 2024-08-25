@@ -302,8 +302,6 @@ components:
           properties:
             status:
               type: string
-            type_code:
-              type: string
               enum:
                 - planned
                 - waitlist
@@ -312,6 +310,8 @@ components:
                 - finished
                 - cancelled
                 - entered-in-error
+            type_code:
+              type: string
             period_start:
               type: string
               format: date-time
@@ -333,6 +333,8 @@ components:
                 - AMB
                 - EMER
                 - IMP
+            local_id:
+              type: string
             status_akhir:
               type: string
               enum:
@@ -356,6 +358,8 @@ components:
         - $ref: '#/components/schemas/MediatorResourceBasic'
         - type: object
           properties:
+            local_id:
+              type: string
             code_condition:
               type: string
             code_system:
