@@ -1182,6 +1182,68 @@ components:
           type: string
         asal_rujukan_id:
           type: string
+    TbLabRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        person_id:
+          type: string
+        tgl_daftar:
+          type: string
+        dokter_pengirim:
+          type: string
+        tgl_pengambilan:
+          type: string
+        no_sediaan:
+          type: string
+        tgl_pengiriman:
+          type: string
+        alasan_pemeriksaan_id:
+          type: string
+        follow_up_ke:
+          type: string
+        pemeriksaan_ulang_ke:
+          type: string
+        lokasi_penyakit_id:
+          type: string
+        periksa_mikroskopis_id:
+          type: string
+        periksa_xpert_id:
+          type: string
+        contoh_uji_id:
+          type: string
+        contoh_uji_lain:
+          type: string
+        waktu1_id:
+          type: string
+        lab_provinsi_id:
+          type: string
+        lab_kabupaten_id:
+          type: string
+        lab_tujuan_id:
+          type: string
+    TbLabResult:
+      type: object
+      properties:
+        id:
+          type: string
+        person_id:
+          type: string
+        permohonan_id:
+          type: string
+        tgl_permohonan:
+          type: string
+          format: date-time
+        tgl_contoh_uji:
+          type: string
+          format: date-time
+        kondisi_contoh_uji_id:
+          type: string
+        pemeriksa:
+          type: string
+        dokter_pemeriksa:
+          type: string
     GetPatientRequest:
       type: object
       properties:

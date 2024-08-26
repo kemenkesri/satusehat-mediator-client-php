@@ -7,6 +7,7 @@ use GuzzleHttp\Psr7\Request;
 use kamermans\OAuth2\GrantType\GrantTypeInterface;
 use kamermans\OAuth2\Utils\Helper;
 use kamermans\OAuth2\Utils\Collection;
+use kamermans\OAuth2\Signer\ClientCredentials\SignerInterface;
 
 /**
  * Client credentials grant type.
@@ -51,7 +52,7 @@ class ClientCredentials implements GrantTypeInterface
         );
     }
 
-    public function getRawData($clientCredentialsSigner, $refreshToken = null)
+    public function getRawData(SignerInterface $clientCredentialsSigner, $refreshToken = null)
     {
         $url = $this->config['auth_url'];
         if (Helper::guzzleIs('>=', 6)) {
