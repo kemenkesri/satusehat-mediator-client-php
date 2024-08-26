@@ -23,7 +23,7 @@ Configuration::setConfigurationConstant(
         'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
         $clientId,
         $clientSecret,
-        'RVWrblJr9uS1PHE5JGxLNIeLWpEK',
+        null, // 'RVWrblJr9uS1PHE5JGxLNIeLWpEK',
         '+07:00'
     )
 );

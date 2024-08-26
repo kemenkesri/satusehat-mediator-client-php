@@ -661,6 +661,19 @@ class Configuration
     }
 
     /**
+     * Set default configuration environment
+     *
+     * @param string $name
+     *
+     * @return void
+     */
+    public static function setDefaultEnvironment($name)
+    {
+        if (isset(self::$CONSTANTS[$name]))
+            self::$environment = $name;
+    }
+
+    /**
      * Gets the default configuration instance
      *
      * @param string|null $name
