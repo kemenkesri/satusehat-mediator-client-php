@@ -1365,6 +1365,12 @@ components:
           $ref: '#/components/schemas/EpisodeOfCare'
         suspect_tb:
           $ref: '#/components/schemas/TbSuspect'
+        confirm_tb:
+          $ref: '#/components/schemas/TbConfirm'
+        labExamRequest:
+          $ref: '#/components/schemas/TbLabRequest'
+        labExamResult:
+          $ref: '#/components/schemas/TbLabResult'
     ApiError:
       type: object
       properties:
