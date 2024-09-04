@@ -6,7 +6,6 @@ use Mediator\SatuSehat\Lib\Client\Model\DiagnosticReport;
 use Mediator\SatuSehat\Lib\Client\Model\EpisodeOfCare;
 use Mediator\SatuSehat\Lib\Client\Model\Observation;
 use Mediator\SatuSehat\Lib\Client\Model\QuestionnaireResponse;
-use Mediator\SatuSehat\Lib\Client\Model\ServiceRequest;
 use Mediator\SatuSehat\Lib\Client\Model\TbConfirm;
 use Mediator\SatuSehat\Lib\Client\Model\TbSuspect;
 

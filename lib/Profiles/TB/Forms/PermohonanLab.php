@@ -178,7 +178,7 @@ class PermohonanLab extends Terduga
     public function build()
     {
         parent::build();
-        
+
         $this->setServiceRequest([$this->serviceRequest])
             ->setSpecimens([$this->specimen]);
     }
