@@ -73,7 +73,7 @@ class SubmitResponse implements ModelInterface, ArrayAccess
         'satusehat' => null,
         'episode_of_care' => null,
         'suspect_tb' => null,
-        'confirm_tb' => nulll,
+        'confirm_tb' => null,
         'labExamRequest' => null,
         'labExamResult' => null,
     ];
