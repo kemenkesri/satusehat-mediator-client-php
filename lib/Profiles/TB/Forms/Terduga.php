@@ -90,12 +90,12 @@ class Terduga extends MediatorForm
             }
 
             if ($encounter->getPeriodStart()) {
-                $datetime = date('Y-m-d H:i:s',  strtotime(rand(5, 60) . ' sec',strtotime($encounter->getPeriodStart())));
+                $datetime = date('Y-m-d H:i:s', strtotime(rand(5, 60) . ' sec', strtotime($encounter->getPeriodStart())));
                 $encounter->setPeriodStart(self::isoDate($datetime, $this->config->getTimezone()));
             }
 
             if ($encounter->getPeriodEnd()) {
-                $datetime = date('Y-m-d H:i:s',  strtotime(rand(61, 120) . ' sec',strtotime($encounter->getPeriodEnd())));
+                $datetime = date('Y-m-d H:i:s', strtotime(rand(61, 120) . ' sec', strtotime($encounter->getPeriodEnd())));
                 $encounter->setPeriodEnd(self::isoDate($datetime, $this->config->getTimezone()));
             }
         }else {
@@ -103,14 +103,14 @@ class Terduga extends MediatorForm
                 $localId = $encounter['local_id'] . rand(10, 10000);
                 $encounter['local_id'] = $localId;
             }
-            
+
             if (isset($encounter['period_start'])) {
-                $datetime = date('Y-m-d H:i:s',  strtotime(rand(5, 60) . ' sec',strtotime($encounter['period_start'])));
+                $datetime = date('Y-m-d H:i:s', strtotime(rand(5, 60) . ' sec', strtotime($encounter['period_start'])));
                 $encounter['period_start'] = self::isoDate($datetime, $this->config->getTimezone());
             }
 
             if (isset($encounter['period_end'])) {
-                $datetime = date('Y-m-d H:i:s',  strtotime(rand(61, 120) . ' sec',strtotime($encounter['period_end'])));
+                $datetime = date('Y-m-d H:i:s', strtotime(rand(61, 120) . ' sec', strtotime($encounter['period_end'])));
                 $encounter['period_end'] = self::isoDate($datetime, $this->config->getTimezone());
             }
         }
