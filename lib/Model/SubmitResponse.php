@@ -123,8 +123,8 @@ class SubmitResponse implements ModelInterface, ArrayAccess
         'episode_of_care' => 'setEpisodeOfCare',
         'suspect_tb' => 'setTbSuspect',
         'confirm_tb' => 'setTbConfirm',
-        'labExamRequest' => 'setLabExamRequest',
-        'labExamResult' => 'setLabExamResult'
+        'labExamRequest' => 'setTbLabRequest',
+        'labExamResult' => 'setTbLabResult'
     ];
 
     /**
@@ -137,8 +137,8 @@ class SubmitResponse implements ModelInterface, ArrayAccess
         'episode_of_care' => 'getEpisodeOfCare',
         'suspect_tb' => 'getTbSuspect',
         'confirm_tb' => 'getTbConfirm',
-        'labExamRequest' => 'getLabExamRequest',
-        'labExamResult' => 'getLabExamResult'
+        'labExamRequest' => 'getTbLabRequest',
+        'labExamResult' => 'getTbLabResult'
     ];
 
     /**
