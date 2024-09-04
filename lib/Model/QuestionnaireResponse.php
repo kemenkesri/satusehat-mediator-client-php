@@ -40,7 +40,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class QuestionnaireResponse extends MediatorResourceBasic
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -281,9 +281,9 @@ class QuestionnaireResponse extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    public const QUESTIONNAIRE_ANC = 'ANC';
-    public const QUESTIONNAIRE_TB = 'TB';
-    public const QUESTIONNAIRE_NAR = 'NAR';
+    public static $QUESTIONNAIRE_ANC = 'ANC';
+    public static $QUESTIONNAIRE_TB = 'TB';
+    public static $QUESTIONNAIRE_NAR = 'NAR';
 
     /**
      * Gets allowable values of the enum
@@ -293,9 +293,9 @@ class QuestionnaireResponse extends MediatorResourceBasic
     public function getQuestionnaireAllowableValues()
     {
         return [
-            self::QUESTIONNAIRE_ANC,
-            self::QUESTIONNAIRE_TB,
-            self::QUESTIONNAIRE_NAR,
+            self::$QUESTIONNAIRE_ANC,
+            self::$QUESTIONNAIRE_TB,
+            self::$QUESTIONNAIRE_NAR,
         ];
     }
 

@@ -40,7 +40,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class Composition extends MediatorResourceBasic
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -171,13 +171,13 @@ class Composition extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    public const STATUS_PRELIMINARY = 'preliminary';
-    public const STATUS__FINAL = 'final';
-    public const STATUS_AMENDED = 'amended';
-    public const STATUS_ENTERED_IN_ERROR = 'entered-in-error';
-    public const TYPE_COM000001 = 'COM000001';
-    public const TYPE_COM000002 = 'COM000002';
-    public const TYPE_COM000003 = 'COM000003';
+    public static $STATUS_PRELIMINARY = 'preliminary';
+    public static $STATUS__FINAL = 'final';
+    public static $STATUS_AMENDED = 'amended';
+    public static $STATUS_ENTERED_IN_ERROR = 'entered-in-error';
+    public static $TYPE_COM000001 = 'COM000001';
+    public static $TYPE_COM000002 = 'COM000002';
+    public static $TYPE_COM000003 = 'COM000003';
 
     /**
      * Gets allowable values of the enum
@@ -187,10 +187,10 @@ class Composition extends MediatorResourceBasic
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_PRELIMINARY,
-            self::STATUS__FINAL,
-            self::STATUS_AMENDED,
-            self::STATUS_ENTERED_IN_ERROR,
+            self::$STATUS_PRELIMINARY,
+            self::$STATUS__FINAL,
+            self::$STATUS_AMENDED,
+            self::$STATUS_ENTERED_IN_ERROR,
         ];
     }
     /**
@@ -201,9 +201,9 @@ class Composition extends MediatorResourceBasic
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_COM000001,
-            self::TYPE_COM000002,
-            self::TYPE_COM000003,
+            self::$TYPE_COM000001,
+            self::$TYPE_COM000002,
+            self::$TYPE_COM000003,
         ];
     }
 

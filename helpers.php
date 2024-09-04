@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @param string $url
  * @return mixed

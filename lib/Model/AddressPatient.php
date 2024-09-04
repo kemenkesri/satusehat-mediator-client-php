@@ -42,7 +42,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class AddressPatient implements ModelInterface, ArrayAccess
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -203,8 +203,8 @@ class AddressPatient implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    public const MODEL_USE_TEMP = 'temp';
-    public const MODEL_USE_HOME = 'home';
+    public static $MODEL_USE_TEMP = 'temp';
+    public static $MODEL_USE_HOME = 'home';
 
     /**
      * Gets allowable values of the enum
@@ -214,8 +214,8 @@ class AddressPatient implements ModelInterface, ArrayAccess
     public function getUseAllowableValues()
     {
         return [
-            self::MODEL_USE_TEMP,
-            self::MODEL_USE_HOME,
+            self::$MODEL_USE_TEMP,
+            self::$MODEL_USE_HOME,
         ];
     }
 

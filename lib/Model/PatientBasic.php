@@ -41,7 +41,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class PatientBasic implements ModelInterface, ArrayAccess
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.

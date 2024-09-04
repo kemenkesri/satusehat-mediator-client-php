@@ -40,7 +40,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class Procedure extends MediatorResourceBasic
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -181,14 +181,14 @@ class Procedure extends MediatorResourceBasic
         return self::$swaggerModelName;
     }
 
-    public const STATUS_PREPARATION = 'preparation';
-    public const STATUS_IN_PROGRESS = 'in-progress';
-    public const STATUS_NOT_DONE = 'not-done';
-    public const STATUS_ON_HOLD = 'on-hold';
-    public const STATUS_STOPPED = 'stopped';
-    public const STATUS_COMPLETED = 'completed';
-    public const STATUS_ENTERED_IN_ERROR = 'entered-in-error';
-    public const STATUS_UNKNOWN = 'unknown';
+    public static $STATUS_PREPARATION = 'preparation';
+    public static $STATUS_IN_PROGRESS = 'in-progress';
+    public static $STATUS_NOT_DONE = 'not-done';
+    public static $STATUS_ON_HOLD = 'on-hold';
+    public static $STATUS_STOPPED = 'stopped';
+    public static $STATUS_COMPLETED = 'completed';
+    public static $STATUS_ENTERED_IN_ERROR = 'entered-in-error';
+    public static $STATUS_UNKNOWN = 'unknown';
 
     /**
      * Gets allowable values of the enum
@@ -198,14 +198,14 @@ class Procedure extends MediatorResourceBasic
     public function getStatusAllowableValues()
     {
         return [
-            self::STATUS_PREPARATION,
-            self::STATUS_IN_PROGRESS,
-            self::STATUS_NOT_DONE,
-            self::STATUS_ON_HOLD,
-            self::STATUS_STOPPED,
-            self::STATUS_COMPLETED,
-            self::STATUS_ENTERED_IN_ERROR,
-            self::STATUS_UNKNOWN,
+            self::$STATUS_PREPARATION,
+            self::$STATUS_IN_PROGRESS,
+            self::$STATUS_NOT_DONE,
+            self::$STATUS_ON_HOLD,
+            self::$STATUS_STOPPED,
+            self::$STATUS_COMPLETED,
+            self::$STATUS_ENTERED_IN_ERROR,
+            self::$STATUS_UNKNOWN,
         ];
     }
 

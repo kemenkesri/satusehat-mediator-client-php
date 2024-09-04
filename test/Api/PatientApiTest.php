@@ -41,28 +41,28 @@ class PatientApiTest extends TestCase
     /**
      * Setup before running any test cases
      */
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp(): void
+    public function setUp()
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown(): void
+    public function tearDown()
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass(): void
+    public static function tearDownAfterClass()
     {
     }
 

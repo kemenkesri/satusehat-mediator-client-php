@@ -106,7 +106,7 @@ $form->validate();
 try {
     $response = $form->send();
     dump($response);
-} catch(RequestException $e) {
+} catch (RequestException $e) {
     // echo ' ABCDEF ' . json_encode($e->getResponseBody());
     print_r(json_encode(json_decode($e->getResponse()->getBody()->getContents()), JSON_PRETTY_PRINT));
 }

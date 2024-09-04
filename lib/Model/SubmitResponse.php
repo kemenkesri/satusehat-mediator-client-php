@@ -41,7 +41,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  */
 class SubmitResponse implements ModelInterface, ArrayAccess
 {
-    public const DISCRIMINATOR = null;
+    public static $DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -58,7 +58,10 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'satusehat' => 'Mediator\SatuSehat\Lib\Client\Model\SatuSehatResponse[]',
         'episode_of_care' => 'Mediator\SatuSehat\Lib\Client\Model\EpisodeOfCare',
-        'suspect_tb' => 'Mediator\SatuSehat\Lib\Client\Model\TbSuspect'
+        'suspect_tb' => 'Mediator\SatuSehat\Lib\Client\Model\TbSuspect',
+        'confirm_tb' => 'Mediator\SatuSehat\Lib\Client\Model\TbConfirm',
+        'labExamRequest' => 'Mediator\SatuSehat\Lib\Client\Model\TbLabRequest',
+        'labExamResult' => 'Mediator\SatuSehat\Lib\Client\Model\TbLabResult',
     ];
 
     /**
@@ -69,7 +72,10 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'satusehat' => null,
         'episode_of_care' => null,
-        'suspect_tb' => null
+        'suspect_tb' => null,
+        'confirm_tb' => nulll,
+        'labExamRequest' => null,
+        'labExamResult' => null,
     ];
 
     /**
@@ -101,7 +107,10 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'satusehat' => 'satusehat',
         'episode_of_care' => 'episodeOfCare',
-        'suspect_tb' => 'suspect_tb'
+        'suspect_tb' => 'suspect_tb',
+        'confirm_tb' => 'confirm_tb',
+        'labExamRequest' => 'labExamRequest',
+        'labExamResult' => 'labExamResult'
     ];
 
     /**
@@ -112,7 +121,10 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     protected static $setters = [
         'satusehat' => 'setSatusehat',
         'episode_of_care' => 'setEpisodeOfCare',
-        'suspect_tb' => 'setTbSuspect'
+        'suspect_tb' => 'setTbSuspect',
+        'confirm_tb' => 'setTbConfirm',
+        'labExamRequest' => 'setTbLabRequest',
+        'labExamResult' => 'setTbLabResult'
     ];
 
     /**
@@ -123,7 +135,10 @@ class SubmitResponse implements ModelInterface, ArrayAccess
     protected static $getters = [
         'satusehat' => 'getSatusehat',
         'episode_of_care' => 'getEpisodeOfCare',
-        'suspect_tb' => 'getTbSuspect'
+        'suspect_tb' => 'getTbSuspect',
+        'confirm_tb' => 'getTbConfirm',
+        'labExamRequest' => 'getTbLabRequest',
+        'labExamResult' => 'getTbLabResult'
     ];
 
     /**
@@ -187,6 +202,9 @@ class SubmitResponse implements ModelInterface, ArrayAccess
         $this->container['satusehat'] = isset($data['satusehat']) ? $data['satusehat'] : null;
         $this->container['episode_of_care'] = isset($data['episode_of_care']) ? $data['episode_of_care'] : null;
         $this->container['suspect_tb'] = isset($data['suspect_tb']) ? $data['suspect_tb'] : null;
+        $this->container['confirm_tb'] = isset($data['confirm_tb']) ? $data['confirm_tb'] : null;
+        $this->container['labExamRequest'] = isset($data['labExamRequest']) ? $data['labExamRequest'] : null;
+        $this->container['labExamResult'] = isset($data['labExamResult']) ? $data['labExamResult'] : null;
     }
 
     /**
@@ -284,6 +302,79 @@ class SubmitResponse implements ModelInterface, ArrayAccess
 
         return $this;
     }
+
+    /**
+     * Gets tb_confirm
+     *
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbConfirm
+     */
+    public function getTbConfirm()
+    {
+        return $this->container['tb_confirm'];
+    }
+
+    /**
+     * Sets tb_confirm
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbConfirm $tb_confirm tb_confirm
+     *
+     * @return $this
+     */
+    public function setTbConfirm($tb_confirm)
+    {
+        $this->container['tb_confirm'] = $tb_confirm;
+
+        return $this;
+    }
+
+    /**
+     * Gets labExamRequest
+     *
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbLabRequest
+     */
+    public function getTbLabRequest()
+    {
+        return $this->container['labExamRequest'];
+    }
+
+    /**
+     * Sets labExamRequest
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbLabRequest $labExamRequest labExamRequest
+     *
+     * @return $this
+     */
+    public function setTbLabRequest($labExamRequest)
+    {
+        $this->container['labExamRequest'] = $labExamRequest;
+
+        return $this;
+    }
+
+    /**
+     * Gets labExamResult
+     *
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbLabResult
+     */
+    public function getTbLabResult()
+    {
+        return $this->container['labExamResult'];
+    }
+
+    /**
+     * Sets labExamResult
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbLabResult $labExamResult labExamResult
+     *
+     * @return $this
+     */
+    public function setTbLabResult($labExamResult)
+    {
+        $this->container['labExamResult'] = $labExamResult;
+
+        return $this;
+    }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
