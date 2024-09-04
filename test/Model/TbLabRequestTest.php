@@ -41,7 +41,6 @@ use PHPUnit\Framework\TestCase;
  */
 class TbLabRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */
