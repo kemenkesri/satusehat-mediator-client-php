@@ -26,10 +26,10 @@
  * Do not edit the class manually.
  */
 
- namespace Mediator\SatuSehat\Lib\Client\Model;
+namespace Mediator\SatuSehat\Lib\Client\Model;
 
- use ArrayAccess;
- use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
+use ArrayAccess;
+use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
 
 /**
  * TbLabResult Class Doc Comment

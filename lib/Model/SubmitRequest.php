@@ -57,6 +57,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'profile' => 'string[]',
+        'created' => 'string',
         'organization_id' => 'string',
         'location_id' => 'string',
         'practitioner_nik' => 'string',
@@ -85,6 +86,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'profile' => null,
+        'created' => null,
         'organization_id' => null,
         'location_id' => null,
         'practitioner_nik' => null,
@@ -134,6 +136,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'profile' => 'profile',
+        'created' => 'created',
         'organization_id' => 'organization_id',
         'location_id' => 'location_id',
         'practitioner_nik' => 'practitioner_nik',
@@ -162,6 +165,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'profile' => 'setProfile',
+        'created' => 'setCreated',
         'organization_id' => 'setOrganizationId',
         'location_id' => 'setLocationId',
         'practitioner_nik' => 'setPractitionerNik',
@@ -190,6 +194,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'profile' => 'getProfile',
+        'created' => 'getCreated',
         'organization_id' => 'getOrganizationId',
         'location_id' => 'getLocationId',
         'practitioner_nik' => 'getPractitionerNik',
@@ -270,6 +275,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['profile'] = isset($data['profile']) ? $data['profile'] : null;
+        $this->container['created'] = isset($data['created']) ? $data['created'] : null;
         $this->container['organization_id'] = isset($data['organization_id']) ? $data['organization_id'] : null;
         $this->container['location_id'] = isset($data['location_id']) ? $data['location_id'] : null;
         $this->container['practitioner_nik'] = isset($data['practitioner_nik']) ? $data['practitioner_nik'] : null;
@@ -351,6 +357,30 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     public function setProfile($profile)
     {
         $this->container['profile'] = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Gets created
+     *
+     * @return string
+     */
+    public function getCreated()
+    {
+        return $this->container['created'];
+    }
+
+    /**
+     * Sets created
+     *
+     * @param string $created created
+     *
+     * @return $this
+     */
+    public function setCreated($created)
+    {
+        $this->container['created'] = $created;
 
         return $this;
     }

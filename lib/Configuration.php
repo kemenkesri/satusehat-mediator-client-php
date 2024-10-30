@@ -669,8 +669,9 @@ class Configuration
      */
     public static function setDefaultEnvironment($name)
     {
-        if (isset(self::$CONSTANTS[$name]))
+        if (isset(self::$CONSTANTS[$name])) {
             self::$environment = $name;
+        }
     }
 
     /**

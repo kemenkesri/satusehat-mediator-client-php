@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
- namespace Mediator\SatuSehat\Lib\Client;
+namespace Mediator\SatuSehat\Lib\Client;
 
 use PHPUnit\Framework\TestCase;
 

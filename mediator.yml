@@ -1240,6 +1240,9 @@ components:
           type: string
         dokter_pemeriksa:
           type: string
+    TbLabResult:
+      type: object
+      properties:
     GetPatientRequest:
       type: object
       properties:
@@ -1275,6 +1278,9 @@ components:
           type: array
           items:
             type: string
+        created:
+          type: string
+          format: date-time
         organization_id:
           type: string
         location_id:

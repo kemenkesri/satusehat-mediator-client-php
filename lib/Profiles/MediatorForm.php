@@ -41,7 +41,8 @@ abstract class MediatorForm extends Validation
         $this->data = new SubmitRequest();
     }
 
-    public function getConfig() {
+    public function getConfig()
+    {
         return $this->config;
     }
 
@@ -84,6 +85,20 @@ abstract class MediatorForm extends Validation
     public function setProfile($profile)
     {
         $this->data->setProfile($profile);
+
+        return $this;
+    }
+
+    /**
+     * Sets created
+     *
+     * @param string $created created
+     *
+     * @return $this
+     */
+    public function setCreated($created)
+    {
+        $this->data->setCreated(self::isoDate($created, $this->config->getTimezone()));
 
         return $this;
     }

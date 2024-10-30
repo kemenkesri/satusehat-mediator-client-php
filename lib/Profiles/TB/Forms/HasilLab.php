@@ -358,14 +358,18 @@ class HasilLab extends Terduga
 
         $this->observation->setValue($this->hasil->getNilai());
 
-        if ($this->serviceRequest->getCodeRequest())
+        if ($this->serviceRequest->getCodeRequest()) {
             $this->setServiceRequest([$this->serviceRequest]);
-        if ($this->specimen->getCodeRequest())
+        }
+        if ($this->specimen->getCodeRequest()) {
             $this->setSpecimens([$this->specimen]);
-        if ($this->observation->getSpecimen())
+        }
+        if ($this->observation->getSpecimen()) {
             $this->setObservation([$this->observation]);
-        if ($this->diagnosticReport->getSpecimen())
+        }
+        if ($this->diagnosticReport->getSpecimen()) {
             $this->setDiagnosticReport([$this->diagnosticReport]);
+        }
 
         return $this;
     }
@@ -381,31 +385,38 @@ abstract class HasilUji extends ProfileValidation
     protected $catatan;
     protected $components = [];
 
-    public function getNilai() {
+    public function getNilai()
+    {
         return $this->nilai;
     }
 
-    public function getContoh() {
+    public function getContoh()
+    {
         return $this->contoh;
     }
 
-    public function getJenis() {
+    public function getJenis()
+    {
         return $this->jenis;
     }
 
-    public function getTanggal() {
+    public function getTanggal()
+    {
         return $this->tanggal;
     }
 
-    public function getNoRegLab() {
+    public function getNoRegLab()
+    {
         return $this->noregLab;
     }
 
-    public function getCatatan() {
+    public function getCatatan()
+    {
         return $this->catatan;
     }
 
-    public function getComponents() {
+    public function getComponents()
+    {
         return $this->components;
     }
 
