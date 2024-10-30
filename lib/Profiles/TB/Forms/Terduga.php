@@ -82,6 +82,10 @@ class Terduga extends MediatorForm
 
     public function build()
     {
+        if (empty($this->data->getCreated())) {
+            $this->data->setCreated(date('Y-m-d H:i:s'));
+        }
+
         $encounter = $this->data->getEncounter();
         if ($encounter instanceof Encounter) {
             if ($encounter->getLocalId()) {

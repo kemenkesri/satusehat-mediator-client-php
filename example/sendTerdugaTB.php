@@ -83,6 +83,7 @@ $terduga->setEncounter([
 ]);
 $terduga->addCondition((new Condition())->setCodeCondition('Z10'));
 
+$terduga->build();
 $terduga->validate();
 
 $response = $terduga->send();
