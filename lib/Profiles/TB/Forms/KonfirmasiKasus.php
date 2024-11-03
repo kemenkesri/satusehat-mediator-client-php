@@ -9,7 +9,6 @@ use Mediator\SatuSehat\Lib\Client\Model\TbConfirm;
 
 class KonfirmasiKasus extends Terduga
 {
-
     /** @var EpisodeOfCare */
     protected $episodeOfCare;
 
