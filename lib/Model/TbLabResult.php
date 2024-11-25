@@ -63,7 +63,9 @@ class TbLabResult implements ModelInterface, ArrayAccess
         'tgl_contoh_uji' => '\DateTime',
         'kondisi_contoh_uji_id' => 'string',
         'pemeriksa' => 'string',
-        'dokter_pemeriksa' => 'string'
+        'dokter_pemeriksa' => 'string',
+        'error' => 'string',
+        'success' => 'bool'
     ];
 
     /**
@@ -79,7 +81,9 @@ class TbLabResult implements ModelInterface, ArrayAccess
         'tgl_contoh_uji' => 'date-time',
         'kondisi_contoh_uji_id' => null,
         'pemeriksa' => null,
-        'dokter_pemeriksa' => null
+        'dokter_pemeriksa' => null,
+        'error' => null,
+        'success' => null
     ];
 
     /**
@@ -116,7 +120,9 @@ class TbLabResult implements ModelInterface, ArrayAccess
         'tgl_contoh_uji' => 'tgl_contoh_uji',
         'kondisi_contoh_uji_id' => 'kondisi_contoh_uji_id',
         'pemeriksa' => 'pemeriksa',
-        'dokter_pemeriksa' => 'dokter_pemeriksa'
+        'dokter_pemeriksa' => 'dokter_pemeriksa',
+        'error' => 'error',
+        'success' => 'success'
     ];
 
     /**
@@ -132,7 +138,9 @@ class TbLabResult implements ModelInterface, ArrayAccess
         'tgl_contoh_uji' => 'setTglContohUji',
         'kondisi_contoh_uji_id' => 'setKondisiContohUjiId',
         'pemeriksa' => 'setPemeriksa',
-        'dokter_pemeriksa' => 'setDokterPemeriksa'
+        'dokter_pemeriksa' => 'setDokterPemeriksa',
+        'error' => 'setError',
+        'success' => 'setSuccess'
     ];
 
     /**
@@ -148,7 +156,9 @@ class TbLabResult implements ModelInterface, ArrayAccess
         'tgl_contoh_uji' => 'getTglContohUji',
         'kondisi_contoh_uji_id' => 'getKondisiContohUjiId',
         'pemeriksa' => 'getPemeriksa',
-        'dokter_pemeriksa' => 'getDokterPemeriksa'
+        'dokter_pemeriksa' => 'getDokterPemeriksa',
+        'error' => 'getError',
+        'success' => 'getSuccess'
     ];
 
     /**
@@ -217,6 +227,8 @@ class TbLabResult implements ModelInterface, ArrayAccess
         $this->container['kondisi_contoh_uji_id'] = isset($data['kondisi_contoh_uji_id']) ? $data['kondisi_contoh_uji_id'] : null;
         $this->container['pemeriksa'] = isset($data['pemeriksa']) ? $data['pemeriksa'] : null;
         $this->container['dokter_pemeriksa'] = isset($data['dokter_pemeriksa']) ? $data['dokter_pemeriksa'] : null;
+        $this->container['error'] = isset($data['error']) ? $data['error'] : null;
+        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
     }
 
     /**
@@ -431,6 +443,54 @@ class TbLabResult implements ModelInterface, ArrayAccess
     public function setDokterPemeriksa($dokter_pemeriksa)
     {
         $this->container['dokter_pemeriksa'] = $dokter_pemeriksa;
+
+        return $this;
+    }
+
+    /**
+     * Gets error
+     *
+     * @return string
+     */
+    public function getError()
+    {
+        return $this->container['error'];
+    }
+
+    /**
+     * Sets error
+     *
+     * @param string $error error
+     *
+     * @return $this
+     */
+    public function setError($error)
+    {
+        $this->container['error'] = $error;
+
+        return $this;
+    }
+
+    /**
+     * Gets success
+     *
+     * @return bool
+     */
+    public function getSuccess()
+    {
+        return $this->container['success'];
+    }
+
+    /**
+     * Sets success
+     *
+     * @param bool $success success
+     *
+     * @return $this
+     */
+    public function setSuccess($success)
+    {
+        $this->container['success'] = $success;
 
         return $this;
     }

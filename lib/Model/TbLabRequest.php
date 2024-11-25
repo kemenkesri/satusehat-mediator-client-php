@@ -74,7 +74,9 @@ class TbLabRequest implements ModelInterface, ArrayAccess
         'waktu1_id' => 'string',
         'lab_provinsi_id' => 'string',
         'lab_kabupaten_id' => 'string',
-        'lab_tujuan_id' => 'string'
+        'lab_tujuan_id' => 'string',
+        'error' => 'string',
+        'success' => 'bool'
     ];
 
     /**
@@ -101,7 +103,9 @@ class TbLabRequest implements ModelInterface, ArrayAccess
         'waktu1_id' => null,
         'lab_provinsi_id' => null,
         'lab_kabupaten_id' => null,
-        'lab_tujuan_id' => null
+        'lab_tujuan_id' => null,
+        'error' => null,
+        'success' => null
     ];
 
     /**
@@ -149,7 +153,9 @@ class TbLabRequest implements ModelInterface, ArrayAccess
         'waktu1_id' => 'waktu1_id',
         'lab_provinsi_id' => 'lab_provinsi_id',
         'lab_kabupaten_id' => 'lab_kabupaten_id',
-        'lab_tujuan_id' => 'lab_tujuan_id'
+        'lab_tujuan_id' => 'lab_tujuan_id',
+        'error' => 'error',
+        'success' => 'success'
     ];
 
     /**
@@ -176,7 +182,9 @@ class TbLabRequest implements ModelInterface, ArrayAccess
         'waktu1_id' => 'setWaktu1Id',
         'lab_provinsi_id' => 'setLabProvinsiId',
         'lab_kabupaten_id' => 'setLabKabupatenId',
-        'lab_tujuan_id' => 'setLabTujuanId'
+        'lab_tujuan_id' => 'setLabTujuanId',
+        'error' => 'setError',
+        'success' => 'setSuccess'
     ];
 
     /**
@@ -203,7 +211,9 @@ class TbLabRequest implements ModelInterface, ArrayAccess
         'waktu1_id' => 'getWaktu1Id',
         'lab_provinsi_id' => 'getLabProvinsiId',
         'lab_kabupaten_id' => 'getLabKabupatenId',
-        'lab_tujuan_id' => 'getLabTujuanId'
+        'lab_tujuan_id' => 'getLabTujuanId',
+        'error' => 'getError',
+        'success' => 'getSuccess'
     ];
 
     /**
@@ -283,6 +293,8 @@ class TbLabRequest implements ModelInterface, ArrayAccess
         $this->container['lab_provinsi_id'] = isset($data['lab_provinsi_id']) ? $data['lab_provinsi_id'] : null;
         $this->container['lab_kabupaten_id'] = isset($data['lab_kabupaten_id']) ? $data['lab_kabupaten_id'] : null;
         $this->container['lab_tujuan_id'] = isset($data['lab_tujuan_id']) ? $data['lab_tujuan_id'] : null;
+        $this->container['error'] = isset($data['error']) ? $data['error'] : null;
+        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
     }
 
     /**
@@ -761,6 +773,54 @@ class TbLabRequest implements ModelInterface, ArrayAccess
     public function setLabTujuanId($lab_tujuan_id)
     {
         $this->container['lab_tujuan_id'] = $lab_tujuan_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets error
+     *
+     * @return string
+     */
+    public function getError()
+    {
+        return $this->container['error'];
+    }
+
+    /**
+     * Sets error
+     *
+     * @param string $error error
+     *
+     * @return $this
+     */
+    public function setError($error)
+    {
+        $this->container['error'] = $error;
+
+        return $this;
+    }
+
+    /**
+     * Gets success
+     *
+     * @return bool
+     */
+    public function getSuccess()
+    {
+        return $this->container['success'];
+    }
+
+    /**
+     * Sets success
+     *
+     * @param bool $success success
+     *
+     * @return $this
+     */
+    public function setSuccess($success)
+    {
+        $this->container['success'] = $success;
 
         return $this;
     }

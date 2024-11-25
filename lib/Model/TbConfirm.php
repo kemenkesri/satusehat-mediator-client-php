@@ -62,7 +62,9 @@ class TbConfirm implements ModelInterface, ArrayAccess
         'tindak_lanjut' => 'string',
         'status_pengobatan' => 'string',
         'faskes_pengobatan' => 'string',
-        'asal_rujukan_id' => 'string'
+        'asal_rujukan_id' => 'string',
+        'error' => 'string',
+        'success' => 'bool'
     ];
 
     /**
@@ -77,7 +79,9 @@ class TbConfirm implements ModelInterface, ArrayAccess
         'tindak_lanjut' => null,
         'status_pengobatan' => null,
         'faskes_pengobatan' => null,
-        'asal_rujukan_id' => null
+        'asal_rujukan_id' => null,
+        'error' => null,
+        'success' => null
     ];
 
     /**
@@ -113,7 +117,9 @@ class TbConfirm implements ModelInterface, ArrayAccess
         'tindak_lanjut' => 'tindak_lanjut',
         'status_pengobatan' => 'status_pengobatan',
         'faskes_pengobatan' => 'faskes_pengobatan',
-        'asal_rujukan_id' => 'asal_rujukan_id'
+        'asal_rujukan_id' => 'asal_rujukan_id',
+        'error' => 'error',
+        'success' => 'success'
     ];
 
     /**
@@ -128,7 +134,9 @@ class TbConfirm implements ModelInterface, ArrayAccess
         'tindak_lanjut' => 'setTindakLanjut',
         'status_pengobatan' => 'setStatusPengobatan',
         'faskes_pengobatan' => 'setFaskesPengobatan',
-        'asal_rujukan_id' => 'setAsalRujukanId'
+        'asal_rujukan_id' => 'setAsalRujukanId',
+        'error' => 'setError',
+        'success' => 'setSuccess'
     ];
 
     /**
@@ -143,7 +151,9 @@ class TbConfirm implements ModelInterface, ArrayAccess
         'tindak_lanjut' => 'getTindakLanjut',
         'status_pengobatan' => 'getStatusPengobatan',
         'faskes_pengobatan' => 'getFaskesPengobatan',
-        'asal_rujukan_id' => 'getAsalRujukanId'
+        'asal_rujukan_id' => 'getAsalRujukanId',
+        'error' => 'getError',
+        'success' => 'getSuccess'
     ];
 
     /**
@@ -211,6 +221,8 @@ class TbConfirm implements ModelInterface, ArrayAccess
         $this->container['status_pengobatan'] = isset($data['status_pengobatan']) ? $data['status_pengobatan'] : null;
         $this->container['faskes_pengobatan'] = isset($data['faskes_pengobatan']) ? $data['faskes_pengobatan'] : null;
         $this->container['asal_rujukan_id'] = isset($data['asal_rujukan_id']) ? $data['asal_rujukan_id'] : null;
+        $this->container['error'] = isset($data['error']) ? $data['error'] : null;
+        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
     }
 
     /**
@@ -401,6 +413,54 @@ class TbConfirm implements ModelInterface, ArrayAccess
     public function setAsalRujukanId($asal_rujukan_id)
     {
         $this->container['asal_rujukan_id'] = $asal_rujukan_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets error
+     *
+     * @return string
+     */
+    public function getError()
+    {
+        return $this->container['error'];
+    }
+
+    /**
+     * Sets error
+     *
+     * @param string $error error
+     *
+     * @return $this
+     */
+    public function setError($error)
+    {
+        $this->container['error'] = $error;
+
+        return $this;
+    }
+
+    /**
+     * Gets success
+     *
+     * @return bool
+     */
+    public function getSuccess()
+    {
+        return $this->container['success'];
+    }
+
+    /**
+     * Sets success
+     *
+     * @param bool $success success
+     *
+     * @return $this
+     */
+    public function setSuccess($success)
+    {
+        $this->container['success'] = $success;
 
         return $this;
     }

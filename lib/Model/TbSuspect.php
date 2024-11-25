@@ -88,7 +88,9 @@ class TbSuspect implements ModelInterface, ArrayAccess
         'lab_id' => 'string',
         'specimen_id' => 'string',
         'no_sediaan' => 'string',
-        'no_urut' => 'string'
+        'no_urut' => 'string',
+        'error' => 'string',
+        'success' => 'bool'
     ];
 
     /**
@@ -129,7 +131,9 @@ class TbSuspect implements ModelInterface, ArrayAccess
         'lab_id' => null,
         'specimen_id' => null,
         'no_sediaan' => null,
-        'no_urut' => null
+        'no_urut' => null,
+        'error' => null,
+        'success' => null
     ];
 
     /**
@@ -191,7 +195,9 @@ class TbSuspect implements ModelInterface, ArrayAccess
         'lab_id' => 'lab_id',
         'specimen_id' => 'specimen_id',
         'no_sediaan' => 'no_sediaan',
-        'no_urut' => 'no_urut'
+        'no_urut' => 'no_urut',
+        'error' => 'error',
+        'success' => 'success'
     ];
 
     /**
@@ -232,7 +238,9 @@ class TbSuspect implements ModelInterface, ArrayAccess
         'lab_id' => 'setLabId',
         'specimen_id' => 'setSpecimenId',
         'no_sediaan' => 'setNoSediaan',
-        'no_urut' => 'setNoUrut'
+        'no_urut' => 'setNoUrut',
+        'error' => 'setError',
+        'success' => 'setSuccess'
     ];
 
     /**
@@ -273,7 +281,9 @@ class TbSuspect implements ModelInterface, ArrayAccess
         'lab_id' => 'getLabId',
         'specimen_id' => 'getSpecimenId',
         'no_sediaan' => 'getNoSediaan',
-        'no_urut' => 'getNoUrut'
+        'no_urut' => 'getNoUrut',
+        'error' => 'getError',
+        'success' => 'getSuccess'
     ];
 
     /**
@@ -367,6 +377,8 @@ class TbSuspect implements ModelInterface, ArrayAccess
         $this->container['specimen_id'] = isset($data['specimen_id']) ? $data['specimen_id'] : null;
         $this->container['no_sediaan'] = isset($data['no_sediaan']) ? $data['no_sediaan'] : null;
         $this->container['no_urut'] = isset($data['no_urut']) ? $data['no_urut'] : null;
+        $this->container['error'] = isset($data['error']) ? $data['error'] : null;
+        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
     }
 
     /**
@@ -1181,6 +1193,54 @@ class TbSuspect implements ModelInterface, ArrayAccess
     public function setNoUrut($no_urut)
     {
         $this->container['no_urut'] = $no_urut;
+
+        return $this;
+    }
+
+    /**
+     * Gets error
+     *
+     * @return string
+     */
+    public function getError()
+    {
+        return $this->container['error'];
+    }
+
+    /**
+     * Sets error
+     *
+     * @param string $error error
+     *
+     * @return $this
+     */
+    public function setError($error)
+    {
+        $this->container['error'] = $error;
+
+        return $this;
+    }
+
+    /**
+     * Gets success
+     *
+     * @return bool
+     */
+    public function getSuccess()
+    {
+        return $this->container['success'];
+    }
+
+    /**
+     * Sets success
+     *
+     * @param bool $success success
+     *
+     * @return $this
+     */
+    public function setSuccess($success)
+    {
+        $this->container['success'] = $success;
 
         return $this;
     }
