@@ -56,9 +56,9 @@ class SitbResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'ta_terduga_tb' => 'Mediator\SatuSehatib\Client\Model\TbSuspect[]',
-        'ta_permohonan_lab' => 'Mediator\SatuSehatib\Client\Model\TbLabRequest[]',
-        'ta_hasil_lab' => 'Mediator\SatuSehatib\Client\Model\TbLabResult[]'
+        'ta_terduga_tb' => 'Mediator\SatuSehat\Lib\Client\Model\TbSuspect[]',
+        'ta_permohonan_lab' => 'Mediator\SatuSehat\Lib\Client\Model\TbLabRequest[]',
+        'ta_hasil_lab' => 'Mediator\SatuSehat\Lib\Client\Model\TbLabResult[]'
     ];
 
     /**
