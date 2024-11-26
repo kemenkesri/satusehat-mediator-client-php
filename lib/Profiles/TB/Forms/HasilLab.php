@@ -620,12 +620,12 @@ class HasilTcmXdr extends HasilTcmX
 class HasilLini1 extends HasilTcmX
 {
     protected $list = [
-        'mtb' => 'lini_1_hasil_mtb',
-        'h' => 'lini_1_hasil_h',
-        'ht' => 'lini_1_hasil_ht',
-        'rif' => 'lini_1_hasil_rif',
-        'eto' => 'lini_1_hasil_eto',
-        'pto' => 'lini_1_hasil_pto',
+        'mtb' => 'lini1_hasil_mtb',
+        'h' => 'lini1_hasil_h',
+        'ht' => 'lini1_hasil_ht',
+        'rif' => 'lini1_hasil_rif',
+        'eto' => 'lini1_hasil_eto',
+        'pto' => 'lini1_hasil_pto',
     ];
 
     public function __construct()
@@ -681,22 +681,22 @@ class HasilLini1 extends HasilTcmX
     }
 }
 
-class HasilLini2 extends HasilUji
+class HasilLini2 extends HasilTcmX
 {
     protected $list = [
-        'mtb' => 'xdr_hasil_mtb',
-        'lfx' => 'xdr_lfxasil_h',
-        'mfx' => 'xdr_hasil_mfx',
-        'rif' => 'xdr_hasil_rif',
-        'mfx_dt' => 'xdr_hasil_mfx_dt',
-        'km' => 'xdr_hasil_km',
-        'amk' => 'xdr_hasil_amk',
-        'cm' => 'xdr_hasil_cm',
+        'mtb' => 'lini2_hasil_mtb',
+        'lfx' => 'lini2_lfxasil_h',
+        'mfx' => 'lini2_hasil_mfx',
+        'rif' => 'lini2_hasil_rif',
+        'mfxt' => 'lini2_hasil_mfxt',
+        'km' => 'lini2_hasil_km',
+        'amk' => 'lini2_hasil_amk',
+        'cm' => 'lini2_hasil_cm',
     ];
 
     public function __construct()
     {
-        $this->jenis = 'lini_1';
+        $this->jenis = 'lini_2';
     }
 
     public function setMtb($mtb)
@@ -706,16 +706,16 @@ class HasilLini2 extends HasilUji
         return $this;
     }
 
-    public function setHDosisRendah($h)
+    public function setLfx($h)
     {
-        $this->components['h'] = $h;
+        $this->components['lfx'] = $h;
 
         return $this;
     }
 
-    public function setH($ht)
+    public function setMfx($ht)
     {
-        $this->components['ht'] = $ht;
+        $this->components['mfx'] = $ht;
 
         return $this;
     }
@@ -727,16 +727,30 @@ class HasilLini2 extends HasilUji
         return $this;
     }
 
-    public function setPto($pto)
+    public function setMfxDT($mxf)
     {
-        $this->components['pto'] = $pto;
+        $this->components['mfxt'] = $mxf;
 
         return $this;
     }
 
-    public function setEto($eto)
+    public function setAmk($amk)
     {
-        $this->components['eto'] = $eto;
+        $this->components['amk'] = $amk;
+
+        return $this;
+    }
+
+    public function setCm($cm)
+    {
+        $this->components['cm'] = $cm;
+
+        return $this;
+    }
+
+    public function setKm($km)
+    {
+        $this->components['km'] = $km;
 
         return $this;
     }
@@ -749,6 +763,26 @@ class HasilLini2 extends HasilUji
 
 class HasilBiakan extends HasilUji
 {
+    protected $metode;
+
+    /** @var Observation */
+    protected $observationTestMethd;
+
+    public function __construct()
+    {
+        $this->jenis = 'biakan';
+    }
+
+    public function setMetodeUji($metode)
+    {
+        $this->metode = $metode;
+        if ($this->metode) {
+            $this->jenis = $this->metode;
+        }
+
+        return $this;
+    }
+
     public function validate($form)
     {
 
@@ -757,22 +791,270 @@ class HasilBiakan extends HasilUji
 
 class HasilKepekaan extends HasilTcmX
 {
+    protected $list = [
+        'ht' => 'hasil_kepekaan_ht',
+        'h' => 'hasil_kepekaan_ha',
+        'km' => 'hasil_kepekaan_km',
+        'cm' => 'hasil_kepekaan_cm',
+        'lfx' => 'hasil_kepekaan_lfx',
+        'mfxt' => 'hasil_kepekaan_mfxt',
+        'mfx' => 'hasil_kepekaan_mfx',
+        'amk' => 'hasil_kepekaan_amk',
+        'eto' => 'hasil_kepekaan_eto',
+        'lzd' => 'hasil_kepekaan_lzd',
+        'dlm' => 'hasil_kepekaan_dlm',
+        'cfz' => 'hasil_kepekaan_amk',
+        'bdq' => 'hasil_kepekaan_bdq',
+        'ofl' => 'hasil_kepekaan_amk',
+        's' => 'hasil_kepekaan_s',
+        'e' => 'hasil_kepekaan_e',
+        'z' => 'hasil_kepekaan_z',
+    ];
+
+    public function __construct()
+    {
+        $this->jenis = 'kepekaan';
+    }
+
+    public function setHt($ht)
+    {
+        $this->components['ht'] = $ht;
+
+        return $this;
+    }
+
+    public function setH($h)
+    {
+        $this->components['h'] = $h;
+
+        return $this;
+    }
+
+    public function setCm($eto)
+    {
+        $this->components['cm'] = $eto;
+
+        return $this;
+    }
+
+    public function setKm($eto)
+    {
+        $this->components['km'] = $eto;
+
+        return $this;
+    }
+
+    public function setLfx($h)
+    {
+        $this->components['lfx'] = $h;
+
+        return $this;
+    }
+
+    public function setMfx($ht)
+    {
+        $this->components['mfx'] = $ht;
+
+        return $this;
+    }
+
+    public function setMfxDT($mfxt)
+    {
+        $this->components['mfxt'] = $mfxt;
+
+        return $this;
+    }
+
+    public function setAmk($amk)
+    {
+        $this->components['amk'] = $amk;
+
+        return $this;
+    }
+
+    public function setEto($eto)
+    {
+        $this->components['eto'] = $eto;
+
+        return $this;
+    }
+
+    public function setLzd($lzd)
+    {
+        $this->components['lzd'] = $lzd;
+
+        return $this;
+    }
+
+    public function setDlm($dlm)
+    {
+        $this->components['dlm'] = $dlm;
+
+        return $this;
+    }
+
+    public function setCfz($cfz)
+    {
+        $this->components['cfz'] = $cfz;
+
+        return $this;
+    }
+
+    public function setBdq($bdq)
+    {
+        $this->components['bdq'] = $bdq;
+
+        return $this;
+    }
+
+    public function setOfl($ofl)
+    {
+        $this->components['ofl'] = $ofl;
+
+        return $this;
+    }
+
+    public function setS($s)
+    {
+        $this->components['s'] = $s;
+
+        return $this;
+    }
+
+    public function setE($e)
+    {
+        $this->components['e'] = $e;
+
+        return $this;
+    }
+
+    public function setZ($z)
+    {
+        $this->components['z'] = $z;
+
+        return $this;
+    }
+
     public function validate($form)
     {
 
     }
 }
 
-class HasilTcmBDmax extends HasilUji
+class HasilTcmBDmax extends HasilTcmX
 {
+    protected $list = [
+        'mtb' => 'bdmax_hasil_mtb',
+        'rif' => 'bdmax_hasil_rif',
+        'inh' => 'bdmax_hasil_inh',
+        'katg' => 'bdmax_hasil_katg',
+        'apr' => 'bdmax_hasil_apr',
+    ];
+
+    public function __construct()
+    {
+        $this->jenis = 'tcm_bdmax';
+    }
+
+    public function setMtb($mtb)
+    {
+        $this->components['mtb'] = $mtb;
+
+        return $this;
+    }
+
+    public function setRifampisin($rif)
+    {
+        $this->components['rif'] = $rif;
+
+        return $this;
+    }
+
+    public function setInh($inh)
+    {
+        $this->components['inh'] = $inh;
+
+        return $this;
+    }
+
+    public function setKatG($katg)
+    {
+        $this->components['katg'] = $katg;
+
+        return $this;
+    }
+
+    public function setApr($apr)
+    {
+        $this->components['apr'] = $apr;
+
+        return $this;
+    }
+
     public function validate($form)
     {
 
     }
 }
 
-class HasilPCR extends HasilUji
+class HasilPCR extends HasilTcmX
 {
+    protected $list = [
+        'mtb' => 'pcr_hasil_mtb',
+        'rif' => 'pcr_hasil_rif',
+        'inh' => 'pcr_hasil_inh',
+        'ntm' => 'pcr_hasil_ntm',
+        'katg' => 'pcr_hasil_katg',
+        'apr' => 'pcr_hasil_apr',
+    ];
+
+    public function __construct()
+    {
+        $this->jenis = 'pcr';
+    }
+
+    public function setMtb($mtb)
+    {
+        $this->components['mtb'] = $mtb;
+
+        return $this;
+    }
+
+    public function setRifampisin($rif)
+    {
+        $this->components['rif'] = $rif;
+
+        return $this;
+    }
+
+    public function setInh($inh)
+    {
+        $this->components['inh'] = $inh;
+
+        return $this;
+    }
+
+    public function setNtm($ntm)
+    {
+        $this->components['ntm'] = $ntm;
+
+        return $this;
+    }
+
+    public function setKatG($katg)
+    {
+        $this->components['katg'] = $katg;
+
+        return $this;
+    }
+
+    public function setApr($apr)
+    {
+        $this->components['apr'] = $apr;
+
+        return $this;
+    }
+
     public function validate($form)
     {
 
