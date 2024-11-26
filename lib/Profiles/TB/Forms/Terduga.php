@@ -9,6 +9,16 @@ use Mediator\SatuSehat\Lib\Client\Profiles\MediatorForm;
 
 class Terduga extends MediatorForm
 {
+    /** @var TbSuspect */
+    protected $suspect;
+
+    public function __construct($submitApi = null)
+    {
+        parent::__construct($submitApi);
+
+        $this->suspect = new TbSuspect();
+    }
+
     protected function mustValidated()
     {
         return [
@@ -27,7 +37,8 @@ class Terduga extends MediatorForm
      */
     public function setTbSuspect($tb_suspect)
     {
-        $this->data->setTbSuspect(!($tb_suspect instanceof TbSuspect) ? new TbSuspect($tb_suspect) : $tb_suspect);
+        $this->suspect = !($tb_suspect instanceof TbSuspect) ? new TbSuspect($tb_suspect) : $tb_suspect;
+        $this->data->setTbSuspect($this->suspect);
 
         return $this;
     }

@@ -76,7 +76,8 @@ class SubmitRequest implements ModelInterface, ArrayAccess
         'medication_statement' => '\Mediator\SatuSehat\Lib\Client\Model\MedicationStatement[]',
         'immunization' => '\Mediator\SatuSehat\Lib\Client\Model\Immunization[]',
         'questionnaire_response' => '\Mediator\SatuSehat\Lib\Client\Model\QuestionnaireResponse[]',
-        'composition' => '\Mediator\SatuSehat\Lib\Client\Model\Composition[]'
+        'composition' => '\Mediator\SatuSehat\Lib\Client\Model\Composition[]',
+        'careplan' => '\Mediator\SatuSehat\Lib\Client\Model\CarePlan[]'
     ];
 
     /**
@@ -105,7 +106,8 @@ class SubmitRequest implements ModelInterface, ArrayAccess
         'medication_statement' => null,
         'immunization' => null,
         'questionnaire_response' => null,
-        'composition' => null
+        'composition' => null,
+        'careplan' => null
     ];
 
     /**
@@ -155,7 +157,8 @@ class SubmitRequest implements ModelInterface, ArrayAccess
         'medication_statement' => 'medication_statement',
         'immunization' => 'immunization',
         'questionnaire_response' => 'questionnaire_response',
-        'composition' => 'composition'
+        'composition' => 'composition',
+        'careplan' => 'careplan'
     ];
 
     /**
@@ -184,7 +187,8 @@ class SubmitRequest implements ModelInterface, ArrayAccess
         'medication_statement' => 'setMedicationStatement',
         'immunization' => 'setImmunization',
         'questionnaire_response' => 'setQuestionnaireResponse',
-        'composition' => 'setComposition'
+        'composition' => 'setComposition',
+        'careplan' => 'setCareplan'
     ];
 
     /**
@@ -213,7 +217,8 @@ class SubmitRequest implements ModelInterface, ArrayAccess
         'medication_statement' => 'getMedicationStatement',
         'immunization' => 'getImmunization',
         'questionnaire_response' => 'getQuestionnaireResponse',
-        'composition' => 'getComposition'
+        'composition' => 'getComposition',
+        'careplan' => 'getCareplan'
     ];
 
     /**
@@ -295,6 +300,7 @@ class SubmitRequest implements ModelInterface, ArrayAccess
         $this->container['immunization'] = isset($data['immunization']) ? $data['immunization'] : null;
         $this->container['questionnaire_response'] = isset($data['questionnaire_response']) ? $data['questionnaire_response'] : null;
         $this->container['composition'] = isset($data['composition']) ? $data['composition'] : null;
+        $this->container['careplan'] = isset($data['careplan']) ? $data['careplan'] : null;
     }
 
     /**
@@ -837,6 +843,30 @@ class SubmitRequest implements ModelInterface, ArrayAccess
     public function setComposition($composition)
     {
         $this->container['composition'] = $composition;
+
+        return $this;
+    }
+
+    /**
+     * Gets careplan
+     *
+     * @return \Mediator\SatuSehat\Lib\Client\Model\Careplan
+     */
+    public function getCareplan()
+    {
+        return $this->container['careplan'];
+    }
+
+    /**
+     * Sets careplan
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\Careplan $careplan careplan
+     *
+     * @return $this
+     */
+    public function setCareplan($careplan)
+    {
+        $this->container['careplan'] = $careplan;
 
         return $this;
     }
