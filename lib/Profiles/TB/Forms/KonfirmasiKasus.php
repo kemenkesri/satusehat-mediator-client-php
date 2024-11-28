@@ -152,6 +152,13 @@ class KonfirmasiKasus extends Terduga
         return $this;
     }
 
+    public function setStatusPengobatan($status_pengobatan)
+    {
+        $this->konfirmasi->setStatusPengobatan($status_pengobatan);
+
+        return $this;
+    }
+
     /**
      * Sets skorTbcAnak
      *

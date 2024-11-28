@@ -7,12 +7,15 @@ use Mediator\SatuSehat\Lib\Client\Model\EpisodeOfCare;
 use Mediator\SatuSehat\Lib\Client\Model\Observation;
 use Mediator\SatuSehat\Lib\Client\Model\QuestionnaireResponse;
 use Mediator\SatuSehat\Lib\Client\Model\TbConfirm;
-use Mediator\SatuSehat\Lib\Client\Model\TbSuspect;
+use Mediator\SatuSehat\Lib\Client\Model\ServiceRequest;
 
 class Diagnosis extends Terduga
 {
     /** @var TbConfirm */
     protected $tbConfirm;
+
+    /** @var ServiceRequest */
+    protected $serviceRequest;
 
     /** @var Observation */
     protected $toraks;
@@ -34,6 +37,7 @@ class Diagnosis extends Terduga
         parent::__construct($submitApi);
 
         $this->tbConfirm = new TbConfirm();
+        $this->serviceRequest = new ServiceRequest();
         $this->toraks = new Observation();
         $this->observation = new Observation();
         $this->diagnosticReport = new DiagnosticReport();
@@ -102,6 +106,13 @@ class Diagnosis extends Terduga
         return $this->questionnaireResponse;
     }
 
+    public function setServiceRequestId($id)
+    {
+        $this->serviceRequest->setId($id);
+
+        return $this;
+    }
+
     /**
      * @return $this
      */
@@ -140,6 +151,7 @@ class Diagnosis extends Terduga
 
         return $this;
     }
+
     public function setStatusPengobatan($status_pengobatan)
     {
         $this->tbConfirm->setStatusPengobatan($status_pengobatan);
@@ -159,12 +171,12 @@ class Diagnosis extends Terduga
     /**
      * @return $this
      */
-    public function setHasilDiagnosis($status, $hasil = null)
+    public function setHasilDiagnosis($hasil = null)
     {
-        if ($status === 'cancelled' || $hasil === '3') {
-            $this->episodeOfCare->setStatus($status);
+        if ($hasil === '3') {
+            $this->episodeOfCare->setStatus('cancelled');
         } else {
-            $this->episodeOfCare->setStatus($status);
+            $this->episodeOfCare->setStatus('active');
         }
         $this->episodeOfCare->setTypeCode($hasil === '2' ? 'TB-RO' : 'TB-SO');
         return $this;
@@ -229,6 +241,7 @@ class Diagnosis extends Terduga
         }
 
         $this->data->setTbConfirm($this->tbConfirm);
+        $this->data->setServiceRequest($this->serviceRequest);
         $this->data->setObservation($observation);
 
         return $this;
