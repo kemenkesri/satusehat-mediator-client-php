@@ -67,6 +67,20 @@ class KonfirmasiKasus extends Terduga
     }
 
     /**
+     * Sets episodeType
+     *
+     * @param string $episodeId episodeId
+     *
+     * @return $this
+     */
+    public function setEpisodeOfCareType($episodeType)
+    {
+        $this->episodeOfCare->setTypeCode($episodeType);
+
+        return $this;
+    }
+
+    /**
      * Sets tanggalRegistrasi
      *
      * @param string $tanggalRegistrasi tanggalRegistrasi
