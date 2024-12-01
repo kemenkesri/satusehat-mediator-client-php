@@ -113,6 +113,21 @@ class Diagnosis extends Terduga
         return $this;
     }
 
+    public function setServiceRequest($perujuk = null, $tipePerujuk = 'Practitioner', $faskesTujuan = null)
+    {
+        if ($perujuk) {
+            $this->serviceRequest->setRequester($perujuk);
+            if ($tipePerujuk == 'Practitioner' || $tipePerujuk == 'Organization')
+                $this->serviceRequest->setRequesterType($tipePerujuk);
+        }
+
+        if ($faskesTujuan) {
+            $this->serviceRequest->setFaskesTujuan($faskesTujuan);
+        }
+
+        return $this;
+    }
+
     /**
      * @return $this
      */
@@ -139,6 +154,7 @@ class Diagnosis extends Terduga
     public function setXrayTanggalWaktu($datetime)
     {
         $this->toraks->setEffectiveDateTime(self::isoDate($datetime, $this->config->getTimezone()));
+        $this->diagnosticReport->setEffectiveDateTime(self::isoDate($datetime, $this->config->getTimezone()));
         return $this;
     }
 
@@ -227,9 +243,18 @@ class Diagnosis extends Terduga
             $observation[] = $this->observation;
         }
 
-        if ($this->diagnosticReport->getConclusionText()) {
+        if ($this->diagnosticReport->getConclusionText() || $this->diagnosticReport->getEffectiveDateTime()) {
+            if ($this->serviceRequest->getRequester() || $this->serviceRequest->getFaskesTujuan()) {
+                $this->serviceRequest->setCodeRequest('xray');
+                $this->data->setServiceRequest([$this->serviceRequest]);
+            }
+
             $this->diagnosticReport->setCodeReport('xray');
             $this->data->setDiagnosticReport([$this->diagnosticReport]);
+
+            if ($this->serviceRequest->getCodeRequest() == 'xray') {
+                $this->diagnosticReport->setServiceRequest('xray');
+            }
         }
 
         if ($this->questionnaireResponse->getLocationAnatomy() || $this->questionnaireResponse->getTypeDiagnosis()) {
@@ -241,7 +266,6 @@ class Diagnosis extends Terduga
         }
 
         $this->data->setTbConfirm($this->tbConfirm);
-        $this->data->setServiceRequest($this->serviceRequest);
         $this->data->setObservation($observation);
 
         return $this;

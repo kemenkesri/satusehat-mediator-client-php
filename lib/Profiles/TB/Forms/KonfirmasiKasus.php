@@ -47,8 +47,8 @@ class KonfirmasiKasus extends Terduga
     protected function mustValidated()
     {
         return [
-            'TbConfirm',
-            'EpisodeOfCare',
+            // 'EpisodeOfCareId',
+            // 'EpisodeOfCareType',
         ];
     }
 
@@ -91,6 +91,7 @@ class KonfirmasiKasus extends Terduga
     {
         $this->episodeOfCare->setStatus('active');
         $this->episodeOfCare->setPeriodStart(self::isoDate($tanggalRegistrasi, $this->config->getTimezone()));
+        $this->tinggiBadan->setIssued(self::isoDate($tanggalRegistrasi, $this->config->getTimezone()));
 
         return $this;
     }
@@ -133,6 +134,7 @@ class KonfirmasiKasus extends Terduga
      */
     public function setAsalRujukanId($dikirimOleh)
     {
+        // $this->suspect->setAsalRujukanId($dikirimOleh);
         $this->konfirmasi->setAsalRujukanId($dikirimOleh);
 
         return $this;

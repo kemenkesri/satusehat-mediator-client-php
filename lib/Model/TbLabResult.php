@@ -28,7 +28,6 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Model;
 
-use ArrayAccess;
 use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
 
 /**
@@ -39,7 +38,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class TbLabResult implements ModelInterface, ArrayAccess
+class TbLabResult extends MediatorResourceBasic
 {
     public static $DISCRIMINATOR = null;
 
@@ -93,7 +92,7 @@ class TbLabResult implements ModelInterface, ArrayAccess
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes;
+        return self::$swaggerTypes + parent::swaggerTypes();
     }
 
     /**
@@ -103,7 +102,7 @@ class TbLabResult implements ModelInterface, ArrayAccess
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats;
+        return self::$swaggerFormats + parent::swaggerFormats();
     }
 
     /**
@@ -169,7 +168,7 @@ class TbLabResult implements ModelInterface, ArrayAccess
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -179,7 +178,7 @@ class TbLabResult implements ModelInterface, ArrayAccess
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -189,7 +188,7 @@ class TbLabResult implements ModelInterface, ArrayAccess
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -219,6 +218,8 @@ class TbLabResult implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        parent::__construct($data);
+
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['person_id'] = isset($data['person_id']) ? $data['person_id'] : null;
         $this->container['permohonan_id'] = isset($data['permohonan_id']) ? $data['permohonan_id'] : null;
@@ -238,7 +239,7 @@ class TbLabResult implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }

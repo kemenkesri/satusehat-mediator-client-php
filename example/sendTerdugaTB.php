@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Exception\RequestException;
 use Mediator\SatuSehat\Lib\Client\Api\SubmitDataApi;
 use Mediator\SatuSehat\Lib\Client\Configuration;
 use Mediator\SatuSehat\Lib\Client\Model\AddressPatient;
@@ -19,8 +20,8 @@ $bearerToken = null;
 Configuration::setConfigurationConstant(
     'development',
     new \Mediator\SatuSehat\Lib\Client\ConfigurationConstant(
-        'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
-        'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
+        'https://api-satusehat-stg.kemkes.go.id/oauth2/v1/accesstoken',
+        'https://api-satusehat-stg.kemkes.go.id/oauth2/v1/refreshtoken',
         'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
         'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
         $clientId,
@@ -63,9 +64,10 @@ $patient->setAddress([new AddressPatient(
 
 $terduga->setPatient($patient);
 $terduga->setTbSuspect([
+    "id" => "2411101654557057",
     "tgl_daftar" => "2024-05-24",
     "asal_rujukan_id" => "3",
-    "fasyankes_id" => "1000119617",
+    "fasyankes_id" => "1000063014",
     "jenis_fasyankes_id" => "1",
     "terduga_tb_id" => "1",
     "terduga_ro_id" => null,
@@ -74,8 +76,8 @@ $terduga->setTbSuspect([
     "status_hiv_id" => "3"
 ]);
 $terduga->setEncounter([
-    "encounter_id" => "83ef7e32-64f3-40a7-87c4-3cc59d44b4c6",
-    "local_id" => "2024-05-24 09:27:26.405593+07",
+    // "encounter_id" => "83ef7e32-64f3-40a7-87c4-3cc59d44b4c6",
+    "local_id" => "9772321",
     "classification" => "AMB",
     "period_start" => "2024-05-24T09:28:01+07:00",
     "period_in_progress" => "2024-05-24T09:58:01+07:00",
@@ -86,5 +88,10 @@ $terduga->addCondition((new Condition())->setCodeCondition('Z10'));
 $terduga->build();
 $terduga->validate();
 
-$response = $terduga->send();
-dump($response);
+try {
+    $response = $terduga->send();
+    print_r(['payload'=> $terduga->getData(), 'response' => $response]);
+} catch(RequestException $e) {
+    print_r(['payload'=> $form->getData()]);
+    print_r(json_encode(['error' => $e, 'response' => json_decode($e->getResponse()->getBody()->getContents())], JSON_PRETTY_PRINT ));
+}

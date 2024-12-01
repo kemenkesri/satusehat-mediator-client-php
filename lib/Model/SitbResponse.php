@@ -58,7 +58,15 @@ class SitbResponse implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'ta_terduga_tb' => 'Mediator\SatuSehat\Lib\Client\Model\TbSuspect[]',
         'ta_permohonan_lab' => 'Mediator\SatuSehat\Lib\Client\Model\TbLabRequest[]',
-        'ta_hasil_lab' => 'Mediator\SatuSehat\Lib\Client\Model\TbLabResult[]'
+        'ta_hasil_lab' => 'Mediator\SatuSehat\Lib\Client\Model\TbLabResult[]',
+        // 'ta_pasien_ro' => 'Mediator\SatuSehat\Lib\Client\Model\TbPasienRo[]',
+        // 'ta_pasien_so' => 'Mediator\SatuSehat\Lib\Client\Model\TbPasienSo[]',
+        // 'ta_pengobatan' => 'Mediator\SatuSehat\Lib\Client\Model\TbPengobatan[]',
+        // 'ta_pengobatan_dosis' => 'Mediator\SatuSehat\Lib\Client\Model\TbPengobatanDosis[]',
+        // 'ta_person' => 'Mediator\SatuSehat\Lib\Client\Model\TbPerson[]',
+        // 'ta_test_hiv' => 'Mediator\SatuSehat\Lib\Client\Model\TbTestHiv[]',
+        // 'ta_pasien_jadwal' => 'Mediator\SatuSehat\Lib\Client\Model\TbPasienJadwal[]',
+        // 'ta_pemeriksaan_fisik' => 'Mediator\SatuSehat\Lib\Client\Model\TbPemeriksaanFisik[]'
     ];
 
     /**
@@ -69,7 +77,15 @@ class SitbResponse implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'ta_terduga_tb' => null,
         'ta_permohonan_lab' => null,
-        'ta_hasil_lab' => null
+        'ta_hasil_lab' => null,
+        // 'ta_pasien_ro' => null,
+        // 'ta_pasien_so' => null,
+        // 'ta_pengobatan' => null,
+        // 'ta_pengobatan_dosis' => null,
+        // 'ta_person' => null,
+        // 'ta_test_hiv' => null,
+        // 'ta_pasien_jadwal' => null,
+        // 'ta_pemeriksaan_fisik' => null
     ];
 
     /**
@@ -101,7 +117,15 @@ class SitbResponse implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'ta_terduga_tb' => 'ta_terduga_tb',
         'ta_permohonan_lab' => 'ta_permohonan_lab',
-        'ta_hasil_lab' => 'ta_hasil_lab'
+        'ta_hasil_lab' => 'ta_hasil_lab',
+        // 'ta_pasien_ro' => 'ta_pasien_ro',
+        // 'ta_pasien_so' => 'ta_pasien_so',
+        // 'ta_pengobatan' => 'ta_pengobatan',
+        // 'ta_pengobatan_dosis' => 'ta_pengobatan_dosis',
+        // 'ta_person' => 'ta_person',
+        // 'ta_test_hiv' => 'ta_test_hiv',
+        // 'ta_pasien_jadwal' => 'ta_pasien_jadwal',
+        // 'ta_pemeriksaan_fisik' => 'ta_pemeriksaan_fisik'
     ];
 
     /**
@@ -112,7 +136,15 @@ class SitbResponse implements ModelInterface, ArrayAccess
     protected static $setters = [
         'ta_terduga_tb' => 'setTaTerdugaTb',
         'ta_permohonan_lab' => 'setTaPermohonanLab',
-        'ta_hasil_lab' => 'setTaHasilLab'
+        'ta_hasil_lab' => 'setTaHasilLab',
+        // 'ta_pasien_ro' => 'setTbPasienRo',
+        // 'ta_pasien_so' => 'setTbPasienSo',
+        // 'ta_pengobatan' => 'setTbPengobatan',
+        // 'ta_pengobatan_dosis' => 'setTbPengobatanDosis',
+        // 'ta_person' => 'setTbPerson',
+        // 'ta_test_hiv' => 'setTbTestHiv',
+        // 'ta_pasien_jadwal' => 'setTbPasienJadwal',
+        // 'ta_pemeriksaan_fisik' => 'setTbPemeriksaanFisik'
     ];
 
     /**
@@ -123,7 +155,15 @@ class SitbResponse implements ModelInterface, ArrayAccess
     protected static $getters = [
         'ta_terduga_tb' => 'getTaTerdugaTb',
         'ta_permohonan_lab' => 'getTaPermohonanLab',
-        'ta_hasil_lab' => 'getTaHasilLab'
+        'ta_hasil_lab' => 'getTaHasilLab',
+        // 'ta_pasien_ro' => 'getTbPasienRo',
+        // 'ta_pasien_so' => 'getTbPasienSo',
+        // 'ta_pengobatan' => 'getTbPengobatan',
+        // 'ta_pengobatan_dosis' => 'getTbPengobatanDosis',
+        // 'ta_person' => 'getTbPerson',
+        // 'ta_test_hiv' => 'getTbTestHiv',
+        // 'ta_pasien_jadwal' => 'getTbPasienJadwal',
+        // 'ta_pemeriksaan_fisik' => 'getTbPemeriksaanFisik'
     ];
 
     /**
@@ -187,6 +227,14 @@ class SitbResponse implements ModelInterface, ArrayAccess
         $this->container['ta_terduga_tb'] = isset($data['ta_terduga_tb']) ? $data['ta_terduga_tb'] : null;
         $this->container['ta_permohonan_lab'] = isset($data['ta_permohonan_lab']) ? $data['ta_permohonan_lab'] : null;
         $this->container['ta_hasil_lab'] = isset($data['ta_hasil_lab']) ? $data['ta_hasil_lab'] : null;
+        // $this->container['ta_pasien_ro'] = isset($data['ta_pasien_ro']) ? $data['ta_pasien_ro'] : null;
+        // $this->container['ta_pasien_so'] = isset($data['ta_pasien_so']) ? $data['ta_pasien_so'] : null;
+        // $this->container['ta_pengobatan'] = isset($data['ta_pengobatan']) ? $data['ta_pengobatan'] : null;
+        // $this->container['ta_pengobatan_dosis'] = isset($data['ta_pengobatan_dosis']) ? $data['ta_pengobatan_dosis'] : null;
+        // $this->container['ta_person'] = isset($data['ta_person']) ? $data['ta_person'] : null;
+        // $this->container['ta_test_hiv'] = isset($data['ta_test_hiv']) ? $data['ta_test_hiv'] : null;
+        // $this->container['ta_pasien_jadwal'] = isset($data['ta_pasien_jadwal']) ? $data['ta_pasien_jadwal'] : null;
+        // $this->container['ta_pemeriksaan_fisik'] = isset($data['ta_pemeriksaan_fisik']) ? $data['ta_pemeriksaan_fisik'] : null;
     }
 
     /**

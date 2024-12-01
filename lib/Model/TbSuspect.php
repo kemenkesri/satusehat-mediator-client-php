@@ -28,7 +28,6 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Model;
 
-use ArrayAccess;
 use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
 
 /**
@@ -39,7 +38,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class TbSuspect implements ModelInterface, ArrayAccess
+class TbSuspect extends MediatorResourceBasic
 {
     public static $DISCRIMINATOR = null;
 
@@ -143,7 +142,7 @@ class TbSuspect implements ModelInterface, ArrayAccess
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes;
+        return self::$swaggerTypes + parent::swaggerTypes();
     }
 
     /**
@@ -153,7 +152,7 @@ class TbSuspect implements ModelInterface, ArrayAccess
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats;
+        return self::$swaggerFormats + parent::swaggerFormats();
     }
 
     /**
@@ -294,7 +293,7 @@ class TbSuspect implements ModelInterface, ArrayAccess
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -304,7 +303,7 @@ class TbSuspect implements ModelInterface, ArrayAccess
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -314,7 +313,7 @@ class TbSuspect implements ModelInterface, ArrayAccess
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -344,6 +343,8 @@ class TbSuspect implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        parent::__construct($data);
+
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['person_id'] = isset($data['person_id']) ? $data['person_id'] : null;
         $this->container['tgl_daftar'] = isset($data['tgl_daftar']) ? $data['tgl_daftar'] : null;
@@ -388,7 +389,7 @@ class TbSuspect implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }

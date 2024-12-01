@@ -19,8 +19,8 @@ $bearerToken = null;
 Configuration::setConfigurationConstant(
     'development',
     new \Mediator\SatuSehat\Lib\Client\ConfigurationConstant(
-        'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken',
-        'https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/refreshtoken',
+        'https://api-satusehat-stg.kemkes.go.id/oauth2/v1/accesstoken',
+        'https://api-satusehat-stg.kemkes.go.id/oauth2/v1/refreshtoken',
         'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
         'https://mediator-satusehat.kemkes.go.id/api-dev/satusehat/rme/v1.0',
         $clientId,
@@ -50,35 +50,33 @@ $form->setPatient($patient);
 $form->setTbSuspect([
     "id" => "2405101601149056",
     // "person_id" => "1000001601149056",
-    // "tgl_daftar" => "2024-05-24",
-    // "asal_rujukan_id" => "3",
     "fasyankes_id" => "1000119617",
     "jenis_fasyankes_id" => "1",
-    // "terduga_tb_id" => "1",
-    // "terduga_ro_id" => null,
     // "tipe_pasien_id" => "1"
 ]);
 $form->setEncounter([
-    "encounter_id" => "83ef7e32-64f3-40a7-87c4-3cc59d44b4c6",
-    "local_id" => "2024-05-24 09:27:26.405593+07",
+    // "encounter_id" => "2cb74b5b-fa00-4c65-b25d-22d35a2e7f7f",
+    "local_id" => "2024-11-24 09:27:26.405593+07",
     "classification" => "AMB",
-    "period_start" => "2024-05-24T09:28:01+07:00",
-    "period_in_progress" => "2024-05-24T09:58:01+07:00",
-    "period_end" => "2024-05-24T10:58:01+07:00"
+    "period_start" => "2024-11-24T09:28:01+07:00",
+    "period_in_progress" => "2024-11-24T09:58:01+07:00",
+    "period_end" => "2024-11-24T10:58:01+07:00"
 ]);
 
 $form->addCondition(
     (new Condition())
-    ->setId('e552612b-9bd4-41fb-9677-90a12bc0cc1c')
+    // ->setId('0ee11462-2151-48ad-9faa-289ad2d5fae1')
     ->setCodeCondition("Z10")
 );
 $form
-    ->setTanggalHasilDiagnosis('2024-05-24T09:28:01')
-    ->setXrayHasil('Pos')
-    ->setXrayTanggalWaktu('2024-05-24T09:28:01')
+    ->setStatusPengobatan('not-started')
+    ->setTanggalHasilDiagnosis('2024-11-24T09:28:01')
+    ->setServiceRequest('N10000001')
+    ->setXrayHasil('pos')
+    ->setXrayTanggalWaktu('2024-11-24T09:28:01')
     ->setXrayKesan('ABCDEFGH')
-    ->setLokasiAnatomi('1')
-    ->setHasilDiagnosis('active', 'TB-SO')
+    ->setLokasiAnatomi('PTB')
+    ->setHasilDiagnosis('1')
     ->setTipeDiagnosis('tb-bac')
     ->setTindakLanjutPengobatan('1')
     ->setTempatPengobatan('1000119617')
@@ -87,8 +85,8 @@ $form->validate();
 
 try {
     $response = $form->send();
-    dump($response);
+    print_r(['payload'=> $form->getData(), 'response' => $response]);
 } catch(RequestException $e) {
-    // echo ' ABCDEF ' . json_encode($e->getResponseBody());
-    print_r(json_encode(json_decode($e->getResponse()->getBody()->getContents()), JSON_PRETTY_PRINT));
+    print_r(['payload'=> $form->getData()]);
+    print_r(json_encode(['error' => $e, 'response' => json_decode($e->getResponse()->getBody()->getContents())], JSON_PRETTY_PRINT ));
 }

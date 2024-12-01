@@ -29,9 +29,9 @@ class HasilAkhir extends Terduga
     protected function mustValidated()
     {
         return [
-            'EpisodeOfCare',
-            'CarePlan',
-            'ServiceRequest',
+            // 'EpisodeOfCare',
+            // 'CarePlan',
+            // 'ServiceRequest',
         ];
     }
 
@@ -45,6 +45,20 @@ class HasilAkhir extends Terduga
     public function setEpisodeOfCareId($episodeId)
     {
         $this->episodeOfCare->setId($episodeId);
+
+        return $this;
+    }
+
+    /**
+     * Sets episodeType
+     *
+     * @param string $episodeId episodeId
+     *
+     * @return $this
+     */
+    public function setEpisodeOfCareType($episodeType)
+    {
+        $this->episodeOfCare->setTypeCode($episodeType);
 
         return $this;
     }

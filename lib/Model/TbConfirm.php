@@ -28,7 +28,6 @@
 
 namespace Mediator\SatuSehat\Lib\Client\Model;
 
-use ArrayAccess;
 use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
 
 /**
@@ -39,7 +38,7 @@ use Mediator\SatuSehat\Lib\Client\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class TbConfirm implements ModelInterface, ArrayAccess
+class TbConfirm extends MediatorResourceBasic
 {
     public static $DISCRIMINATOR = null;
 
@@ -91,7 +90,7 @@ class TbConfirm implements ModelInterface, ArrayAccess
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes;
+        return self::$swaggerTypes + parent::swaggerTypes();
     }
 
     /**
@@ -101,7 +100,7 @@ class TbConfirm implements ModelInterface, ArrayAccess
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats;
+        return self::$swaggerFormats + parent::swaggerFormats();
     }
 
     /**
@@ -164,7 +163,7 @@ class TbConfirm implements ModelInterface, ArrayAccess
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -174,7 +173,7 @@ class TbConfirm implements ModelInterface, ArrayAccess
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -184,7 +183,7 @@ class TbConfirm implements ModelInterface, ArrayAccess
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -214,6 +213,8 @@ class TbConfirm implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        parent::__construct($data);
+
         $this->container['paduan_oat'] = isset($data['paduan_oat']) ? $data['paduan_oat'] : null;
         $this->container['bentuk_oat'] = isset($data['bentuk_oat']) ? $data['bentuk_oat'] : null;
         $this->container['paduan_pengobatan'] = isset($data['paduan_pengobatan']) ? $data['paduan_pengobatan'] : null;
@@ -232,7 +233,7 @@ class TbConfirm implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }

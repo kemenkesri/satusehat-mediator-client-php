@@ -66,7 +66,7 @@ final class TipeTerduga extends ProfileValidation
             || !$suspect->getTipePasienId()
             || self::$SITB_RO_TYPE_REFERENCE[$suspect->getTerdugaRoId()] !== $suspect->getTipePasienId())) {
             throw ValidationException::create('TB_SUSPECT_PATIENT_RO_TYPE');
-        } elseif (!$suspect->getTipePasienId() || !in_array($suspect->getTipePasienId(), ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])) {
+        } elseif (!$suspect->getId() && (!$suspect->getTipePasienId() || !in_array($suspect->getTipePasienId(), ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']))) {
             throw ValidationException::create('TB_SUSPECT_PATIENT_TYPE');
         }
     }
