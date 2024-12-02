@@ -225,6 +225,8 @@ class HasilLab extends Terduga
                 $this->hasil = new HasilLini2();
                 break;
             case 'biakan':
+            case 'biakan_jl':
+            case 'biakan_mgit':
                 $this->hasil = new HasilBiakan();
                 break;
             case 'kepekaan':
@@ -770,13 +772,13 @@ class HasilBiakan extends HasilUji
 
     public function __construct()
     {
-        $this->jenis = 'biakan';
+        $this->jenis = 'biakan_lj';
     }
 
     public function setMetodeUji($metode)
     {
         $this->metode = $metode;
-        if ($this->metode) {
+        if (in_array($this->metode, ['biakan_lj', 'biakan_mgit'])) {
             $this->jenis = $this->metode;
         }
 

@@ -30,6 +30,8 @@ final class PermohonanLab extends ProfileValidation
         'lini_1',
         'lini_2',
         'biakan',
+        'biakan_lj',
+        'biakan_mgit',
         'kepekaan',
         'tcm_bdmax',
         'pcr',

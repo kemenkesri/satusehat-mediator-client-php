@@ -98,9 +98,9 @@ class EncounterTest extends TestCase
     }
 
     /**
-     * Test attribute "perion_in_progress"
+     * Test attribute "period_in_progress"
      */
-    public function testPropertyPerionInProgress()
+    public function testPropertyPeriodInProgress()
     {
     }
 

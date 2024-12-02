@@ -59,7 +59,7 @@ class Encounter extends MediatorResourceBasic
         'local_id' => 'string',
         'status_akhir' => 'string',
         'period_start' => '\DateTime',
-        'perion_in_progress' => '\DateTime',
+        'period_in_progress' => '\DateTime',
         'period_end' => '\DateTime',
         'referral_no' => 'string'
     ];
@@ -74,7 +74,7 @@ class Encounter extends MediatorResourceBasic
         'local_id' => null,
         'status_akhir' => null,
         'period_start' => 'date-time',
-        'perion_in_progress' => 'date-time',
+        'period_in_progress' => 'date-time',
         'period_end' => 'date-time',
         'referral_no' => null
     ];
@@ -110,7 +110,7 @@ class Encounter extends MediatorResourceBasic
         'local_id' => 'local_id',
         'status_akhir' => 'status_akhir',
         'period_start' => 'period_start',
-        'perion_in_progress' => 'perion_in_progress',
+        'period_in_progress' => 'period_in_progress',
         'period_end' => 'period_end',
         'referral_no' => 'referral_no'
     ];
@@ -125,7 +125,7 @@ class Encounter extends MediatorResourceBasic
         'local_id' => 'setLocalId',
         'status_akhir' => 'setStatusAkhir',
         'period_start' => 'setPeriodStart',
-        'perion_in_progress' => 'setPerionInProgress',
+        'period_in_progress' => 'setPeriodInProgress',
         'period_end' => 'setPeriodEnd',
         'referral_no' => 'setReferralNo'
     ];
@@ -140,7 +140,7 @@ class Encounter extends MediatorResourceBasic
         'local_id' => 'getLocalId',
         'status_akhir' => 'getStatusAkhir',
         'period_start' => 'getPeriodStart',
-        'perion_in_progress' => 'getPerionInProgress',
+        'period_in_progress' => 'getPeriodInProgress',
         'period_end' => 'getPeriodEnd',
         'referral_no' => 'getReferralNo'
     ];
@@ -237,7 +237,7 @@ class Encounter extends MediatorResourceBasic
         $this->container['classification'] = isset($data['classification']) ? $data['classification'] : null;
         $this->container['status_akhir'] = isset($data['status_akhir']) ? $data['status_akhir'] : null;
         $this->container['period_start'] = isset($data['period_start']) ? $data['period_start'] : null;
-        $this->container['perion_in_progress'] = isset($data['perion_in_progress']) ? $data['perion_in_progress'] : null;
+        $this->container['period_in_progress'] = isset($data['period_in_progress']) ? $data['period_in_progress'] : null;
         $this->container['period_end'] = isset($data['period_end']) ? $data['period_end'] : null;
         $this->container['referral_no'] = isset($data['referral_no']) ? $data['referral_no'] : null;
     }
@@ -397,25 +397,25 @@ class Encounter extends MediatorResourceBasic
     }
 
     /**
-     * Gets perion_in_progress
+     * Gets period_in_progress
      *
      * @return \DateTime
      */
-    public function getPerionInProgress()
+    public function getPeriodInProgress()
     {
-        return $this->container['perion_in_progress'];
+        return $this->container['period_in_progress'];
     }
 
     /**
-     * Sets perion_in_progress
+     * Sets period_in_progress
      *
-     * @param \DateTime $perion_in_progress perion_in_progress
+     * @param \DateTime $period_in_progress period_in_progress
      *
      * @return $this
      */
-    public function setPerionInProgress($perion_in_progress)
+    public function setPeriodInProgress($period_in_progress)
     {
-        $this->container['perion_in_progress'] = $perion_in_progress;
+        $this->container['period_in_progress'] = $period_in_progress;
 
         return $this;
     }
