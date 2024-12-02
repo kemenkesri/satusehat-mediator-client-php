@@ -354,7 +354,8 @@ class HasilLab extends Terduga
         $this->diagnosticReport->setIssued(self::isoDate($this->hasil->getTanggal(), $this->config->getTimezone()));
         $this->observation->setIssued(self::isoDate($this->hasil->getTanggal(), $this->config->getTimezone()));
 
-        $this->observation->setLocalId($this->hasil->getNoregLab());
+        if ($this->hasil->getNoregLab())
+            $this->observation->setLocalId($this->hasil->getNoregLab());
 
         $this->observation->setNotesDetail($this->hasil->getCatatan());
 
