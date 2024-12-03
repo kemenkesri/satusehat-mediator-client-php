@@ -218,12 +218,17 @@ abstract class MediatorForm extends Validation
         return $this->submitApi->syncPost($this->data);
     }
 
-    public static function isoDate($datetime, $timezone = '+00:00')
+    public static function isoDate($datetime, $timezone = '+00:00', $add = 0)
     {
         if (!$datetime) {
             return null;
         }
 
-        return str_replace(' ', 'T', date('Y-m-d H:i:s', strtotime($datetime))) . $timezone;
+        $waktu = strtotime($datetime);
+        if ($add === 0) {
+            $waktu += rand(0, 60);
+        }elseif ($add > 0)
+            $waktu += $add;
+        return str_replace(' ', 'T', date('Y-m-d H:i:s', $waktu)) . $timezone;
     }
 }

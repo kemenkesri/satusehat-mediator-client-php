@@ -271,7 +271,9 @@ class HasilLab extends Terduga
 
     public function setServiceRequestId($id)
     {
+        $this->data->getTbSuspect()->setLabId($id);
         $this->serviceRequest->setId($id);
+        $this->serviceRequest->setShouldUpdate(false);
 
         return $this;
     }
@@ -324,8 +326,7 @@ class HasilLab extends Terduga
 
     public function setPermohonanLabId($labId)
     {
-        $this->data->getTbSuspect()->setLabId($labId);
-        $this->serviceRequest->setId($labId);
+        $this->setServiceRequestId($labId);
 
         return $this;
     }
