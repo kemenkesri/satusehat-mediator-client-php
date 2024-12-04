@@ -292,7 +292,17 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      */
     public function getTbSuspect()
     {
-        return $this->container['suspect_tb'];
+        $suspect_tb = $this->container['suspect_tb'];
+        if (!$suspect_tb) {
+            $sitb = $this->getSitb();
+            if ($sitb) {
+                $arr = $sitb->getTaTerdugaTb();
+                if (count($arr) > 0)
+                    $suspect_tb = $arr[0];
+            }
+        }
+
+        return $suspect_tb;
     }
 
     /**
@@ -340,7 +350,17 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      */
     public function getTbLabRequest()
     {
-        return $this->container['labExamRequest'];
+        $labExamRequest = $this->container['labExamRequest'];
+        if (!$labExamRequest) {
+            $sitb = $this->getSitb();
+            if ($sitb) {
+                $arr = $sitb->getTaPermohonanLab();
+                if (count($arr) > 0)
+                    $labExamRequest = $arr[0];
+            }
+        }
+
+        return $labExamRequest;
     }
 
     /**
@@ -364,7 +384,17 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      */
     public function getTbLabResult()
     {
-        return $this->container['labExamResult'];
+        $labExamResult = $this->container['labExamResult'];
+        if (!$labExamResult) {
+            $sitb = $this->getSitb();
+            if ($sitb) {
+                $arr = $sitb->getTaHasilLab();
+                if (count($arr) > 0)
+                    $labExamResult = $arr[0];
+            }
+        }
+
+        return $labExamResult;
     }
 
     /**
