@@ -731,7 +731,7 @@ class HasilLini2 extends HasilTcmX
         return $this;
     }
 
-    public function setMfxDT($mxf)
+    public function setMfxt($mxf)
     {
         $this->components['mfxt'] = $mxf;
 
@@ -862,7 +862,7 @@ class HasilKepekaan extends HasilTcmX
         return $this;
     }
 
-    public function setMfxDT($mfxt)
+    public function setMfxt($mfxt)
     {
         $this->components['mfxt'] = $mfxt;
 
