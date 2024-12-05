@@ -125,14 +125,20 @@ class Terduga extends MediatorForm
                 $encounter['local_id'] = $localId;
             }
 
+            $rand = rand(1, 120);
             if (isset($encounter['period_start'])) {
                 $datetime = date('Y-m-d H:i:s', strtotime(rand(5, 60) . ' sec', strtotime($encounter['period_start'])));
-                $encounter['period_start'] = self::isoDate($datetime, $this->config->getTimezone());
+                $encounter['period_start'] = self::isoDate($datetime, $this->config->getTimezone(), $rand);
+            }
+
+            if (isset($encounter['period_in_progress'])) {
+                $datetime = date('Y-m-d H:i:s', strtotime(rand(61, 120) . ' sec', strtotime($encounter['period_in_progress'])));
+                $encounter['period_in_progress'] = self::isoDate($datetime, $this->config->getTimezone(), $rand);
             }
 
             if (isset($encounter['period_end'])) {
                 $datetime = date('Y-m-d H:i:s', strtotime(rand(61, 120) . ' sec', strtotime($encounter['period_end'])));
-                $encounter['period_end'] = self::isoDate($datetime, $this->config->getTimezone());
+                $encounter['period_end'] = self::isoDate($datetime, $this->config->getTimezone(), $rand);
             }
         }
         $this->data->setEncounter($encounter);
