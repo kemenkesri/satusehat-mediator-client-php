@@ -297,7 +297,7 @@ class SubmitResponse implements ModelInterface, ArrayAccess
             $sitb = $this->getSitb();
             if ($sitb) {
                 $arr = $sitb->getTaTerdugaTb();
-                if (count($arr) > 0)
+                if (is_array($arr) && count($arr) > 0)
                     $suspect_tb = $arr[0];
             }
         }
@@ -326,7 +326,22 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      */
     public function getTbConfirm()
     {
-        return $this->container['tb_confirm'];
+        $tb_confirm = $this->container['tb_confirm'];
+        if (!$tb_confirm) {
+            $sitb = $this->getSitb();
+            if ($sitb) {
+                $arr = $sitb->getTaPasienRo();
+                if (is_array($arr) && count($arr) > 0)
+                    $tb_confirm = $arr[0];
+                else {
+                    $arr = $sitb->getTaPasienSo();
+                    if (is_array($arr) && count($arr) > 0)
+                        $tb_confirm = $arr[0];
+                }
+            }
+        }
+
+        return $tb_confirm;
     }
 
     /**
@@ -355,7 +370,7 @@ class SubmitResponse implements ModelInterface, ArrayAccess
             $sitb = $this->getSitb();
             if ($sitb) {
                 $arr = $sitb->getTaPermohonanLab();
-                if (count($arr) > 0)
+                if (is_array($arr) && count($arr) > 0)
                     $labExamRequest = $arr[0];
             }
         }
@@ -389,7 +404,7 @@ class SubmitResponse implements ModelInterface, ArrayAccess
             $sitb = $this->getSitb();
             if ($sitb) {
                 $arr = $sitb->getTaHasilLab();
-                if (count($arr) > 0)
+                if (is_array($arr) && count($arr) > 0)
                     $labExamResult = $arr[0];
             }
         }
