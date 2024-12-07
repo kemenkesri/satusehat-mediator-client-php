@@ -59,11 +59,11 @@ class SitbResponse implements ModelInterface, ArrayAccess
         'ta_terduga_tb' => 'Mediator\SatuSehat\Lib\Client\Model\TbSuspect[]',
         'ta_permohonan_lab' => 'Mediator\SatuSehat\Lib\Client\Model\TbLabRequest[]',
         'ta_hasil_lab' => 'Mediator\SatuSehat\Lib\Client\Model\TbLabResult[]',
-        // 'ta_pasien_ro' => 'Mediator\SatuSehat\Lib\Client\Model\TbPasienRo[]',
-        // 'ta_pasien_so' => 'Mediator\SatuSehat\Lib\Client\Model\TbPasienSo[]',
-        // 'ta_pengobatan' => 'Mediator\SatuSehat\Lib\Client\Model\TbPengobatan[]',
-        // 'ta_pengobatan_dosis' => 'Mediator\SatuSehat\Lib\Client\Model\TbPengobatanDosis[]',
-        // 'ta_person' => 'Mediator\SatuSehat\Lib\Client\Model\TbPerson[]',
+        'ta_pasien_ro' => 'Mediator\SatuSehat\Lib\Client\Model\TbPatientConfirmed[]',
+        'ta_pasien_so' => 'Mediator\SatuSehat\Lib\Client\Model\TbPatientConfirmed[]',
+        // 'ta_pengobatan' => 'Mediator\SatuSehat\Lib\Client\Model\TbMedication[]',
+        // 'ta_pengobatan_dosis' => 'Mediator\SatuSehat\Lib\Client\Model\TbMedicationDosage[]',
+        'ta_person' => 'Mediator\SatuSehat\Lib\Client\Model\TbPerson[]',
         // 'ta_test_hiv' => 'Mediator\SatuSehat\Lib\Client\Model\TbTestHiv[]',
         // 'ta_pasien_jadwal' => 'Mediator\SatuSehat\Lib\Client\Model\TbPasienJadwal[]',
         // 'ta_pemeriksaan_fisik' => 'Mediator\SatuSehat\Lib\Client\Model\TbPemeriksaanFisik[]'
@@ -78,11 +78,11 @@ class SitbResponse implements ModelInterface, ArrayAccess
         'ta_terduga_tb' => null,
         'ta_permohonan_lab' => null,
         'ta_hasil_lab' => null,
-        // 'ta_pasien_ro' => null,
-        // 'ta_pasien_so' => null,
+        'ta_pasien_ro' => null,
+        'ta_pasien_so' => null,
         // 'ta_pengobatan' => null,
         // 'ta_pengobatan_dosis' => null,
-        // 'ta_person' => null,
+        'ta_person' => null,
         // 'ta_test_hiv' => null,
         // 'ta_pasien_jadwal' => null,
         // 'ta_pemeriksaan_fisik' => null
@@ -118,11 +118,11 @@ class SitbResponse implements ModelInterface, ArrayAccess
         'ta_terduga_tb' => 'ta_terduga_tb',
         'ta_permohonan_lab' => 'ta_permohonan_lab',
         'ta_hasil_lab' => 'ta_hasil_lab',
-        // 'ta_pasien_ro' => 'ta_pasien_ro',
-        // 'ta_pasien_so' => 'ta_pasien_so',
+        'ta_pasien_ro' => 'ta_pasien_ro',
+        'ta_pasien_so' => 'ta_pasien_so',
         // 'ta_pengobatan' => 'ta_pengobatan',
         // 'ta_pengobatan_dosis' => 'ta_pengobatan_dosis',
-        // 'ta_person' => 'ta_person',
+        'ta_person' => 'ta_person',
         // 'ta_test_hiv' => 'ta_test_hiv',
         // 'ta_pasien_jadwal' => 'ta_pasien_jadwal',
         // 'ta_pemeriksaan_fisik' => 'ta_pemeriksaan_fisik'
@@ -137,11 +137,11 @@ class SitbResponse implements ModelInterface, ArrayAccess
         'ta_terduga_tb' => 'setTaTerdugaTb',
         'ta_permohonan_lab' => 'setTaPermohonanLab',
         'ta_hasil_lab' => 'setTaHasilLab',
-        // 'ta_pasien_ro' => 'setTbPasienRo',
-        // 'ta_pasien_so' => 'setTbPasienSo',
+        'ta_pasien_ro' => 'setTaPasienRo',
+        'ta_pasien_so' => 'setTaPasienSo',
         // 'ta_pengobatan' => 'setTbPengobatan',
         // 'ta_pengobatan_dosis' => 'setTbPengobatanDosis',
-        // 'ta_person' => 'setTbPerson',
+        'ta_person' => 'setTaPerson',
         // 'ta_test_hiv' => 'setTbTestHiv',
         // 'ta_pasien_jadwal' => 'setTbPasienJadwal',
         // 'ta_pemeriksaan_fisik' => 'setTbPemeriksaanFisik'
@@ -156,11 +156,11 @@ class SitbResponse implements ModelInterface, ArrayAccess
         'ta_terduga_tb' => 'getTaTerdugaTb',
         'ta_permohonan_lab' => 'getTaPermohonanLab',
         'ta_hasil_lab' => 'getTaHasilLab',
-        // 'ta_pasien_ro' => 'getTbPasienRo',
-        // 'ta_pasien_so' => 'getTbPasienSo',
+        'ta_pasien_ro' => 'getTaPasienRo',
+        'ta_pasien_so' => 'getTaPasienSo',
         // 'ta_pengobatan' => 'getTbPengobatan',
         // 'ta_pengobatan_dosis' => 'getTbPengobatanDosis',
-        // 'ta_person' => 'getTbPerson',
+        'ta_person' => 'getTaPerson',
         // 'ta_test_hiv' => 'getTbTestHiv',
         // 'ta_pasien_jadwal' => 'getTbPasienJadwal',
         // 'ta_pemeriksaan_fisik' => 'getTbPemeriksaanFisik'
@@ -227,11 +227,11 @@ class SitbResponse implements ModelInterface, ArrayAccess
         $this->container['ta_terduga_tb'] = isset($data['ta_terduga_tb']) ? $data['ta_terduga_tb'] : null;
         $this->container['ta_permohonan_lab'] = isset($data['ta_permohonan_lab']) ? $data['ta_permohonan_lab'] : null;
         $this->container['ta_hasil_lab'] = isset($data['ta_hasil_lab']) ? $data['ta_hasil_lab'] : null;
-        // $this->container['ta_pasien_ro'] = isset($data['ta_pasien_ro']) ? $data['ta_pasien_ro'] : null;
-        // $this->container['ta_pasien_so'] = isset($data['ta_pasien_so']) ? $data['ta_pasien_so'] : null;
-        // $this->container['ta_pengobatan'] = isset($data['ta_pengobatan']) ? $data['ta_pengobatan'] : null;
-        // $this->container['ta_pengobatan_dosis'] = isset($data['ta_pengobatan_dosis']) ? $data['ta_pengobatan_dosis'] : null;
-        // $this->container['ta_person'] = isset($data['ta_person']) ? $data['ta_person'] : null;
+        $this->container['ta_pasien_ro'] = isset($data['ta_pasien_ro']) ? $data['ta_pasien_ro'] : null;
+        $this->container['ta_pasien_so'] = isset($data['ta_pasien_so']) ? $data['ta_pasien_so'] : null;
+        $this->container['ta_pengobatan'] = isset($data['ta_pengobatan']) ? $data['ta_pengobatan'] : null;
+        $this->container['ta_pengobatan_dosis'] = isset($data['ta_pengobatan_dosis']) ? $data['ta_pengobatan_dosis'] : null;
+        $this->container['ta_person'] = isset($data['ta_person']) ? $data['ta_person'] : null;
         // $this->container['ta_test_hiv'] = isset($data['ta_test_hiv']) ? $data['ta_test_hiv'] : null;
         // $this->container['ta_pasien_jadwal'] = isset($data['ta_pasien_jadwal']) ? $data['ta_pasien_jadwal'] : null;
         // $this->container['ta_pemeriksaan_fisik'] = isset($data['ta_pemeriksaan_fisik']) ? $data['ta_pemeriksaan_fisik'] : null;
@@ -264,7 +264,7 @@ class SitbResponse implements ModelInterface, ArrayAccess
     /**
      * Gets ta_terduga_tb
      *
-     * @return Mediator\SatuSehatib\Client\Model\TbSuspect[]
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbSuspect[]
      */
     public function getTaTerdugaTb()
     {
@@ -274,7 +274,7 @@ class SitbResponse implements ModelInterface, ArrayAccess
     /**
      * Sets ta_terduga_tb
      *
-     * @param Mediator\SatuSehatib\Client\Model\TbSuspect[] $ta_terduga_tb ta_terduga_tb
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbSuspect[] $ta_terduga_tb ta_terduga_tb
      *
      * @return $this
      */
@@ -288,7 +288,7 @@ class SitbResponse implements ModelInterface, ArrayAccess
     /**
      * Gets ta_permohonan_lab
      *
-     * @return Mediator\SatuSehatib\Client\Model\TbLabRequest[]
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbLabRequest[]
      */
     public function getTaPermohonanLab()
     {
@@ -298,7 +298,7 @@ class SitbResponse implements ModelInterface, ArrayAccess
     /**
      * Sets ta_permohonan_lab
      *
-     * @param Mediator\SatuSehatib\Client\Model\TbLabRequest[] $ta_permohonan_lab ta_permohonan_lab
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbLabRequest[] $ta_permohonan_lab ta_permohonan_lab
      *
      * @return $this
      */
@@ -312,7 +312,7 @@ class SitbResponse implements ModelInterface, ArrayAccess
     /**
      * Gets ta_hasil_lab
      *
-     * @return Mediator\SatuSehatib\Client\Model\TbLabResult[]
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbLabResult[]
      */
     public function getTaHasilLab()
     {
@@ -322,13 +322,134 @@ class SitbResponse implements ModelInterface, ArrayAccess
     /**
      * Sets ta_hasil_lab
      *
-     * @param Mediator\SatuSehatib\Client\Model\TbLabResult[] $ta_hasil_lab ta_hasil_lab
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbLabResult[] $ta_hasil_lab ta_hasil_lab
      *
      * @return $this
      */
     public function setTaHasilLab($ta_hasil_lab)
     {
         $this->container['ta_hasil_lab'] = $ta_hasil_lab;
+
+        return $this;
+    }
+
+    /**
+     * Gets ta_pasien_ro
+     *
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbPatientConfirmed[]
+     */
+    public function getTaPasienRo()
+    {
+        return $this->container['ta_pasien_ro'];
+    }
+
+    /**
+     * Sets ta_pasien_ro
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbPatientConfirmed[] $ta_pasien_ro ta_pasien_ro
+     *
+     * @return $this
+     */
+    public function setTaPasienRo($ta_pasien_ro)
+    {
+        $this->container['ta_pasien_ro'] = $ta_pasien_ro;
+
+        return $this;
+    }
+
+
+    /**
+     * Gets ta_pasien_so
+     *
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbPatientConfirmed[]
+     */
+    public function getTaPasienSo()
+    {
+        return $this->container['ta_pasien_so'];
+    }
+
+    /**
+     * Sets ta_pasien_so
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbPatientConfirmed[] $ta_pasien_so ta_pasien_so
+     *
+     * @return $this
+     */
+    public function setTaPasienSo($ta_pasien_so)
+    {
+        $this->container['ta_pasien_so'] = $ta_pasien_so;
+
+        return $this;
+    }
+
+    /**
+     * Gets ta_pengobatan
+     *
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbMedication[]
+     */
+    public function getTaPengobatan()
+    {
+        return $this->container['ta_pengobatan'];
+    }
+
+    /**
+     * Sets ta_pengobatan
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbMedication[] $ta_pengobatan ta_pengobatan
+     *
+     * @return $this
+     */
+    public function setTaPengobatan($ta_pengobatan)
+    {
+        $this->container['ta_pengobatan'] = $ta_pengobatan;
+
+        return $this;
+    }
+
+    /**
+     * Gets ta_pengobatan_dosis
+     *
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbMedicationDosage[]
+     */
+    public function getTaPengobatanDosis()
+    {
+        return $this->container['ta_pengobatan_dosis'];
+    }
+
+    /**
+     * Sets ta_pengobatan_dosis
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbMedicationDosage[] $ta_pengobatan_dosis ta_pengobatan_dosis
+     *
+     * @return $this
+     */
+    public function setTaPengobatanDosis($ta_pengobatan_dosis)
+    {
+        $this->container['ta_pengobatan_dosis'] = $ta_pengobatan_dosis;
+
+        return $this;
+    }
+
+    /**
+     * Gets ta_person
+     *
+     * @return \Mediator\SatuSehat\Lib\Client\Model\TbPerson[]
+     */
+    public function getTaPerson()
+    {
+        return $this->container['ta_person'];
+    }
+
+    /**
+     * Sets ta_person
+     *
+     * @param \Mediator\SatuSehat\Lib\Client\Model\TbPerson[] $ta_person ta_person
+     *
+     * @return $this
+     */
+    public function setTaPerson($ta_person)
+    {
+        $this->container['ta_person'] = $ta_person;
 
         return $this;
     }
