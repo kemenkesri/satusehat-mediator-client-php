@@ -292,17 +292,21 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      */
     public function getTbSuspect()
     {
-        $suspect_tb = $this->container['suspect_tb'];
-        if (!$suspect_tb) {
-            $sitb = $this->getSitb();
-            if ($sitb) {
-                $arr = $sitb->getTaTerdugaTb();
-                if (is_array($arr) && count($arr) > 0)
-                    $suspect_tb = $arr[0];
+        if (isset($this->container['suspect_tb'])) {
+            $suspect_tb = $this->container['suspect_tb'];
+            if (!$suspect_tb) {
+                $sitb = $this->getSitb();
+                if ($sitb) {
+                    $arr = $sitb->getTaTerdugaTb();
+                    if (is_array($arr) && count($arr) > 0)
+                        $suspect_tb = $arr[0];
+                }
             }
+
+            return $suspect_tb;
         }
 
-        return $suspect_tb;
+        return null;
     }
 
     /**
@@ -326,22 +330,26 @@ class SubmitResponse implements ModelInterface, ArrayAccess
      */
     public function getTbConfirm()
     {
-        $tb_confirm = $this->container['tb_confirm'];
-        if (!$tb_confirm) {
-            $sitb = $this->getSitb();
-            if ($sitb) {
-                $arr = $sitb->getTaPasienRo();
-                if (is_array($arr) && count($arr) > 0)
-                    $tb_confirm = $arr[0];
-                else {
-                    $arr = $sitb->getTaPasienSo();
+        if (isset($this->container['tb_confirm'])) {
+            $tb_confirm = $this->container['tb_confirm'];
+            if (!$tb_confirm) {
+                $sitb = $this->getSitb();
+                if ($sitb) {
+                    $arr = $sitb->getTaPasienRo();
                     if (is_array($arr) && count($arr) > 0)
                         $tb_confirm = $arr[0];
+                    else {
+                        $arr = $sitb->getTaPasienSo();
+                        if (is_array($arr) && count($arr) > 0)
+                            $tb_confirm = $arr[0];
+                    }
                 }
             }
+
+            return $tb_confirm;
         }
 
-        return $tb_confirm;
+        return null;
     }
 
     /**
